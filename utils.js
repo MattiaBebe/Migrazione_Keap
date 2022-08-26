@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const fsp = require('fs/promises');
 
 const ROOT = process.cwd();
 
@@ -42,4 +43,23 @@ const parseCSV = (data, separator = ',', textIndicator='"') => {
     return data;
 }
 
+const saveJson = async (object, filename = `${(new Date()).valueOf()}`, directory = 'db_migration') => {
+    const directoryPath = path.join(ROOT, directory);
+    const filepath = path.join(ROOT, directory, filename);
+    const jsonObject = JSON.stringify(object, null, 2)
+    if(!fs.existsSync(directoryPath)){
+        fs.mkdirSync(directoryPath, {recursive: true});
+    }
+    await fsp.writeFile(`${filepath}.json`, jsonObject);
+}
+
+const loadJson = async (filename = '', directory = 'db_migration') => {
+    const filepath = path.join(ROOT, directory, filename);
+    const file = await fsp.readFile(`${filepath}.json`, 'utf-8');
+    const jsonContent = JSON.parse(file);
+    return jsonContent;
+}
+
 module.exports.readCsvFile = readCsvFile;
+module.exports.saveJson = saveJson;
+module.exports.loadJson = loadJson;

@@ -1,6 +1,11 @@
 # node modules
 \node_modules 
-#ide
+
+# IDE
 \.vscode
-#enviroment variable
-\.env
+
+# enviroment variable file
+.env
+
+# output directory
+\results
