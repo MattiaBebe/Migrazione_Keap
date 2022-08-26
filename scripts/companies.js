@@ -7,6 +7,7 @@ const VALID_COMPANIES_ROLES = [
 
 let isoCountries;
 let apiErrors = [];
+let scriptResults = [];
 
 const buildKeapCompany = (c4cCompany) => {
     const isoCountry = isoCountries.find(i => i['alpha-2'] === c4cCompany.CountryRegion);
@@ -91,6 +92,19 @@ module.exports = async () => {
                 }
                 const res = await axios(config);
                 console.log(res);
+                scriptResults.push({
+                    action: 'insert',
+                    data: c,
+                    response: {
+                        data: res.data,
+                        request_protocol: res.request.protocol,
+                        request_host: res.request.host,
+                        request_path: res.request.path,
+                        request_method: res.request.method,
+                        response_status: res.status,
+                        response_statusText: res.statusText
+                    }
+                });
             }
             catch (err) {
                 errore = {
@@ -116,6 +130,19 @@ module.exports = async () => {
                 }
                 const res = await axios(config);
                 console.log(res);
+                scriptResults.push({
+                    action: 'update',
+                    data: c,
+                    response: {
+                        data: res.data,
+                        request_protocol: res.request.protocol,
+                        request_host: res.request.host,
+                        request_path: res.request.path,
+                        request_method: res.request.method,
+                        response_status: res.status,
+                        response_statusText: res.statusText
+                    }
+                });
             }
             catch(err){
                 errore = {
@@ -129,10 +156,11 @@ module.exports = async () => {
     }
     
     const status = apiErrors.length === 0;
-
+    
     if(!status){
         utils.saveJson(apiErrors, `companiesScriptErrors_${(new Date()).valueOf()}`, 'results');
     }
 
+    utils.saveJson(scriptResults, `companiesScriptResults_${(new Date()).valueOf()}`, 'results');
     return status;
 }
