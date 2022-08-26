@@ -1,3 +1,11 @@
 const importCompanies = require('./scripts/companies');
 
-importCompanies();
+(async () => {
+    const result = await importCompanies(); 
+
+    if (result){
+        console.log('finito')
+    }
+})();
+
+
