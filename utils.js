@@ -12,8 +12,35 @@ const readCsvFile = async (directory) => {
     return results;   
 }
 
+const saveCsv = async (objects=[], filename=`${(new Date()).valueOf()}`, directory='results') => {
+    const directoryPath = path.join(ROOT, directory);
+    const filepath = path.join(ROOT, directory, filename);
+    if (objects.length > 0) {
+        const headers = Object.keys(objects.shift()).map(h => h.replace(/,/g, ' ').replace(/s+/g, ' ')).join(',');
+        const data = objects.map(d => {
+            let info = Object.values(d);
+            info = info.map(i => {
+                if (i && i.includes(',')){
+                    return `"${i}"`;
+                } else {
+                    return i;
+                }
+            })
+            return info.join(',');
+        });
 
-const parseCSV = (data, separator = ',', textIndicator='"') => {
+        const file = [headers, ...data].join('\r\n');
+        if(!fs.existsSync(directoryPath)){
+            fs.mkdirSync(directoryPath, {recursive: true});
+        }
+
+        await fsp.writeFile(`${filepath}.csv`, file);
+    } else {
+        console.warn(`tentatative to save 0-length array into csv aborted: ${filename}`);
+    }
+}
+
+const parseCSV = (data, separator=',', textIndicator='"') => {
     data = data.split(/\r\n|\r|\n/);
     const headers = data.shift().split(separator);
     data = data.map(r => {
@@ -43,23 +70,41 @@ const parseCSV = (data, separator = ',', textIndicator='"') => {
     return data;
 }
 
-const saveJson = async (object, filename = `${(new Date()).valueOf()}`, directory = 'db_migration') => {
+const saveJson = async (object, filename=`${(new Date()).valueOf()}`, directory = 'db_migration') => {
     const directoryPath = path.join(ROOT, directory);
     const filepath = path.join(ROOT, directory, filename);
-    const jsonObject = JSON.stringify(object, null, 2)
+    const jsonObject = JSON.stringify(object, null, 2);
     if(!fs.existsSync(directoryPath)){
         fs.mkdirSync(directoryPath, {recursive: true});
     }
     await fsp.writeFile(`${filepath}.json`, jsonObject);
 }
 
-const loadJson = async (filename = '', directory = 'db_migration') => {
+const loadJson = async (filename='', directory='db_migration') => {
     const filepath = path.join(ROOT, directory, filename);
     const file = await fsp.readFile(`${filepath}.json`, 'utf-8');
     const jsonContent = JSON.parse(file);
     return jsonContent;
 }
 
+const validateEmail = (email) => {
+    const validationRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+    const valid = validationRegex.test(email);
+
+    return valid
+}
+
+const validateUrl = (url) => {
+    const validationRegex = /((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/;
+    const valid = validationRegex.test(url);
+    
+    return valid
+}
+
 module.exports.readCsvFile = readCsvFile;
+module.exports.saveCsv = saveCsv;
 module.exports.saveJson = saveJson;
 module.exports.loadJson = loadJson;
+
+module.exports.validateEmail = validateEmail;
+module.exports.validateUrl = validateUrl;

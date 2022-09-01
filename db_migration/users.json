@@ -1,0 +1,189 @@
+[
+    {
+        "given_name": "Alberto",
+        "family_name": "Levi",
+        "email_address": "alberto.levi@cypag.com",
+        "infusionsoft_id": "alberto.levi@cypag.com",
+        "keap_global_user_id": 3993571,
+        "keap_id": 1,
+        "sap_gav": null,
+        "sap_cid": null,
+        "c4c_id": null
+    },
+    {
+        "given_name": "Luca",
+        "family_name": "Pagni",
+        "email_address": "lpagni@cypag.com",
+        "infusionsoft_id": "lpagni@cypag.com",
+        "keap_global_user_id": 3993917,
+        "keap_id": 13,
+        "sap_gav": "012",
+        "sap_cid": "00000007",
+        "c4c_id": 8000000002
+    },
+    {
+        "given_name": "Cy.Pag.",
+        "family_name": "S.p.A.",
+        "email_address": "info@cypag.com",
+        "infusionsoft_id": "info@cypag.com",
+        "keap_global_user_id": 4022157,
+        "keap_id": 53951,
+        "sap_gav": "015",
+        "sap_cid": "00000010",
+        "c4c_id": null
+    },
+    {
+        "given_name": "SIS Safety",
+        "family_name": "Security",
+        "email_address": "info@sis-safety.com",
+        "infusionsoft_id": "info@sis-safety.com",
+        "keap_global_user_id": 4110949,
+        "keap_id": 56768,
+        "sap_gav": null,
+        "sap_cid": null,
+        "c4c_id": 8000000231
+    },
+    {
+        "given_name": "Colin",
+        "family_name": "Davies",
+        "email_address": "colin.davies.ext@sis-safety.com",
+        "infusionsoft_id": "colin.davies.ext@sis-safety.com",
+        "keap_global_user_id": 4124409,
+        "keap_id": 57716,
+        "sap_gav": "017",
+        "sap_cid": null,
+        "c4c_id": 8000000230
+    },
+    {
+        "given_name": "Alessandra",
+        "family_name": "Naso",
+        "email_address": "alessandra.naso@cypag-group.com",
+        "infusionsoft_id": "alessandra.naso@cypag-group.com",
+        "keap_global_user_id": null,
+        "keap_id": 57718,
+        "sap_gav": null,
+        "sap_cid": null,
+        "c4c_id": null
+    },
+    {
+        "given_name": "Nicola",
+        "family_name": "Bottà",
+        "email_address": "nicola.botta@sis-safety.com",
+        "infusionsoft_id": "nicola.botta@sis-safety.com",
+        "keap_global_user_id": null,
+        "keap_id": 57720,
+        "sap_gav": "018",
+        "sap_cid": "00000018",
+        "c4c_id": null
+    },
+    {
+        "given_name": "Silvio",
+        "family_name": "Pozzi",
+        "email_address": "silvio.pozzi@sis-safety.com",
+        "infusionsoft_id": "silvio.pozzi@sis-safety.com",
+        "keap_global_user_id": 4124407,
+        "keap_id": 57722,
+        "sap_gav": "003",
+        "sap_cid": null,
+        "c4c_id": 8000000020
+    },
+    {
+        "given_name": "Paolo",
+        "family_name": "Sanna",
+        "email_address": "paolo.sanna@cypag.com",
+        "infusionsoft_id": "paolo.sanna@cypag.com",
+        "keap_global_user_id": null,
+        "keap_id": 57724,
+        "sap_gav": "016",
+        "sap_cid": "00000009",
+        "c4c_id": 8000000100
+    },
+    {
+        "given_name": "Anna",
+        "family_name": "Amorese",
+        "email_address": "amorese@cypag.com",
+        "infusionsoft_id": "amorese@cypag.com",
+        "keap_global_user_id": null,
+        "keap_id": 57726,
+        "sap_gav": "005",
+        "sap_cid": "00000011",
+        "c4c_id": 8000000010
+    },
+    {
+        "given_name": "Katia",
+        "family_name": "Testa",
+        "email_address": "katia.testa@cypag.com",
+        "infusionsoft_id": "katia.testa@cypag.com",
+        "keap_global_user_id": null,
+        "keap_id": 57728,
+        "sap_gav": null,
+        "sap_cid": "00000012",
+        "c4c_id": null
+    },
+    {
+        "given_name": "Claudia",
+        "family_name": "Manna",
+        "email_address": "manna@cypag.com",
+        "infusionsoft_id": "manna@cypag.com",
+        "keap_global_user_id": null,
+        "keap_id": 57730,
+        "sap_gav": null,
+        "sap_cid": "00000014",
+        "c4c_id": 8000000051
+    },
+    {
+        "given_name": "Tomasz",
+        "family_name": "Domagalski",
+        "email_address": "tomasz.domagalski.ext@cypag.com",
+        "infusionsoft_id": "tomasz.domagalski.ext@cypag.com",
+        "keap_global_user_id": null,
+        "keap_id": 57732,
+        "sap_gav": "008",
+        "sap_cid": "00000013",
+        "c4c_id": null
+    },
+    {
+        "given_name": "Alessio",
+        "family_name": "Minotti",
+        "email_address": "alessio.minotti@cypag.com",
+        "infusionsoft_id": "alessio.minotti@cypag.com",
+        "keap_global_user_id": 4124413,
+        "keap_id": 57744,
+        "sap_gav": "004",
+        "sap_cid": "00000003",
+        "c4c_id": 8000000008
+    },
+    {
+        "given_name": "Emanuele",
+        "family_name": "Montonati",
+        "email_address": "emanuele.montonati@cypag.com",
+        "infusionsoft_id": "emanuele.montonati@cypag.com",
+        "keap_global_user_id": 4124414,
+        "keap_id": 57746,
+        "sap_gav": "010",
+        "sap_cid": "00000004",
+        "c4c_id": 8000000080
+    },
+    {
+        "given_name": "Felix",
+        "family_name": "Tappeiner",
+        "email_address": "felix.tappeiner.ext@cypag.com",
+        "infusionsoft_id": "felix.tappeiner.ext@cypag.com",
+        "keap_global_user_id": null,
+        "keap_id": 57750,
+        "sap_gav": "006",
+        "sap_cid": "00000015",
+        "c4c_id": 8000000120
+    },
+    {
+        "given_name": "Massimiliano",
+        "family_name": "Corbani",
+        "email_address": "massimiliano.corbani@cypag.com",
+        "infusionsoft_id": "massimiliano.corbani@cypag.com",
+        "keap_global_user_id": null,
+        "keap_id": 57754,
+        "sap_gav": "011",
+        "sap_cid": "00000002",
+        "c4c_id": 8000000090
+    }
+]
