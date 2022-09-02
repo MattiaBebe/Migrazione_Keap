@@ -3,7 +3,7 @@ const axios = require('axios');
 const crypto = require('crypto');
 const _ = require('lodash');
 
-const API_PARALLEL_CALLS = 10;
+const API_PARALLEL_CALLS = 20;
 
 const VALID_COMPANIES_ROLES = [
     'CRM000',
@@ -30,7 +30,7 @@ let scriptResults = [];
 
 const buildKeapCompany = (c4cCompany, action) => {
     let company = {};
-    
+
     const isoCountry = isoCountries.find(i => i['alpha-2'] === c4cCompany.CountryRegion);
     let country_code = isoCountry ? isoCountry['alpha-3'] : null;
     let line1 = c4cCompany.Street + `${c4cCompany.House_Number ? ', ' + c4cCompany.House_Number : null}`;
@@ -78,13 +78,18 @@ const buildKeapCompany = (c4cCompany, action) => {
     if(c4cCompany.External_ID){
         custom_fields.push({
             content: c4cCompany.External_ID,
-            id: customFieldsMap.c4cId
+            id: customFieldsMap.sapId
         })
-    }
+    } /*else {
+        custom_fields.push({
+            content: null,
+            id: customFieldsMap.sapId
+        })
+    }*/
     if(c4cCompany.Account_ID){
         custom_fields.push({
             content: c4cCompany.Account_ID,
-            id: customFieldsMap.sapId
+            id: customFieldsMap.c4cId
         })
     }
     custom_fields.push({
@@ -100,24 +105,24 @@ const buildKeapCompany = (c4cCompany, action) => {
     if(c4cCompany.Fax) {
         company['fax_number'] = {
             number: c4cCompany.Fax,
-            type: "Work"    
+            type: "Work"
     }}
 
     if(c4cCompany.Phone) {
         company['phone_number'] = {
             number: c4cCompany.Phone,
-            type: "Work"        
+            type: "Work"
     }}
 
     let website = c4cCompany.Web_Site?.substring(0, 3) === 'www' ? `https://${c4cCompany.Web_Site}` : c4cCompany.Web_Site
     if (utils.validateUrl(website)) {
         company['website'] = website;
-    } else {        
+    } else {
         website = `https://www.${c4cCompany.Web_Site}`
         if (utils.validateUrl(website)){
             company['website'] = website;
         }
-    }    
+    }
 
     const hash = crypto.createHash('sha256', cryptoSecret).update(JSON.stringify(company)).digest('hex');
     company.custom_fields.push({ content: hash, id: customFieldsMap.hash});
@@ -165,21 +170,46 @@ module.exports = async () => {
     }
     catch(err){
         errore = {
-            ...err, 
+            ...err,
             type: 'get companies error'
         };
         apiErrors.push(errore);
     }
 
     if(apiErrors.length === 0){
-        const validC4cCompanies = c4cCompanies.filter(c => checkValid(c));
-    
-        let companiesToInsert = validC4cCompanies.filter(c => !keapCompanies.map(k => k.company_name.toUpperCase()).includes(c.Name.toUpperCase()));
-        companiesToInsert = companiesToInsert.map(c => buildKeapCompany(c, 'created'));
+        const c4cAccountIds = {};
+        keapCompanies.map(k => {
+                const c4cId = k.custom_fields.find(f => f.id === customFieldsMap.c4cId);
+                const hash = k.custom_fields.find(f => f.id === customFieldsMap.hash);
+                if (c4cId.content) {
+                    c4cAccountIds[c4cId.content] = {id: k.id, hash: hash.content};
+                }
+        })
 
-        let companiesToUpdate = validC4cCompanies.filter(c => keapCompanies.map(k => k.company_name.toUpperCase()).includes(c.Name.toUpperCase()));
+        let companiesToInsert = [];
+        let companiesToUpdate = [];
+        const validC4cCompanies = c4cCompanies.filter(c => checkValid(c));
+
+        //TEMPORARY ONLY --> MATCH THROUGH MAPPING AFTER FIRST ROUND OF INSERT
+        // companiesToInsert = validC4cCompanies.filter(c => !keapCompanies.map(k => k.company_name.toUpperCase()).includes(c.Name.toUpperCase()));
+        // companiesToUpdate = validC4cCompanies.filter(c => keapCompanies.map(k => k.company_name.toUpperCase()).includes(c.Name.toUpperCase()));
+        //TEMPORARY ONLY --> MATCH THROUGH MAPPING AFTER FIRST ROUND OF INSERT
+
+
+        validC4cCompanies.map(c => {
+            const alreadyOnKeap = c4cAccountIds[c.Account_ID] ? true : false;
+            if (alreadyOnKeap) {
+                companiesToUpdate.push(c);
+            } else {
+                companiesToInsert.push(c);
+            }
+        })
+
+        // const fixAccountId = companiesToInsert.map(c => c.Account_ID);
+
+        companiesToInsert = companiesToInsert.map(c => buildKeapCompany(c, 'created'));
         companiesToUpdate = companiesToUpdate.map(c => buildKeapCompany(c, 'updated'));
-        
+
         // dev only --START--
         // utils.saveJson(keapCompanies, `keapCompanies_${(new Date()).valueOf()}`, 'results');
         // companiesToInsert = companiesToInsert.slice(0,1);
@@ -215,6 +245,7 @@ module.exports = async () => {
                     });
                 }
                 catch (err) {
+                    console.error(err);
                     errore = {
                         message: err.message,
                         stack: err.stack,
@@ -237,10 +268,12 @@ module.exports = async () => {
         const updateRequests = companiesToUpdate.map(c => {
             const fn = async () => {
                 try{
-                    const updatingCompany = keapCompanies.find(k => k.company_name.toUpperCase() === c.company_name.toUpperCase());
-                    const updatingCompanyHash = updatingCompany.custom_fields.find(f => f.id === customFieldsMap.hash);
-                    const currentHash = c.custom_fields.find(f => f.id === customFieldsMap.hash);
-                    if (updatingCompanyHash.content !== currentHash.content) {
+                    // const updatingCompany = keapCompanies.find(k => k.company_name.toUpperCase() === c.company_name.toUpperCase());
+                    const accountId = c.custom_fields.find(f => f.id === customFieldsMap.c4cId).content;
+                    const updatingCompany = c4cAccountIds[accountId];
+                    const updatingCompanyHash = updatingCompany.hash;
+                    const currentHash = c.custom_fields.find(f => f.id === customFieldsMap.hash).content;
+                    if (updatingCompanyHash !== currentHash) {
                         const companyId = updatingCompany.id;
                         const data = JSON.stringify(c);
                         const config = {
@@ -272,6 +305,7 @@ module.exports = async () => {
                     }
                 }
                 catch(err){
+                    console.error(err);
                     errore = {
                         message: err.message,
                         stack: err.stack,
@@ -283,16 +317,16 @@ module.exports = async () => {
             }
             return fn;
         })
-    
+
         const updateChunks = _.chunk(updateRequests, API_PARALLEL_CALLS)
         for(const r of updateChunks){
             const promises = r.map(fn => fn());
             await Promise.all(promises);
-        } 
+        }
     }
-    
+
     const status = apiErrors.length === 0;
-    
+
     if(!status){
         utils.saveJson(apiErrors, `companiesScriptErrors_${(new Date()).valueOf()}`, 'results');
     }

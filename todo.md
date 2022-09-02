@@ -6,5 +6,5 @@
     - INDUSTRY (Colonna S)
     - ROLE
     - OWNER
-- [ ] isert first round of companies
+- [x] isert first round of companies
 - [ ] switch company script to mapping fields

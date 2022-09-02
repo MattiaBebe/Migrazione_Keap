@@ -8,7 +8,9 @@ dotenv.config();
     const result = await importCompanies(); 
 
     if (result){
-        console.log('finito')
+        console.log('completed succesfully');
+    } else {
+        console.log('completed with errors');
     }
 })();
 
