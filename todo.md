@@ -7,4 +7,7 @@
     - ROLE
     - OWNER
 - [x] isert first round of companies
-- [ ] switch company script to mapping fields
+- [x] switch company script to mapping fields
+- [ ] import contacts
+- [ ] import tasks
+- [ ] import opportunitie

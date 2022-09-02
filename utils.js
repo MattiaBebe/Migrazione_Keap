@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const fsp = require('fs/promises');
+const axios = require('axios');
 
 const ROOT = process.cwd();
 
@@ -101,6 +102,70 @@ const validateUrl = (url) => {
     return valid
 }
 
+const retrieveKeapCompanies = async () => {
+    let apiErrors = [];
+    let keapCompanies = [];
+    const companiesChunkSize = 1000;
+    try{
+        let iterations = 0;
+        let all = false;
+        while (!all) {
+            const url = `${process.env.KEAP_API_URL}/companies?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${companiesChunkSize}&offset=${companiesChunkSize*iterations}`;
+            const res = await axios.get(url);
+            keapCompanies = [...keapCompanies, ...res.data.companies];
+            console.log(`getCompanies iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedCompanies: ${res.data.companies.length}`);
+            iterations++;
+            all = res.data.companies.length < companiesChunkSize;
+        }
+    }
+    catch(err){
+        console.error(err);
+        errore = {
+            message: err.message,
+            stack: err.stack,
+            type: 'get companies error'
+        };
+        apiErrors.push(errore);
+    }
+
+    return {
+        companies: keapCompanies,
+        apiErrors: apiErrors
+    }
+}
+
+const retrieveKeapContacts = async () => {
+    let apiErrors = [];
+    let keapContacts = [];
+    const contactsChunkSize = 1000;
+    try{
+        let iterations = 0;
+        let all = false;
+        while (!all) {
+            const url = `${process.env.KEAP_API_URL}/contacts?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${contactsChunkSize}&offset=${contactsChunkSize*iterations}`;
+            const res = await axios.get(url);
+            keapContacts = [...keapContacts, ...res.data.contacts];
+            console.log(`getContacts iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedContacts: ${res.data.contacts.length}`);
+            iterations++;
+            all = res.data.contacts.length < contactsChunkSize;
+        }
+    }
+    catch(err){
+        console.error(err);
+        errore = {
+            message: err.message,
+            stack: err.stack,
+            type: 'get contacts error'
+        };
+        apiErrors.push(errore);
+    }
+
+    return {
+        contacts: keapContacts,
+        apiErrors: apiErrors
+    }
+}
+
 module.exports.readCsvFile = readCsvFile;
 module.exports.saveCsv = saveCsv;
 module.exports.saveJson = saveJson;
@@ -108,3 +173,6 @@ module.exports.loadJson = loadJson;
 
 module.exports.validateEmail = validateEmail;
 module.exports.validateUrl = validateUrl;
+
+module.exports.retrieveKeapCompanies = retrieveKeapCompanies;
+module.exports.retrieveKeapContacts = retrieveKeapContacts;

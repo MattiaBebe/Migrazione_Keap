@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const _ = require('lodash');
 
 const API_PARALLEL_CALLS = 20;
+const cryptoSecret = 'SECRET'
 
 const VALID_COMPANIES_ROLES = [
     'CRM000',
@@ -22,7 +23,6 @@ const customFieldsMap = {
     hash: 66
 }
 
-const cryptoSecret = 'SECRET'
 let isoCountries;
 let apiErrors = [];
 let rejectedData = [];
@@ -33,7 +33,7 @@ const buildKeapCompany = (c4cCompany, action) => {
 
     const isoCountry = isoCountries.find(i => i['alpha-2'] === c4cCompany.CountryRegion);
     let country_code = isoCountry ? isoCountry['alpha-3'] : null;
-    let line1 = c4cCompany.Street + `${c4cCompany.House_Number ? ', ' + c4cCompany.House_Number : null}`;
+    let line1 = `${c4cCompany.Street ? c4cCompany.Street : ''} ${c4cCompany.House_Number ? ', ' + c4cCompany.House_Number : ''}`;
     let locality = c4cCompany.City;
     let zip_code = c4cCompany.Postal_Code && c4cCompany.Postal_Code.length === 5 ? c4cCompany.Postal_Code : null;
     let zip_four = c4cCompany.Postal_Code && c4cCompany.Postal_Code.length === 4 ? c4cCompany.Postal_Code : null;
@@ -154,27 +154,9 @@ module.exports = async () => {
 
     const c4cCompanies = await utils.readCsvFile('db_migration/aziende.csv');
 
-    let keapCompanies = [];
-    const companiesChunkSize = 1000;
-    try{
-        let iterations = 0;
-        let all = false;
-        while (!all) {
-            const url = `${process.env.KEAP_API_URL}/companies?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${companiesChunkSize}&offset=${companiesChunkSize*iterations}`;
-            const res = await axios.get(url);
-            keapCompanies = [...keapCompanies, ...res.data.companies];
-            console.log(`getCompanies iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedCompanies: ${res.data.companies.length}`);
-            iterations++;
-            all = res.data.companies.length < companiesChunkSize;
-        }
-    }
-    catch(err){
-        errore = {
-            ...err,
-            type: 'get companies error'
-        };
-        apiErrors.push(errore);
-    }
+    const keapCompaniesRes = await utils.retrieveKeapCompanies();
+    const keapCompanies = keapCompaniesRes.companies;
+    apiErrors = [...apiErrors, ...keapCompaniesRes.apiErrors];
 
     if(apiErrors.length === 0){
         const c4cAccountIds = {};
