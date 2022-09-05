@@ -1,4 +1,5 @@
 const utils = require('../utils');
+const konst = require('./constants')
 const axios = require('axios');
 const crypto = require('crypto');
 const _ = require('lodash');
@@ -12,16 +13,6 @@ const VALID_COMPANIES_ROLES = [
     'Z00010',
     'Z00100'
 ]
-
-const customFieldsMap = {
-    industry: 48,
-    abcClass: 50,
-    userOwner: 64,
-    sapId: 54,
-    c4cId: 56,
-    c4cMigrationEvent: 62,
-    hash: 66
-}
 
 let isoCountries;
 let apiErrors = [];
@@ -61,40 +52,40 @@ const buildKeapCompany = (c4cCompany, action) => {
     }
 
     let custom_fields = []
-    if(customFieldsMap.industry){
+    if(c4cCompany.Industry_Text){
         custom_fields.push({
                 content: c4cCompany.Industry_Text,
-                id: customFieldsMap.industry
+                id: konst.companyCustomFiledsMap.industry
         })
     };
     custom_fields.push({
         content: c4cCompany.ABC_Classification === 'A' ? 70 : c4cCompany.ABC_Classification === 'B' ? 72 : c4cCompany.ABC_Classification === 'C' ? 74 : 76,
-        id: customFieldsMap.abcClass
+        id: konst.companyCustomFiledsMap.abcClass
     });
     custom_fields.push({
         content: 0,
-        id: customFieldsMap.userOwner
+        id: konst.companyCustomFiledsMap.userOwner
     });
     if(c4cCompany.External_ID){
         custom_fields.push({
             content: c4cCompany.External_ID,
-            id: customFieldsMap.sapId
+            id: konst.companyCustomFiledsMap.sapId
         })
     } /*else {
         custom_fields.push({
             content: null,
-            id: customFieldsMap.sapId
+            id: konst.companyCustomFiledsMap.sapId
         })
     }*/
     if(c4cCompany.Account_ID){
         custom_fields.push({
             content: c4cCompany.Account_ID,
-            id: customFieldsMap.c4cId
+            id: konst.companyCustomFiledsMap.c4cId
         })
     }
     custom_fields.push({
         content: action,
-        id: customFieldsMap.c4cMigrationEvent
+        id: konst.companyCustomFiledsMap.c4cMigrationEvent
     });
     company['custom_fields'] = custom_fields;
 
@@ -125,7 +116,7 @@ const buildKeapCompany = (c4cCompany, action) => {
     }
 
     const hash = crypto.createHash('sha256', cryptoSecret).update(JSON.stringify(company)).digest('hex');
-    company.custom_fields.push({ content: hash, id: customFieldsMap.hash});
+    company.custom_fields.push({ content: hash, id: konst.companyCustomFiledsMap.hash});
 
     return company
 }
@@ -161,12 +152,13 @@ module.exports = async () => {
     if(apiErrors.length === 0){
         const c4cAccountIds = {};
         keapCompanies.map(k => {
-                const c4cId = k.custom_fields.find(f => f.id === customFieldsMap.c4cId);
-                const hash = k.custom_fields.find(f => f.id === customFieldsMap.hash);
+                const c4cId = k.custom_fields.find(f => f.id === konst.companyCustomFiledsMap.c4cId);
+                const hash = k.custom_fields.find(f => f.id === konst.companyCustomFiledsMap.hash);
                 if (c4cId.content) {
                     c4cAccountIds[c4cId.content] = {id: k.id, hash: hash.content};
                 }
         })
+        console.log('\r\n');
 
         let companiesToInsert = [];
         let companiesToUpdate = [];
@@ -194,8 +186,8 @@ module.exports = async () => {
 
         // dev only --START--
         // utils.saveJson(keapCompanies, `keapCompanies_${(new Date()).valueOf()}`, 'results');
-        // companiesToInsert = companiesToInsert.slice(0,1);
-        // companiesToUpdate = companiesToUpdate.slice(0,1);
+        companiesToInsert = companiesToInsert.slice(0,1);
+        companiesToUpdate = companiesToUpdate.slice(0,1);
         // dev only --END--
 
         const insertRequests = companiesToInsert.map(c => {
@@ -251,10 +243,10 @@ module.exports = async () => {
             const fn = async () => {
                 try{
                     // const updatingCompany = keapCompanies.find(k => k.company_name.toUpperCase() === c.company_name.toUpperCase());
-                    const accountId = c.custom_fields.find(f => f.id === customFieldsMap.c4cId).content;
+                    const accountId = c.custom_fields.find(f => f.id === konst.companyCustomFiledsMap.c4cId).content;
                     const updatingCompany = c4cAccountIds[accountId];
                     const updatingCompanyHash = updatingCompany.hash;
-                    const currentHash = c.custom_fields.find(f => f.id === customFieldsMap.hash).content;
+                    const currentHash = c.custom_fields.find(f => f.id === konst.companyCustomFiledsMap.hash).content;
                     if (updatingCompanyHash !== currentHash) {
                         const companyId = updatingCompany.id;
                         const data = JSON.stringify(c);
@@ -306,6 +298,7 @@ module.exports = async () => {
             await Promise.all(promises);
         }
     }
+    console.log('\r\n');
 
     const status = apiErrors.length === 0;
 

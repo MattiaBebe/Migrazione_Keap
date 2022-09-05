@@ -166,6 +166,40 @@ const retrieveKeapContacts = async () => {
     }
 }
 
+const buildAccountsInfo = (keapCompanies, customFiledsMap) => {
+    const c4cAccountIds = {};
+    keapCompanies.map(k => {
+            const c4cId = k.custom_fields.find(f => f.id === customFiledsMap.c4cId).content;
+            const industry = k.custom_fields.find(f => f.id === customFiledsMap.industry).content;
+            if (c4cId) {
+                c4cAccountIds[c4cId] = {
+                    id: k.id, 
+                    country: k.address.country_code,
+                    industry: industry
+                };
+            }
+    })
+
+    return c4cAccountIds;
+}
+
+const buildContatsHash = (keapContacts, customFieldsMap) => {
+    const keepContactsHash = {};
+    keapContacts.map(k => {
+            const hash = k.custom_fields.find(f => f.id === customFieldsMap.hash).content;
+            if (hash) {
+                const email = k.email_addresses.find(e => e.field === 'EMAIL1').email;
+                keepContactsHash[email] = hash;
+            }
+    })
+
+    return keepContactsHash;
+}
+
+const buildUpsertContactRequest = () => {
+
+}
+
 module.exports.readCsvFile = readCsvFile;
 module.exports.saveCsv = saveCsv;
 module.exports.saveJson = saveJson;
@@ -176,3 +210,6 @@ module.exports.validateUrl = validateUrl;
 
 module.exports.retrieveKeapCompanies = retrieveKeapCompanies;
 module.exports.retrieveKeapContacts = retrieveKeapContacts;
+
+module.exports.buildAccountsInfo = buildAccountsInfo;
+module.exports.buildContatsHash = buildContatsHash;
