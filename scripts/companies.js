@@ -4,16 +4,6 @@ const axios = require('axios');
 const crypto = require('crypto');
 const _ = require('lodash');
 
-const API_PARALLEL_CALLS = 20;
-const cryptoSecret = 'SECRET'
-
-const VALID_COMPANIES_ROLES = [
-    'CRM000',
-    'BUP002',
-    'Z00010',
-    'Z00100'
-]
-
 let isoCountries;
 let apiErrors = [];
 let rejectedData = [];
@@ -115,7 +105,7 @@ const buildKeapCompany = (c4cCompany, action) => {
         }
     }
 
-    const hash = crypto.createHash('sha256', cryptoSecret).update(JSON.stringify(company)).digest('hex');
+    const hash = crypto.createHash('sha256', konst.CRYPTO_SECRET).update(JSON.stringify(company)).digest('hex');
     company.custom_fields.push({ content: hash, id: konst.companyCustomFiledsMap.hash});
 
     return company
@@ -123,7 +113,7 @@ const buildKeapCompany = (c4cCompany, action) => {
 
 const checkValid = (company) => {
     const validRole = (company) => {
-        const valid = VALID_COMPANIES_ROLES.includes(company.Role);
+        const valid = konst.VALID_COMPANIES_ROLES.includes(company.Role);
         if (!valid) {
             rejectedData.push({...company, _error: `invalid company role: ${company.Role} - ${company.Role_Text}`});
         }
@@ -233,7 +223,7 @@ module.exports = async () => {
             return fn;
         });
 
-        const insertsChunks = _.chunk(insertRequests, API_PARALLEL_CALLS)
+        const insertsChunks = _.chunk(insertRequests, konst.API_PARALLEL_CALLS)
         for(const r of insertsChunks) {
             const promises = r.map(fn => fn())
             await Promise.all(promises);
@@ -292,7 +282,7 @@ module.exports = async () => {
             return fn;
         })
 
-        const updateChunks = _.chunk(updateRequests, API_PARALLEL_CALLS)
+        const updateChunks = _.chunk(updateRequests, konst.API_PARALLEL_CALLS)
         for(const r of updateChunks){
             const promises = r.map(fn => fn());
             await Promise.all(promises);

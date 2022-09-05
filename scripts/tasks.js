@@ -56,17 +56,17 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
         contact['duplicate_option'] = 'Email';
     }
 
-    if(c4cContact.Last_Name){        
-        contact['family_name'] = c4cContact.Last_Name;
-    }
-    if(c4cContact.Middle_Name){        
-        contact['middle_name'] = c4cContact.Middle_Name;
-    }
+    // if(c4cContact.Last_Name){        
+    //     contact['family_name'] = c4cContact.Last_Name;
+    // }
+    // if(c4cContact.Middle_Name){        
+    //     contact['middle_name'] = c4cContact.Middle_Name;
+    // }
     if(c4cContact.First_Name){        
-        contact['given_name'] = c4cContact.First_Name;
+        contact['given_name'] = c4cContact.Name;
     }
     if(c4cContact.Job_Title){        
-        contact['job_title'] = c4cContact.Job_Title;
+        contact['job_title'] = 'COMPANY CONTACT';
     }
 
     const phone_numbers = []
@@ -82,19 +82,7 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
         contact['phone_numbers'] = phone_numbers;
     }
 
-    if (c4cContact.Language) {
-        if(c4cContact.Language === 'EN'){
-            contact['preferred_locale'] = 'en_US';
-        }
-        if(c4cContact.Language === 'IT'){
-            contact['preferred_locale'] = 'it_IT';
-        }
-    }
-
     let custom_fields = [
-        {content: c4cContact.Contact_ID, id: konst.contactCustomFieldsMap.contactID},
-        {content: c4cContact.Contact_ID, id: konst.contactCustomFieldsMap.contactID},
-        {content: c4cContact.Function_Text, id: konst.contactCustomFieldsMap.businessRole},
         {content: 'upserted', id: konst.contactCustomFieldsMap.c4cMigration}
     ];
     contact['custom_fields'] = custom_fields;
@@ -105,35 +93,21 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
     return contact
 }
 
-const checkValid = (contact, c4cAccountIds) => {
-    const validStatus = contact.Status && parseInt(contact.Status) === 2;
-    if (!validStatus) {
-        rejectedData.push({...contact, _error: `${contact.Status ? 'invalid status: ' + contact.Status + ' - ' + contact.Status_Text : 'missing Status'}`});
+const checkValid = (task, keapCompanies, keapContacts, keapEmails) => {
+    const contactId = task.Main_Contact_ID;
+    const accountId = task.Main_Account_ID;
+
+    const taskAdresseeMail = contactId?.email ? contactId.email : accountId?.primary_mail ?? null;
+    const validContact = taskAdresseeMail && utils.validateEmail(taskAdresseeMail) && keapEmails[taskAdresseeMail];
+    if (!validContact) {
+        rejectedData.push({...contact, _error: `invalid contactId (${contactId}) not fixable through AccountId (${accountId}) ... tentaitve but unaccepted adressee: ${taskAdresseeMail}`});
     }
 
-    let companyIsNotObsolete = false;
-    const validCompanyMapping = contact.Account_ID ? true : false;
-    if (!validCompanyMapping) {
-        rejectedData.push({...contact, _error: `missing company mapping (Account_ID)`});
-    } else {        
-        companyIsNotObsolete = c4cAccountIds[contact.Account_ID] ? true : false;
-        if (!companyIsNotObsolete) {
-            rejectedData.push({...contact, _error: `company mapping (Account_ID) points to an invalid company (Obsolete or ShipToParty)`});
-        }
-    }
-
-    const validEmail = utils.validateEmail(contact.EMail);
-    if (!validEmail) {
-        rejectedData.push({...contact, _error: `invalid email: ${contact.First_Name} ${contact.Last_Name} - ${contact.EMail}`})
-    }
-
-    return validStatus && validCompanyMapping && companyIsNotObsolete && validEmail ;
+    return validContact ;
 }
 
 module.exports = async () => {
-    isoCountries = await utils.loadJson('country-iso');
-
-    const c4cContacts = await utils.readCsvFile('db_migration/contatti.csv');
+    const c4cTasks = await utils.readCsvFile('db_migration/attività.csv');
 
     const keapCompaniesRes = await utils.retrieveKeapCompanies();
     const keapCompanies = keapCompaniesRes.companies;
@@ -145,12 +119,12 @@ module.exports = async () => {
     const keapContactsRes = await utils.retrieveKeapContacts();
     const keapContacts = keapContactsRes.contacts;
     apiErrors = [...apiErrors, ...keapContactsRes.apiErrors];
-    const keepContactsHash = utils.buildContatsHash(keapContacts, konst.contactCustomFieldsMap);
+    const keepContactsInfo = utils.buildContactsInfo(keapContacts);
+    const keepEmails = utils.buildContactsEmails(keapContacts);
     console.log('\r\n');
 
-    if(apiErrors.length === 0){
-        const validC4cContacts = c4cContacts.filter(c => checkValid(c, c4cAccountIds));
-            
+    if(apiErrors.length === 0){            
+        const validC4cTasks = c4cTasks.filter(c => checkValid(c, keapCompanies, keepContactsInfo, keepEmails));
         let contactToUpsert = validC4cContacts.map(c => buildKeapContact(c, c4cAccountIds));
         
         let tagsToApply = {};
@@ -163,7 +137,7 @@ module.exports = async () => {
         console.log('\r\n');
 
         // dev only --START--
-        contactToUpsert = contactToUpsert.slice(0,2);
+        contactToUpsert = contactToUpsert.slice(0,1);
         // dev only --END--
 
         const upsertRequests = contactToUpsert.map(c => apiManager.buildUpsertContactRequest(c, keepContactsHash, false, tagsToApply, scriptResults, apiErrors));
@@ -174,17 +148,18 @@ module.exports = async () => {
             await Promise.all(promises);
         }
     }
+    console.log('\r\n');
 
     const status = apiErrors.length === 0;
     
     if(!status){
-        utils.saveJson(apiErrors, `contactsScriptErrors_${(new Date()).valueOf()}`, 'results');
+        utils.saveJson(apiErrors, `companyContactsScriptErrors_${(new Date()).valueOf()}`, 'results');
     }
 
     if(rejectedData.length > 0){
-        utils.saveCsv(rejectedData, `rejected_contacts_${(new Date()).valueOf()}`, 'results');
+        utils.saveCsv(rejectedData, `rejected_companyContacts_${(new Date()).valueOf()}`, 'results');
     }
 
-    utils.saveJson(scriptResults, `contactScriptResults_${(new Date()).valueOf()}`, 'results');
+    utils.saveJson(scriptResults, `companyContactsScriptResults_${(new Date()).valueOf()}`, 'results');
     return status;
 }

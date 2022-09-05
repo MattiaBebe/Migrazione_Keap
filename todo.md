@@ -8,6 +8,9 @@
     - OWNER
 - [x] isert first round of companies
 - [x] switch company script to mapping fields
-- [ ] import contacts
+- [x] import contacts (preliminary test)
+- [ ] import contacts (massive import)
+- [ ] import company contacts (preliminary test)
+- [ ] import contacts (massive import)
 - [ ] import tasks
 - [ ] import opportunitie

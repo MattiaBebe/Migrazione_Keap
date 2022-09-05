@@ -1,7 +1,7 @@
 const axios = require('axios');
 const konst = require('./scripts/constants');
 
-const buildUpsertContactRequest = (c, keepContactsHash, withTags=false, scriptResults, apiErrors) => {
+const buildUpsertContactRequest = (c, keepContactsHash, withTags=false, tagsToApply, scriptResults, apiErrors) => {
     const fn = async () => {
         try{
             const currentEmail = c.email_addresses.find(e => e.field === 'EMAIL1').email;
