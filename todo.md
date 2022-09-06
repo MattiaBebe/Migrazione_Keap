@@ -16,3 +16,4 @@
 - [ ] import tasks (massive import)
 - [ ] import opportunitie (preliminary test)
 - [ ] import opportunitie (massive import)
+- [x] add owner to company and users
