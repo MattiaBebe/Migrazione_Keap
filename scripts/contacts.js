@@ -99,6 +99,11 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
     ];
     contact['custom_fields'] = custom_fields;
     contact['opt_in_reason'] = 'email marketing approval imported from C4C SAP'
+
+    const owner = c4cAccountIds[c4cContact.Account_ID]?.owner
+    if (owner) {        
+        contact['owner_id'] = owner;
+    }
         
     const hash = crypto.createHash('sha256', konst.CRYPTO_SECRET).update(JSON.stringify(contact)).digest('hex');
     contact.custom_fields.push({ content: hash, id: konst.contactCustomFieldsMap.hash});
@@ -135,14 +140,14 @@ module.exports = async () => {
 
     const c4cContacts = await utils.readCsvFile('db_migration/contatti.csv');
 
-    const keapCompaniesRes = await utils.retrieveKeapCompanies();
+    const keapCompaniesRes = await apiManager.retrieveKeapCompanies();
     const keapCompanies = keapCompaniesRes.companies;
     apiErrors = [...apiErrors, ...keapCompaniesRes.apiErrors];
     const c4cAccountIds = utils.buildAccountsInfo(keapCompanies, konst.companyCustomFiledsMap);
     console.log('\r\n');
 
 
-    const keapContactsRes = await utils.retrieveKeapContacts();
+    const keapContactsRes = await apiManager.retrieveKeapContacts();
     const keapContacts = keapContactsRes.contacts;
     apiErrors = [...apiErrors, ...keapContactsRes.apiErrors];
     const keepContactsHash = utils.buildContatsHash(keapContacts, konst.contactCustomFieldsMap);

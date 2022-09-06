@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const fsp = require('fs/promises');
-const axios = require('axios');
 
 const ROOT = process.cwd();
 
@@ -102,81 +101,19 @@ const validateUrl = (url) => {
     return valid
 }
 
-const retrieveKeapCompanies = async () => {
-    let apiErrors = [];
-    let keapCompanies = [];
-    const companiesChunkSize = 1000;
-    try{
-        let iterations = 0;
-        let all = false;
-        while (!all) {
-            const url = `${process.env.KEAP_API_URL}/companies?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${companiesChunkSize}&offset=${companiesChunkSize*iterations}`;
-            const res = await axios.get(url);
-            keapCompanies = [...keapCompanies, ...res.data.companies];
-            console.log(`getCompanies iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedCompanies: ${res.data.companies.length}`);
-            iterations++;
-            all = res.data.companies.length < companiesChunkSize;
-        }
-    }
-    catch(err){
-        console.error(err);
-        errore = {
-            message: err.message,
-            stack: err.stack,
-            type: 'get companies error'
-        };
-        apiErrors.push(errore);
-    }
-
-    return {
-        companies: keapCompanies,
-        apiErrors: apiErrors
-    }
-}
-
-const retrieveKeapContacts = async () => {
-    let apiErrors = [];
-    let keapContacts = [];
-    const contactsChunkSize = 1000;
-    try{
-        let iterations = 0;
-        let all = false;
-        while (!all) {
-            const url = `${process.env.KEAP_API_URL}/contacts?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${contactsChunkSize}&offset=${contactsChunkSize*iterations}`;
-            const res = await axios.get(url);
-            keapContacts = [...keapContacts, ...res.data.contacts];
-            console.log(`getContacts iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedContacts: ${res.data.contacts.length}`);
-            iterations++;
-            all = res.data.contacts.length < contactsChunkSize;
-        }
-    }
-    catch(err){
-        console.error(err);
-        errore = {
-            message: err.message,
-            stack: err.stack,
-            type: 'get contacts error'
-        };
-        apiErrors.push(errore);
-    }
-
-    return {
-        contacts: keapContacts,
-        apiErrors: apiErrors
-    }
-}
-
 const buildAccountsInfo = (keapCompanies, customFiledsMap) => {
     const c4cAccountIds = {};
     keapCompanies.map(k => {
             const c4cId = k.custom_fields.find(f => f.id === customFiledsMap.c4cId).content;
             const industry = k.custom_fields.find(f => f.id === customFiledsMap.industry).content;
+            const owner = k.custom_fields.find(f => f.id === customFiledsMap.userOwner).content;
             if (c4cId) {
                 c4cAccountIds[c4cId] = {
                     id: k.id, 
                     country: k.address.country_code,
                     industry: industry,
-                    primary_mail: k.email_address
+                    primary_mail: k.email_address,
+                    owner: owner
                 };
             }
     })
@@ -199,31 +136,54 @@ const buildContatsHash = (keapContacts, customFieldsMap) => {
 
 const buildContactsInfo = (keapContacts, customFieldsMap) => {
     const keepContactsInfo = {};
-    keapContacts.map(k => {        
-        const contactId = k.custom_fields.find(f => f.id === customFieldsMap.contactID);
+    keapContacts.map(k => {
+        const contactId = k.custom_fields.find(f => f.id === customFieldsMap.contactID)?.content;
         if(contactId) {
-            const email = k.email_addresses.find(e => e.field === 'EMAIL1').email;
-            const keapId = k.id;
-            keepContactsInfo[contactId] = {email: email, keapId: keapId};
+            const email = k.email_addresses.find(e => e.field === 'EMAIL1')?.email;
+            if (email){
+                keepContactsInfo[contactId] = {
+                    email: email, 
+                    keapId: k.id,
+                    firstName: k.given_name,
+                    lastName: k.family_name,
+                };
+            }
         }
     })
-
     return keepContactsInfo;
 }
 
-const buildContactsEmails = (keapContacts) => {
+const buildContactsEmails = (keapContacts, customFieldsMap) => {
     const keepContactsEmail = {};
     keapContacts.map(k => {
-        const email = k.email_addresses.find(e => e.field === 'EMAIL1').email;
+        const contactId = k.custom_fields.find(f => f.id === customFieldsMap.contactID)?.content;
+        const email = k.email_addresses.find(e => e.field === 'EMAIL1')?.email;
         if(email) {
-            const keapId = k.id;
-            keepContactsEmail[email] = keapId;
-        }        
+            keepContactsEmail[email] = {keapId: k.id, c4cId: contactId}
+        };
     })
-
     return keepContactsEmail;
 }
 
+const buildTasksInfo = (keapTasks) => {
+    const keepTasksInfo = {};
+    keapTasks.map(k => {
+            const description = k.description;
+            const idAndHashRegex = /(.*)\s+-\s+\[id:(.*), \s+hash:(.*)\]/;
+            if (idAndHashRegex.test(description)) {
+                const match = idAndHashRegex.exec(description);
+                const text = match[1];
+                const id = match[2];
+                const hash = match[3];
+                keepTasksInfo[id] = {
+                    keapid: k.id,
+                    hash: hash,
+                    description: text
+                };
+            }
+    })
+    return keepTasksInfo;
+}
 module.exports.readCsvFile = readCsvFile;
 module.exports.saveCsv = saveCsv;
 module.exports.saveJson = saveJson;
@@ -232,10 +192,8 @@ module.exports.loadJson = loadJson;
 module.exports.validateEmail = validateEmail;
 module.exports.validateUrl = validateUrl;
 
-module.exports.retrieveKeapCompanies = retrieveKeapCompanies;
-module.exports.retrieveKeapContacts = retrieveKeapContacts;
-
 module.exports.buildAccountsInfo = buildAccountsInfo;
 module.exports.buildContatsHash = buildContatsHash;
 module.exports.buildContactsInfo = buildContactsInfo;
 module.exports.buildContactsEmails = buildContactsEmails;
+module.exports.buildTasksInfo = buildTasksInfo;

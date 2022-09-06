@@ -10,7 +10,9 @@
 - [x] switch company script to mapping fields
 - [x] import contacts (preliminary test)
 - [ ] import contacts (massive import)
-- [ ] import company contacts (preliminary test)
+- [x] import company contacts (preliminary test)
 - [ ] import contacts (massive import)
-- [ ] import tasks
-- [ ] import opportunitie
+- [x] import tasks (preliminary test)
+- [ ] import tasks (massive import)
+- [ ] import opportunitie (preliminary test)
+- [ ] import opportunitie (massive import)

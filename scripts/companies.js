@@ -1,10 +1,12 @@
 const utils = require('../utils');
+const apiManager = require('../api-manager');
 const konst = require('./constants')
 const axios = require('axios');
 const crypto = require('crypto');
 const _ = require('lodash');
 
 let isoCountries;
+let usersMap;
 let apiErrors = [];
 let rejectedData = [];
 let scriptResults = [];
@@ -52,8 +54,10 @@ const buildKeapCompany = (c4cCompany, action) => {
         content: c4cCompany.ABC_Classification === 'A' ? 70 : c4cCompany.ABC_Classification === 'B' ? 72 : c4cCompany.ABC_Classification === 'C' ? 74 : 76,
         id: konst.companyCustomFiledsMap.abcClass
     });
+    
+    const userOwner = usersMap.find(u =>parseInt(c4cCompany.Owner_ID) === u.c4c_owner_id)
     custom_fields.push({
-        content: 0,
+        content: userOwner,
         id: konst.companyCustomFiledsMap.userOwner
     });
     if(c4cCompany.External_ID){
@@ -127,15 +131,21 @@ const checkValid = (company) => {
         return valid
     };
 
-    return validRole(company) && validStatus(company);
+    const validOwner = usersMap.map(u => u.c4cCompany.c4c_owner_id).includes(c4cCompany.Owner_ID);
+    if (!validOwner) {
+        rejectedData.push({...company, _error: `invalid company owner: ${c4cCompany.Owner_ID} is not mapped`})
+    }
+
+    return validRole(company) && validStatus(company) && validOwner;
 }
 
 module.exports = async () => {
     isoCountries = await utils.loadJson('country-iso');
+    usersMap = await utils.loadJson('users');
 
     const c4cCompanies = await utils.readCsvFile('db_migration/aziende.csv');
 
-    const keapCompaniesRes = await utils.retrieveKeapCompanies();
+    const keapCompaniesRes = await apiManager.retrieveKeapCompanies();
     const keapCompanies = keapCompaniesRes.companies;
     apiErrors = [...apiErrors, ...keapCompaniesRes.apiErrors];
 
