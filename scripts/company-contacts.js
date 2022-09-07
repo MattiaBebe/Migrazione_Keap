@@ -52,7 +52,7 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
     }
 
     if (c4cContact.EMail) {
-        contact['email_addresses'] = [{"email": c4cContact.EMail, "field": "EMAIL1"}];
+        contact['email_addresses'] = [{"email": c4cContact.EMail.toLowerCase(), "field": "EMAIL1"}];
         contact['duplicate_option'] = 'Email';
     }
 
@@ -99,19 +99,19 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
 }
 
 const checkValid = (contact) => {
-    const validRole = contact.Role && konst.VALID_COMPANIES_ROLES.includes(contact.Role);
+    const validRole = !!contact.Role && konst.VALID_COMPANIES_ROLES.includes(contact.Role);
     if (!validRole) {
         rejectedData.push({...contact, _error: `${contact.Role ? 'invalid role: ' + contact.Role + ' - ' + contact.Role_Text : 'missing Role'}`});
     }
 
-    const validStatus = contact.Status && konst.VALID_COMPANIES_STATUSES.includes(parseInt(contact.Status));
+    const validStatus = !!contact.Status && konst.VALID_COMPANIES_STATUSES.includes(parseInt(contact.Status));
     if (!validStatus) {
         rejectedData.push({...contact, _error: `${contact.Status ? 'invalid status: ' + contact.Status + ' - ' + contact.Status_Text : 'missing Status'}`});
     }
 
-    const validEmail = contact.EMail && utils.validateEmail(contact.EMail);
+    const validEmail = !!contact.EMail && utils.validateEmail(contact.EMail);
     if (!validEmail) {        
-        rejectedData.push({...contact, _error: `invalid email: ${contact.First_Name ?? 'invalid_name'} ${contact.Last_Name ?? 'invalid_surname'} - ${contact.EMail ?? 'missing_email'}`})
+        rejectedData.push({...contact, _error: `invalid email: ${contact.EMail ?? 'N.A.'}`})
     }
 
     return validRole && validStatus &&  validEmail ;
@@ -149,9 +149,9 @@ module.exports = async () => {
         });
         console.log('\r\n');
 
-        // dev only --START--
-        contactToUpsert = contactToUpsert.slice(0,1);
-        // dev only --END--
+        // DEV ONLY --START--
+        // contactToUpsert = contactToUpsert.slice(0,1);
+        // DEV ONLY --END--
 
         const upsertRequests = contactToUpsert.map(c => apiManager.buildUpsertContactRequest(c, keepContactsHash, false, tagsToApply, scriptResults, apiErrors));
         

@@ -9,9 +9,9 @@
 - [x] isert first round of companies
 - [x] switch company script to mapping fields
 - [x] import contacts (preliminary test)
-- [ ] import contacts (massive import)
+- [x] import contacts (massive import)
 - [x] import company contacts (preliminary test)
-- [ ] import contacts (massive import)
+- [x] import company contacts (massive import)
 - [x] import tasks (preliminary test)
 - [ ] import tasks (massive import)
 - [ ] import opportunitie (preliminary test)

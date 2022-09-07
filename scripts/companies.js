@@ -57,7 +57,7 @@ const buildKeapCompany = (c4cCompany, action) => {
     
     const userOwner = usersMap.find(u =>parseInt(c4cCompany.Owner_ID) === u.c4c_owner_id)
     custom_fields.push({
-        content: userOwner,
+        content: userOwner.keap_id,
         id: konst.companyCustomFiledsMap.userOwner
     });
     if(c4cCompany.External_ID){
@@ -84,7 +84,7 @@ const buildKeapCompany = (c4cCompany, action) => {
     company['custom_fields'] = custom_fields;
 
     if(c4cCompany.EMail && utils.validateEmail(c4cCompany.EMail)) {
-        company['email_address'] = c4cCompany.EMail
+        company['email_address'] = c4cCompany.EMail.toLowerCase()
     }
 
     if(c4cCompany.Fax) {
@@ -131,9 +131,9 @@ const checkValid = (company) => {
         return valid
     };
 
-    const validOwner = usersMap.map(u => u.c4cCompany.c4c_owner_id).includes(c4cCompany.Owner_ID);
+    const validOwner = usersMap.map(u => u.c4c_owner_id).includes(parseInt(company.Owner_ID));
     if (!validOwner) {
-        rejectedData.push({...company, _error: `invalid company owner: ${c4cCompany.Owner_ID} is not mapped`})
+        rejectedData.push({...company, _error: `invalid company owner: ${company.Owner_ID ? company.Owner_ID + ' is not mapped' : 'owner info is missing'}`})
     }
 
     return validRole(company) && validStatus(company) && validOwner;
@@ -184,11 +184,11 @@ module.exports = async () => {
         companiesToInsert = companiesToInsert.map(c => buildKeapCompany(c, 'created'));
         companiesToUpdate = companiesToUpdate.map(c => buildKeapCompany(c, 'updated'));
 
-        // dev only --START--
+        // DEV ONLY --START--
         // utils.saveJson(keapCompanies, `keapCompanies_${(new Date()).valueOf()}`, 'results');
-        companiesToInsert = companiesToInsert.slice(0,1);
-        companiesToUpdate = companiesToUpdate.slice(0,1);
-        // dev only --END--
+        // companiesToInsert = companiesToInsert.slice(0,1);
+        // companiesToUpdate = companiesToUpdate.slice(0,1);
+        // DEV ONLY --END--
 
         const insertRequests = companiesToInsert.map(c => {
             const fn = async () =>{

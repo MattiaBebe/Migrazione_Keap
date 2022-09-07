@@ -52,7 +52,7 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
     }
 
     if (c4cContact.EMail) {
-        contact['email_addresses'] = [{"email": c4cContact.EMail, "field": "EMAIL1"}];
+        contact['email_addresses'] = [{"email": c4cContact.EMail.toLowerCase(), "field": "EMAIL1"}];
         contact['duplicate_option'] = 'Email';
     }
 
@@ -129,7 +129,7 @@ const checkValid = (contact, c4cAccountIds) => {
 
     const validEmail = utils.validateEmail(contact.EMail);
     if (!validEmail) {
-        rejectedData.push({...contact, _error: `invalid email: ${contact.First_Name} ${contact.Last_Name} - ${contact.EMail}`})
+        rejectedData.push({...contact, _error: `invalid email: ${contact.EMail ?? 'N.A.'}`})
     }
 
     return validStatus && validCompanyMapping && companyIsNotObsolete && validEmail ;
@@ -167,9 +167,9 @@ module.exports = async () => {
         });
         console.log('\r\n');
 
-        // dev only --START--
-        contactToUpsert = contactToUpsert.slice(0,2);
-        // dev only --END--
+        // DEV ONLY --START--
+        // contactToUpsert = contactToUpsert.slice(0,2);
+        // DEV ONLY --END--
 
         const upsertRequests = contactToUpsert.map(c => apiManager.buildUpsertContactRequest(c, keepContactsHash, false, tagsToApply, scriptResults, apiErrors));
         
