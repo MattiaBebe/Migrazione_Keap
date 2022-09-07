@@ -1,20 +1,12 @@
 const utils = require('../utils');
+const apiManager = require('../api-manager');
 const konst = require('./constants')
 const axios = require('axios');
 const crypto = require('crypto');
 const _ = require('lodash');
 
-const API_PARALLEL_CALLS = 20;
-const cryptoSecret = 'SECRET'
-
-const VALID_COMPANIES_ROLES = [
-    'CRM000',
-    'BUP002',
-    'Z00010',
-    'Z00100'
-]
-
 let isoCountries;
+let usersMap;
 let apiErrors = [];
 let rejectedData = [];
 let scriptResults = [];
@@ -62,8 +54,10 @@ const buildKeapCompany = (c4cCompany, action) => {
         content: c4cCompany.ABC_Classification === 'A' ? 70 : c4cCompany.ABC_Classification === 'B' ? 72 : c4cCompany.ABC_Classification === 'C' ? 74 : 76,
         id: konst.companyCustomFiledsMap.abcClass
     });
+    
+    const userOwner = usersMap.find(u =>parseInt(c4cCompany.Owner_ID) === u.c4c_owner_id)
     custom_fields.push({
-        content: 0,
+        content: userOwner.keap_id,
         id: konst.companyCustomFiledsMap.userOwner
     });
     if(c4cCompany.External_ID){
@@ -90,7 +84,7 @@ const buildKeapCompany = (c4cCompany, action) => {
     company['custom_fields'] = custom_fields;
 
     if(c4cCompany.EMail && utils.validateEmail(c4cCompany.EMail)) {
-        company['email_address'] = c4cCompany.EMail
+        company['email_address'] = c4cCompany.EMail.toLowerCase()
     }
 
     if(c4cCompany.Fax) {
@@ -115,7 +109,7 @@ const buildKeapCompany = (c4cCompany, action) => {
         }
     }
 
-    const hash = crypto.createHash('sha256', cryptoSecret).update(JSON.stringify(company)).digest('hex');
+    const hash = crypto.createHash('sha256', konst.CRYPTO_SECRET).update(JSON.stringify(company)).digest('hex');
     company.custom_fields.push({ content: hash, id: konst.companyCustomFiledsMap.hash});
 
     return company
@@ -123,7 +117,7 @@ const buildKeapCompany = (c4cCompany, action) => {
 
 const checkValid = (company) => {
     const validRole = (company) => {
-        const valid = VALID_COMPANIES_ROLES.includes(company.Role);
+        const valid = konst.VALID_COMPANIES_ROLES.includes(company.Role);
         if (!valid) {
             rejectedData.push({...company, _error: `invalid company role: ${company.Role} - ${company.Role_Text}`});
         }
@@ -137,15 +131,21 @@ const checkValid = (company) => {
         return valid
     };
 
-    return validRole(company) && validStatus(company);
+    const validOwner = usersMap.map(u => u.c4c_owner_id).includes(parseInt(company.Owner_ID));
+    if (!validOwner) {
+        rejectedData.push({...company, _error: `invalid company owner: ${company.Owner_ID ? company.Owner_ID + ' is not mapped' : 'owner info is missing'}`})
+    }
+
+    return validRole(company) && validStatus(company) && validOwner;
 }
 
 module.exports = async () => {
     isoCountries = await utils.loadJson('country-iso');
+    usersMap = await utils.loadJson('users');
 
     const c4cCompanies = await utils.readCsvFile('db_migration/aziende.csv');
 
-    const keapCompaniesRes = await utils.retrieveKeapCompanies();
+    const keapCompaniesRes = await apiManager.retrieveKeapCompanies();
     const keapCompanies = keapCompaniesRes.companies;
     apiErrors = [...apiErrors, ...keapCompaniesRes.apiErrors];
 
@@ -184,11 +184,11 @@ module.exports = async () => {
         companiesToInsert = companiesToInsert.map(c => buildKeapCompany(c, 'created'));
         companiesToUpdate = companiesToUpdate.map(c => buildKeapCompany(c, 'updated'));
 
-        // dev only --START--
+        // DEV ONLY --START--
         // utils.saveJson(keapCompanies, `keapCompanies_${(new Date()).valueOf()}`, 'results');
-        companiesToInsert = companiesToInsert.slice(0,1);
-        companiesToUpdate = companiesToUpdate.slice(0,1);
-        // dev only --END--
+        // companiesToInsert = companiesToInsert.slice(0,1);
+        // companiesToUpdate = companiesToUpdate.slice(0,1);
+        // DEV ONLY --END--
 
         const insertRequests = companiesToInsert.map(c => {
             const fn = async () =>{
@@ -233,7 +233,7 @@ module.exports = async () => {
             return fn;
         });
 
-        const insertsChunks = _.chunk(insertRequests, API_PARALLEL_CALLS)
+        const insertsChunks = _.chunk(insertRequests, konst.API_PARALLEL_CALLS)
         for(const r of insertsChunks) {
             const promises = r.map(fn => fn())
             await Promise.all(promises);
@@ -292,7 +292,7 @@ module.exports = async () => {
             return fn;
         })
 
-        const updateChunks = _.chunk(updateRequests, API_PARALLEL_CALLS)
+        const updateChunks = _.chunk(updateRequests, konst.API_PARALLEL_CALLS)
         for(const r of updateChunks){
             const promises = r.map(fn => fn());
             await Promise.all(promises);

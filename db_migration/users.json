@@ -8,7 +8,8 @@
         "keap_id": 1,
         "sap_gav": null,
         "sap_cid": null,
-        "c4c_id": null
+        "c4c_id": null,
+        "c4c_owner_id": 30
     },
     {
         "given_name": "Luca",
@@ -19,7 +20,8 @@
         "keap_id": 13,
         "sap_gav": "012",
         "sap_cid": "00000007",
-        "c4c_id": 8000000002
+        "c4c_id": 8000000002,
+        "c4c_owner_id": 2
     },
     {
         "given_name": "Cy.Pag.",
@@ -30,7 +32,8 @@
         "keap_id": 53951,
         "sap_gav": "015",
         "sap_cid": "00000010",
-        "c4c_id": null
+        "c4c_id": null,
+        "c4c_owner_id": 29
     },
     {
         "given_name": "SIS Safety",
@@ -41,7 +44,8 @@
         "keap_id": 56768,
         "sap_gav": null,
         "sap_cid": null,
-        "c4c_id": 8000000231
+        "c4c_id": 8000000231,
+        "c4c_owner_id": 38
     },
     {
         "given_name": "Colin",
@@ -52,18 +56,20 @@
         "keap_id": 57716,
         "sap_gav": "017",
         "sap_cid": null,
-        "c4c_id": 8000000230
+        "c4c_id": 8000000230,
+        "c4c_owner_id": 37
     },
     {
         "given_name": "Alessandra",
         "family_name": "Naso",
         "email_address": "alessandra.naso@cypag-group.com",
         "infusionsoft_id": "alessandra.naso@cypag-group.com",
-        "keap_global_user_id": null,
-        "keap_id": 57718,
+        "keap_global_user_id": 4124575,
+        "keap_id": 57758,
         "sap_gav": null,
         "sap_cid": null,
-        "c4c_id": null
+        "c4c_id": null,
+        "c4c_owner_id": 45
     },
     {
         "given_name": "Nicola",
@@ -74,7 +80,8 @@
         "keap_id": 57720,
         "sap_gav": "018",
         "sap_cid": "00000018",
-        "c4c_id": null
+        "c4c_id": null,
+        "c4c_owner_id": 47
     },
     {
         "given_name": "Silvio",
@@ -85,29 +92,32 @@
         "keap_id": 57722,
         "sap_gav": "003",
         "sap_cid": null,
-        "c4c_id": 8000000020
+        "c4c_id": 8000000020,
+        "c4c_owner_id": 11
     },
     {
         "given_name": "Paolo",
         "family_name": "Sanna",
         "email_address": "paolo.sanna@cypag.com",
         "infusionsoft_id": "paolo.sanna@cypag.com",
-        "keap_global_user_id": null,
-        "keap_id": 57724,
+        "keap_global_user_id": 4124574,
+        "keap_id": 57764,
         "sap_gav": "016",
         "sap_cid": "00000009",
-        "c4c_id": 8000000100
+        "c4c_id": 8000000100,
+        "c4c_owner_id": 22
     },
     {
         "given_name": "Anna",
         "family_name": "Amorese",
         "email_address": "amorese@cypag.com",
         "infusionsoft_id": "amorese@cypag.com",
-        "keap_global_user_id": null,
-        "keap_id": 57726,
+        "keap_global_user_id": 4124585,
+        "keap_id": 58638,
         "sap_gav": "005",
         "sap_cid": "00000011",
-        "c4c_id": 8000000010
+        "c4c_id": 8000000010,
+        "c4c_owner_id": 10
     },
     {
         "given_name": "Katia",
@@ -118,7 +128,8 @@
         "keap_id": 57728,
         "sap_gav": null,
         "sap_cid": "00000012",
-        "c4c_id": null
+        "c4c_id": null,
+        "c4c_owner_id": 16
     },
     {
         "given_name": "Claudia",
@@ -129,7 +140,8 @@
         "keap_id": 57730,
         "sap_gav": null,
         "sap_cid": "00000014",
-        "c4c_id": 8000000051
+        "c4c_id": 8000000051,
+        "c4c_owner_id": 15
     },
     {
         "given_name": "Tomasz",
@@ -140,7 +152,8 @@
         "keap_id": 57732,
         "sap_gav": "008",
         "sap_cid": "00000013",
-        "c4c_id": null
+        "c4c_id": null,
+        "c4c_owner_id": 34
     },
     {
         "given_name": "Alessio",
@@ -151,7 +164,8 @@
         "keap_id": 57744,
         "sap_gav": "004",
         "sap_cid": "00000003",
-        "c4c_id": 8000000008
+        "c4c_id": 8000000008,
+        "c4c_owner_id": 8
     },
     {
         "given_name": "Emanuele",
@@ -162,7 +176,8 @@
         "keap_id": 57746,
         "sap_gav": "010",
         "sap_cid": "00000004",
-        "c4c_id": 8000000080
+        "c4c_id": 8000000080,
+        "c4c_owner_id": 19
     },
     {
         "given_name": "Felix",
@@ -173,17 +188,31 @@
         "keap_id": 57750,
         "sap_gav": "006",
         "sap_cid": "00000015",
-        "c4c_id": 8000000120
+        "c4c_id": 8000000120,
+        "c4c_owner_id": 25
     },
     {
         "given_name": "Massimiliano",
         "family_name": "Corbani",
         "email_address": "massimiliano.corbani@cypag.com",
         "infusionsoft_id": "massimiliano.corbani@cypag.com",
-        "keap_global_user_id": null,
-        "keap_id": 57754,
+        "keap_global_user_id": 4124562,
+        "keap_id": 57756,
         "sap_gav": "011",
         "sap_cid": "00000002",
-        "c4c_id": 8000000090
+        "c4c_id": 8000000090,
+        "c4c_owner_id": 20
+    },
+    {
+        "given_name": "Andrea",
+        "family_name": "Panigati",
+        "email_address": "andrea.panigati.ext@cypag.com",
+        "infusionsoft_id": "andrea.panigati.ext@cypag.com",
+        "keap_global_user_id": 4124761,
+        "keap_id": 60982,
+        "sap_gav": "007",
+        "sap_cid": "00000016",
+        "c4c_id": null,
+        "c4c_owner_id": 28
     }
 ]

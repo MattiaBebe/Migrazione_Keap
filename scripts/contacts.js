@@ -2,7 +2,6 @@ const utils = require('../utils');
 const apiManager = require('../api-manager');
 const buildContactTags = require('./tags');
 const konst = require('./constants');
-const axios = require('axios');
 const crypto = require('crypto');
 const _ = require('lodash');
 
@@ -53,7 +52,7 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
     }
 
     if (c4cContact.EMail) {
-        contact['email_addresses'] = [{"email": c4cContact.EMail, "field": "EMAIL1"}];
+        contact['email_addresses'] = [{"email": c4cContact.EMail.toLowerCase(), "field": "EMAIL1"}];
         contact['duplicate_option'] = 'Email';
     }
 
@@ -100,6 +99,11 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
     ];
     contact['custom_fields'] = custom_fields;
     contact['opt_in_reason'] = 'email marketing approval imported from C4C SAP'
+
+    const owner = c4cAccountIds[c4cContact.Account_ID]?.owner
+    if (owner) {        
+        contact['owner_id'] = owner;
+    }
         
     const hash = crypto.createHash('sha256', konst.CRYPTO_SECRET).update(JSON.stringify(contact)).digest('hex');
     contact.custom_fields.push({ content: hash, id: konst.contactCustomFieldsMap.hash});
@@ -125,7 +129,7 @@ const checkValid = (contact, c4cAccountIds) => {
 
     const validEmail = utils.validateEmail(contact.EMail);
     if (!validEmail) {
-        rejectedData.push({...contact, _error: `invalid email: ${contact.name} ${contact.surname} - ${contact.email}`})
+        rejectedData.push({...contact, _error: `invalid email: ${contact.EMail ?? 'N.A.'}`})
     }
 
     return validStatus && validCompanyMapping && companyIsNotObsolete && validEmail ;
@@ -136,14 +140,14 @@ module.exports = async () => {
 
     const c4cContacts = await utils.readCsvFile('db_migration/contatti.csv');
 
-    const keapCompaniesRes = await utils.retrieveKeapCompanies();
+    const keapCompaniesRes = await apiManager.retrieveKeapCompanies();
     const keapCompanies = keapCompaniesRes.companies;
     apiErrors = [...apiErrors, ...keapCompaniesRes.apiErrors];
     const c4cAccountIds = utils.buildAccountsInfo(keapCompanies, konst.companyCustomFiledsMap);
     console.log('\r\n');
 
 
-    const keapContactsRes = await utils.retrieveKeapContacts();
+    const keapContactsRes = await apiManager.retrieveKeapContacts();
     const keapContacts = keapContactsRes.contacts;
     apiErrors = [...apiErrors, ...keapContactsRes.apiErrors];
     const keepContactsHash = utils.buildContatsHash(keapContacts, konst.contactCustomFieldsMap);
@@ -163,11 +167,11 @@ module.exports = async () => {
         });
         console.log('\r\n');
 
-        // dev only --START--
-        contactToUpsert = contactToUpsert.slice(0,2);
-        // dev only --END--
+        // DEV ONLY --START--
+        // contactToUpsert = contactToUpsert.slice(0,2);
+        // DEV ONLY --END--
 
-        const upsertRequests = contactToUpsert.map(c => apiManager.buildUpsertContactRequest(c, keepContactsHash, false, scriptResults, apiErrors));
+        const upsertRequests = contactToUpsert.map(c => apiManager.buildUpsertContactRequest(c, keepContactsHash, false, tagsToApply, scriptResults, apiErrors));
         
         const upsertChunks = _.chunk(upsertRequests, konst.API_PARALLEL_CALLS);
         for(const r of upsertChunks){
