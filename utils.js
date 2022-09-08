@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const fsp = require('fs/promises');
+const konst = require('./scripts/constants');
 
 const ROOT = process.cwd();
 
@@ -169,8 +170,8 @@ const buildTasksInfo = (keapTasks) => {
     const keepTasksInfo = {};
     keapTasks.map(k => {
             const description = k.description;
-            const idAndHashRegex = /(.*)\s+-\s+\[id:(.*), \s+hash:(.*)\]/;
-            if (idAndHashRegex.test(description)) {
+            const idAndHashRegex = konst.TASK_DESCRIPTION_REGEX;
+            if (idAndHashRegex.  test(description)) {
                 const match = idAndHashRegex.exec(description);
                 const text = match[1];
                 const id = match[2];

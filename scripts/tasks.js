@@ -81,7 +81,7 @@ module.exports = async () => {
     const keapEmails = utils.buildContactsEmails(keapContacts, konst.contactCustomFieldsMap);
     console.log('\r\n');
 
-    const keapTasksRes = await apiManager.retrieveKeapTasks();
+    const keapTasksRes = await apiManager.retrieveKeapTasks(users);
     const keapTasks = keapTasksRes.tasks;
     apiErrors = [...apiErrors, ...keapTasksRes.apiErrors];
     const keapTasksInfo = utils.buildTasksInfo(keapTasks);
@@ -97,8 +97,8 @@ module.exports = async () => {
         tasksToUpdate = tasksToUpdate.map(t => buildKeapTask(t, c4cAccountIds, keepContactsInfo, keapEmails, users));
 
         // dev only --START--
-        tasksToInsert = tasksToInsert.slice(0,1);
-        tasksToUpdate = tasksToUpdate.slice(0,1);
+        // tasksToInsert = tasksToInsert.slice(0,1);
+        // tasksToUpdate = tasksToUpdate.slice(0,1);
         // dev only --END--
 
         const insertRequests = tasksToInsert.map(c => apiManager.buildInsertTaskRequest(c, scriptResults, apiErrors));

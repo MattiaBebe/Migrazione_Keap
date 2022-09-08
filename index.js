@@ -11,13 +11,13 @@ dotenv.config();
     const companies_result = await importCompanies(); 
     const companyContacts_result = await importCompanyContacts();
     const contacts_result = await importContacts(); 
-    // const tasks = await importTasks();
+    const tasks = await importTasks();
 
     const result = 
         companies_result && 
         companyContacts_result &&
-        contacts_result //&&
-        // tasks
+        contacts_result &&
+        tasks
 
 
     if (result){

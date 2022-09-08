@@ -9,3 +9,7 @@
 
 # output directory
 \results
+
+# debug and development helper files
+fast_debug.js
+debug_reply.json

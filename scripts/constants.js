@@ -14,6 +14,8 @@ const VALID_COMPANIES_STATUSES = [
     3
 ]
 
+const TASK_DESCRIPTION_REGEX = /(.*)\s+-\s+\[id:(.*),\s+hash:(.*)\]/;
+
 const contactCustomFieldsMap = {
     contactID: 17,
     accountID: 19,
@@ -32,9 +34,11 @@ const companyCustomFiledsMap = {
     hash: 66
 };
 
+
 module.exports.API_PARALLEL_CALLS = API_PARALLEL_CALLS;
 module.exports.CRYPTO_SECRET = CRYPTO_SECRET;
 module.exports.VALID_COMPANIES_ROLES = VALID_COMPANIES_ROLES;
 module.exports.VALID_COMPANIES_STATUSES = VALID_COMPANIES_STATUSES;
+module.exports.TASK_DESCRIPTION_REGEX = TASK_DESCRIPTION_REGEX;
 module.exports.contactCustomFieldsMap = contactCustomFieldsMap;
 module.exports.companyCustomFiledsMap = companyCustomFiledsMap;

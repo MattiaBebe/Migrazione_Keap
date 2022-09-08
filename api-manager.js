@@ -66,30 +66,33 @@ const retrieveKeapContacts = async () => {
     }
 }
 
-const retrieveKeapTasks = async () => {
+const retrieveKeapTasks = async (users) => {
     let apiErrors = [];
     let keapTasks = [];
-    const tasksChunkSize = 1000;
-    try{
-        let iterations = 0;
-        let all = false;
-        while (!all) {
-            const url = `${process.env.KEAP_API_URL}/tasks?access_token=${process.env.KEAP_ACCESS_TOKEN}&limit=${tasksChunkSize}&offset=${tasksChunkSize*iterations}`;
-            const res = await axios.get(url);
-            keapTasks = [...keapTasks, ...res.data.tasks];
-            console.log(`getTasks iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedTasks: ${res.data.tasks.length}`);
-            iterations++;
-            all = res.data.tasks.length < tasksChunkSize;
+
+    for (u of users) {
+        const tasksChunkSize = 1000;
+        try{
+            let iterations = 0;
+            let all = false;
+            while (!all) {
+                const url = `${process.env.KEAP_API_URL}/tasks?user_id=${u.keap_id}&access_token=${process.env.KEAP_ACCESS_TOKEN}&limit=${tasksChunkSize}&offset=${tasksChunkSize*iterations}`;
+                const res = await axios.get(url);
+                keapTasks = [...keapTasks, ...res.data.tasks];
+                console.log(`getTasks for user ${u.given_name} ${u.family_name} iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedTasks: ${res.data.tasks.length}`);
+                iterations++;
+                all = res.data.tasks.length < tasksChunkSize;
+            }
         }
-    }
-    catch(err){
-        console.error(err);
-        errore = {
-            message: err.message,
-            stack: err.stack,
-            type: 'get tasks error'
-        };
-        apiErrors.push(errore);
+        catch(err){
+            console.error(err);
+            errore = {
+                message: err.message,
+                stack: err.stack,
+                type: `get tasks error for user ${u.given_name} ${u.family_name}`
+            };
+            apiErrors.push(errore);
+        }
     }
 
     return {
@@ -235,7 +238,7 @@ const buildUpdateTaskRequest = (t, keapTasksInfo, scriptResults, apiErrors) => {
     const fn = async () => {
         try{
             const description = t.description;    
-            const idAndHashRegex = /(.*)\s+-\s+\[id:(.*), \s+hash:(.*)\]/;
+            const idAndHashRegex = konst.TASK_DESCRIPTION_REGEX;
         
             let id;
             let localHash;
