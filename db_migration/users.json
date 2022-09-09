@@ -46,7 +46,7 @@
         "sap_cid": null,
         "c4c_id": 8000000231,
         "c4c_owner_id": 38,
-        "division": "sis"
+        "division": "S.I.S."
     },
     {
         "given_name": "Colin",
@@ -59,7 +59,7 @@
         "sap_cid": null,
         "c4c_id": 8000000230,
         "c4c_owner_id": 37,
-        "division": "sis"
+        "division": "S.I.S."
     },
     {
         "given_name": "Alessandra",
@@ -84,7 +84,7 @@
         "sap_cid": "00000018",
         "c4c_id": null,
         "c4c_owner_id": 47,
-        "division": "sis"
+        "division": "S.I.S."
     },
     {
         "given_name": "Silvio",
@@ -97,7 +97,7 @@
         "sap_cid": null,
         "c4c_id": 8000000020,
         "c4c_owner_id": 11,
-        "division": "sis"
+        "division": "S.I.S."
     },
     {
         "given_name": "Paolo",

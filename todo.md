@@ -19,6 +19,6 @@
 
 
 ## NICE TO HAVE:
-- [ ] razionalizzazione settore industriale e info canale e dealer/end-user
-- [ ] re-import companies con sector, channel e division razionalizzata
+- [x] razionalizzazione settore industriale e info canale e dealer/end-user
+- [x] re-import companies con sector, channel e division razionalizzata
 - [ ] analisi rigettati
