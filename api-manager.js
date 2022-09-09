@@ -101,6 +101,38 @@ const retrieveKeapTasks = async (users) => {
     }
 }
 
+const retrieveKeapOpportunities = async () => {
+    let apiErrors = [];
+    let keapOpportunities = [];
+    const opportunitiesChunkSize = 1000;
+    try{
+        let iterations = 0;
+        let all = false;
+        while (!all) {
+            const url = `${process.env.KEAP_API_URL}/opportunities?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${opportunitiesChunkSize}&offset=${opportunitiesChunkSize*iterations}`;
+            const res = await axios.get(url);
+            keapOpportunities = [...keapOpportunities, ...res.data.opportunities];
+            console.log(`getOpportunities iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedContacts: ${res.data.opportunities.length}`);
+            iterations++;
+            all = res.data.opportunities.length < opportunitiesChunkSize;
+        }
+    }
+    catch(err){
+        console.error(err);
+        errore = {
+            message: err.message,
+            stack: err.stack,
+            type: 'get opportunities error'
+        };
+        apiErrors.push(errore);
+    }
+
+    return {
+        opportunities: keapOpportunities,
+        apiErrors: apiErrors
+    }
+}
+
 const buildUpsertContactRequest = (c, keepContactsHash, withTags=false, tagsToApply, scriptResults, apiErrors) => {
     const fn = async () => {
         try{
@@ -253,7 +285,7 @@ const buildUpdateTaskRequest = (t, keapTasksInfo, scriptResults, apiErrors) => {
                     const data = JSON.stringify({...t, description: `${remoteTaskInfo.description}${t.description}`});
                     const config = {
                         method: 'patch',
-                        url: `${process.env.KEAP_API_URL}/tasks/id?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
+                        url: `${process.env.KEAP_API_URL}/tasks/${id}?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -297,9 +329,105 @@ const buildUpdateTaskRequest = (t, keapTasksInfo, scriptResults, apiErrors) => {
     
 }
 
+const buildInsertOpportunityRequest = (o, scriptResults, apiErrors) => {
+    const fn = async () => {
+        try{
+            const data = JSON.stringify(o);
+            const config = {
+                method: 'post',
+                url: `${process.env.KEAP_API_URL}/opportunities?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data : data
+            }
+            const res = await axios(config);
+            console.log(res);
+            scriptResults.push({
+                action: 'insert opportunity',
+                data: o,
+                response: {
+                    data: res.data,
+                    request_protocol: res.request.protocol,
+                    request_host: res.request.host,
+                    request_path: res.request.path,
+                    request_method: res.request.method,
+                    response_status: res.status,
+                    response_statusText: res.statusText
+                }
+            });
+        }
+        catch(err){
+            console.error(err);
+            errore = {
+                message: err.message,
+                stack: err.stack,
+                type: 'insert opportunity error',
+                data: o
+            };
+            apiErrors.push(errore);
+        }
+    }
+    return fn;
+}
+
+const buildUpdateOpportunityRequest = (o, keapOpportunitiesInfo, scriptResults, apiErrors) => {
+    const fn = async () => {
+        try{
+            const objectId = o.custom_fields.find(f => f.id === konst.opportunitiesCustomFieldsMap.objectId).content;    
+            const hash = o.custom_fields.find(f => f.id === konst.opportunitiesCustomFieldsMap.hash).content; 
+        
+            const remoteOpportunity = keapOpportunitiesInfo[objectId];
+            const remoteHash = remoteOpportunity.custom_fields.find(f => f.id === konst.opportunitiesCustomFieldsMap.hash).content; 
+            if(hash !== remoteHash){
+                const data = JSON.stringify(o);
+                const config = {
+                    method: 'patch',
+                    url: `${process.env.KEAP_API_URL}/opportunities/${remoteOpportunity.id}?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data : data
+                }
+                const res = await axios(config);
+                console.log(res);
+                scriptResults.push({
+                    action: 'update task',
+                    data: o,
+                    response: {
+                        data: res.data,
+                        request_protocol: res.request.protocol,
+                        request_host: res.request.host,
+                        request_path: res.request.path,
+                        request_method: res.request.method,
+                        response_status: res.status,
+                        response_statusText: res.statusText
+                    }
+                })
+            } else {                    
+                console.log(`opportunity: ${o.opportunity_title ?? ''} is already up to date (${remoteOpportunity.id})`)
+            }
+        }
+        catch(err){
+            console.error(err);
+            errore = {
+                message: err.message,
+                stack: err.stack,
+                type: 'update task error',
+                data: o
+            };
+            apiErrors.push(errore);
+        }
+    }
+    return fn;
+}
+
 module.exports.retrieveKeapCompanies = retrieveKeapCompanies;
 module.exports.retrieveKeapContacts = retrieveKeapContacts;
 module.exports.retrieveKeapTasks = retrieveKeapTasks;
+module.exports.retrieveKeapOpportunities = retrieveKeapOpportunities;
 module.exports.buildUpsertContactRequest = buildUpsertContactRequest;
 module.exports.buildInsertTaskRequest = buildInsertTaskRequest;
 module.exports.buildUpdateTaskRequest = buildUpdateTaskRequest;
+module.exports.buildInsertOpportunityRequest = buildInsertOpportunityRequest;
+module.exports.buildUpdateOpportunityRequest = buildUpdateOpportunityRequest;

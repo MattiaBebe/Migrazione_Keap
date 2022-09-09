@@ -45,7 +45,8 @@
         "sap_gav": null,
         "sap_cid": null,
         "c4c_id": 8000000231,
-        "c4c_owner_id": 38
+        "c4c_owner_id": 38,
+        "division": "sis"
     },
     {
         "given_name": "Colin",
@@ -57,7 +58,8 @@
         "sap_gav": "017",
         "sap_cid": null,
         "c4c_id": 8000000230,
-        "c4c_owner_id": 37
+        "c4c_owner_id": 37,
+        "division": "sis"
     },
     {
         "given_name": "Alessandra",
@@ -81,7 +83,8 @@
         "sap_gav": "018",
         "sap_cid": "00000018",
         "c4c_id": null,
-        "c4c_owner_id": 47
+        "c4c_owner_id": 47,
+        "division": "sis"
     },
     {
         "given_name": "Silvio",
@@ -93,7 +96,8 @@
         "sap_gav": "003",
         "sap_cid": null,
         "c4c_id": 8000000020,
-        "c4c_owner_id": 11
+        "c4c_owner_id": 11,
+        "division": "sis"
     },
     {
         "given_name": "Paolo",
@@ -153,7 +157,8 @@
         "sap_gav": "008",
         "sap_cid": "00000013",
         "c4c_id": null,
-        "c4c_owner_id": 34
+        "c4c_owner_id": 34,
+        "division": "pneumatics"
     },
     {
         "given_name": "Alessio",
@@ -165,7 +170,8 @@
         "sap_gav": "004",
         "sap_cid": "00000003",
         "c4c_id": 8000000008,
-        "c4c_owner_id": 8
+        "c4c_owner_id": 8,
+        "division": "pneumatics"
     },
     {
         "given_name": "Emanuele",
@@ -177,7 +183,8 @@
         "sap_gav": "010",
         "sap_cid": "00000004",
         "c4c_id": 8000000080,
-        "c4c_owner_id": 19
+        "c4c_owner_id": 19,
+        "division": "pneumatics"
     },
     {
         "given_name": "Felix",
@@ -189,7 +196,8 @@
         "sap_gav": "006",
         "sap_cid": "00000015",
         "c4c_id": 8000000120,
-        "c4c_owner_id": 25
+        "c4c_owner_id": 25,
+        "division": "pneumatics"
     },
     {
         "given_name": "Massimiliano",
@@ -201,7 +209,8 @@
         "sap_gav": "011",
         "sap_cid": "00000002",
         "c4c_id": 8000000090,
-        "c4c_owner_id": 20
+        "c4c_owner_id": 20,
+        "division": "pneumatics"
     },
     {
         "given_name": "Andrea",
@@ -213,6 +222,7 @@
         "sap_gav": "007",
         "sap_cid": "00000016",
         "c4c_id": null,
-        "c4c_owner_id": 28
+        "c4c_owner_id": 28,
+        "division": "pneumatics"
     }
 ]

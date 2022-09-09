@@ -114,7 +114,8 @@ const buildAccountsInfo = (keapCompanies, customFiledsMap) => {
                     country: k.address.country_code,
                     industry: industry,
                     primary_mail: k.email_address,
-                    owner: owner
+                    owner: owner,
+                    name: k.company_name
                 };
             }
     })
@@ -141,12 +142,16 @@ const buildContactsInfo = (keapContacts, customFieldsMap) => {
         const contactId = k.custom_fields.find(f => f.id === customFieldsMap.contactID)?.content;
         if(contactId) {
             const email = k.email_addresses.find(e => e.field === 'EMAIL1')?.email;
+            const phone = k.phone_numbers.find(n => n.field === 'PHONE1')?.number;
+            const jobTitle = k.custom_fields.find(f => f.id === customFieldsMap.businessRole).content
             if (email){
                 keepContactsInfo[contactId] = {
                     email: email, 
                     keapId: k.id,
                     firstName: k.given_name,
                     lastName: k.family_name,
+                    phone: phone,
+                    jobTitle: jobTitle
                 };
             }
         }
@@ -185,6 +190,18 @@ const buildTasksInfo = (keapTasks) => {
     })
     return keepTasksInfo;
 }
+
+const buildOpportunityInfo = (opportunities, customFieldsMap) => {
+    const opportunitiesInfo = {};
+    opportunities.map( o => {
+        const objectId = o.custom_fields.find(f => f.id === customFieldsMap.objectId).content;
+        if (objectId) {
+            opportunitiesInfo[objectId] = o
+        }
+    })
+    return opportunitiesInfo;
+}
+
 module.exports.readCsvFile = readCsvFile;
 module.exports.saveCsv = saveCsv;
 module.exports.saveJson = saveJson;
@@ -198,3 +215,4 @@ module.exports.buildContatsHash = buildContatsHash;
 module.exports.buildContactsInfo = buildContactsInfo;
 module.exports.buildContactsEmails = buildContactsEmails;
 module.exports.buildTasksInfo = buildTasksInfo;
+module.exports.buildOpportunityInfo = buildOpportunityInfo;

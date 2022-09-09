@@ -13,11 +13,12 @@
 - [x] import company contacts (massive import)
 - [x] import tasks (preliminary test)
 - [x] import tasks (massive import)
-- [ ] import opportunitie (preliminary test)
-- [ ] import opportunitie (massive import)
+- [x] import opportunitie (preliminary test)
+- [x] import opportunitie (massive import)
 - [x] add owner to company and users
 
 
 ## NICE TO HAVE:
 - [ ] razionalizzazione settore industriale e info canale e dealer/end-user
-- [ ] re-import companies con settore, canale e tipologia razionalizzata
+- [ ] re-import companies con sector, channel e division razionalizzata
+- [ ] analisi rigettati

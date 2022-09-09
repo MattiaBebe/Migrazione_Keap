@@ -1,6 +1,5 @@
 const utils = require('../utils');
 const apiManager = require('../api-manager');
-const buildContactTags = require('./tags');
 const konst = require('./constants');
 const crypto = require('crypto');
 const _ = require('lodash');
