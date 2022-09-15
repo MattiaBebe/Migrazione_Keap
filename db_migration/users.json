@@ -158,7 +158,7 @@
         "sap_cid": "00000013",
         "c4c_id": null,
         "c4c_owner_id": 34,
-        "division": "pneumatics"
+        "division": "Pneumatics"
     },
     {
         "given_name": "Alessio",
@@ -171,7 +171,7 @@
         "sap_cid": "00000003",
         "c4c_id": 8000000008,
         "c4c_owner_id": 8,
-        "division": "pneumatics"
+        "division": "Pneumatics"
     },
     {
         "given_name": "Emanuele",
@@ -184,7 +184,7 @@
         "sap_cid": "00000004",
         "c4c_id": 8000000080,
         "c4c_owner_id": 19,
-        "division": "pneumatics"
+        "division": "Pneumatics"
     },
     {
         "given_name": "Felix",
@@ -197,7 +197,7 @@
         "sap_cid": "00000015",
         "c4c_id": 8000000120,
         "c4c_owner_id": 25,
-        "division": "pneumatics"
+        "division": "Pneumatics"
     },
     {
         "given_name": "Massimiliano",
@@ -210,7 +210,7 @@
         "sap_cid": "00000002",
         "c4c_id": 8000000090,
         "c4c_owner_id": 20,
-        "division": "pneumatics"
+        "division": "Pneumatics"
     },
     {
         "given_name": "Andrea",
@@ -223,6 +223,6 @@
         "sap_cid": "00000016",
         "c4c_id": null,
         "c4c_owner_id": 28,
-        "division": "pneumatics"
+        "division": "Pneumatics"
     }
 ]

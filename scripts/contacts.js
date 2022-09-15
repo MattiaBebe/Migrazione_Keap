@@ -135,7 +135,7 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
     }
 
     contact['custom_fields'] = custom_fields;
-    contact['opt_in_reason'] = 'email marketing approval imported from C4C SAP'
+    contact['opt_in_reason'] = 'email marketing approval imported from SAP-C4C'
         
     const hash = crypto.createHash('sha256', konst.CRYPTO_SECRET).update(JSON.stringify(contact)).digest('hex');
     contact.custom_fields.push({ content: hash, id: konst.contactCustomFieldsMap.hash});

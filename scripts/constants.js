@@ -1,6 +1,6 @@
 
 const API_PARALLEL_CALLS = 20;
-const CRYPTO_SECRET = 'SECRET';
+const CRYPTO_SECRET = 'SECRET0';
 
 const VALID_COMPANIES_ROLES = [
     'CRM000',
@@ -71,15 +71,15 @@ const sectorMapping = {
 }
 
 const divisionMapping = {
-    "Dealer  (Pneumatica)": "pneumatics",
+    "Dealer  (Pneumatica)": "Pneumatics",
     "Dealer (SIS)": "S.I.S.",
     "End user (SIS)": "S.I.S.",
-    "End User (Pneumatica)": "pneumatics"
+    "End User (Pneumatica)": "Pneumatics"
 }
 
 const channelMapping = {
-    "end user" : /End\s+user/,  
-    "dealer": /Dealer/,
+    "End user" : /End\s+user/,  
+    "Dealer": /Dealer/,
     "OEM Machine Builder": /OEM/
 }
 
