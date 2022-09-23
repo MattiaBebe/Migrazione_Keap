@@ -8,7 +8,7 @@ let apiErrors = [];
 let rejectedData = [];
 let scriptResults = [];
 
-const buildKeapTask = (c4cTask, c4cAccountIds, keepContactsInfo, keapEmails, users) => {
+const buildLeadOwnerUpdate = (c4cTask, c4cAccountIds, keepContactsInfo, keapEmails, users) => {
     const taskAdresseeMail = keepContactsInfo[c4cTask.Main_Contact_ID]?.email ?? c4cAccountIds[c4cTask.Main_Account_ID]?.primary_mail;
     const contactIds = keapEmails[taskAdresseeMail];
     const contact = {
