@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const _ = require('lodash');
 
 let isoCountries;
+let users;
 let apiErrors = [];
 let rejectedData = [];
 let scriptResults = [];
@@ -82,16 +83,46 @@ const buildKeapContact = (c4cContact, c4cAccountIds) => {
         contact['phone_numbers'] = phone_numbers;
     }
 
-    let custom_fields = [
-        {content: 'upserted', id: konst.contactCustomFieldsMap.c4cMigration}
-    ];
-    contact['custom_fields'] = custom_fields;
-    contact['opt_in_reason'] = 'email marketing approval imported from C4C SAP'
-
-    const owner = c4cAccountIds[c4cContact.Account_ID]?.owner
+    const owner = c4cAccountIds[c4cContact.Account_ID]?.owner;
     if (owner) {        
         contact['owner_id'] = owner;
     }
+
+    let custom_fields = [
+        {content: 'upserted', id: konst.contactCustomFieldsMap.c4cMigration}
+    ];
+
+    if(c4cContact.Industry_Text){
+        Object.keys(konst.channelMapping).map(m => {
+            if (konst.channelMapping[m].test(c4cContact.Industry_Text)) {
+                custom_fields.push({content: m, id: konst.contactCustomFieldsMap.channel})
+            }
+        });
+        if (konst.sectorMapping[c4cContact.Industry_Text]) {
+            custom_fields.push({content: konst.sectorMapping[c4cContact.Industry_Text], id: konst.contactCustomFieldsMap.sector})
+            
+        }
+        if (konst.divisionMapping[c4cContact.Industry_Text]) {
+            custom_fields.push({content: konst.divisionMapping[c4cContact.Industry_Text], id: konst.contactCustomFieldsMap.division})
+        } else {
+            if (owner) {
+                const user = users.find(u => u.keap_id === owner);
+                if(user && user.division) {
+                    custom_fields.push({content: user.division, id: konst.contactCustomFieldsMap.division})
+                }
+            }
+        }
+    } else {
+        if (owner) {
+            const user = users.find(u => u.keap_id === owner);
+            if(user && user.division) {
+                custom_fields.push({content: user.division, id: konst.contactCustomFieldsMap.division})
+            }
+        }
+    }
+
+    contact['custom_fields'] = custom_fields;
+    contact['opt_in_reason'] = 'email marketing approval imported from SAP-C4C'
         
     const hash = crypto.createHash('sha256', konst.CRYPTO_SECRET).update(JSON.stringify(contact)).digest('hex');
     contact.custom_fields.push({ content: hash, id: konst.contactCustomFieldsMap.hash});
@@ -119,6 +150,7 @@ const checkValid = (contact) => {
 
 module.exports = async () => {
     isoCountries = await utils.loadJson('country-iso');
+    users =  await utils.loadJson('users');
 
     const c4cContacts = await utils.readCsvFile('db_migration/aziende.csv');
 
