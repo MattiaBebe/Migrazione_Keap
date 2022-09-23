@@ -16,10 +16,12 @@
 - [x] import opportunitie (preliminary test)
 - [x] import opportunitie (massive import)
 - [x] add owner to company and users
+- [ ] import lead owners
+- [ ] import appointments with notes and involved-parties
 
 
 ## NICE TO HAVE:
 - [x] razionalizzazione settore industriale e info canale e dealer/end-user
 - [x] re-import companies con sector, channel e division razionalizzata
 - [ ] analisi rigettati
-- [ ] fix case sensitive Channel, Division by applying "other" and then back teh right string
+- [ ] fix case sensitive Channel, Division by applying "other" and then back the right string
