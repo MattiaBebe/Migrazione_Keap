@@ -40,50 +40,37 @@ const buildLeadOwnerUpdate = (c4cTask, c4cAccountIds, keepContactsInfo, keapEmai
     return task;
 }
 
-const checkValid = (task, c4cAccountIds, keepContactsInfo, keapEmails, users) => {
-    const contactId = task.Main_Contact_ID;
-    const accountId = task.Main_Account_ID;
-
-    const taskAdresseeMail = keepContactsInfo[contactId]?.email ?? c4cAccountIds[accountId]?.primary_mail;
-    const validMail = !!taskAdresseeMail && utils.validateEmail(taskAdresseeMail) && !!keapEmails[taskAdresseeMail];
+const checkValid = (lead, keapEmails, users) => {
+    const validMail = !!lead.Contact_Information_EMail && utils.validateEmail(lead.Contact_Information_EMail);
     if (!validMail) {
-        rejectedData.push({...task, _error: `invalid contactId (${contactId}) not fixable through AccountId (${accountId}) ... tentaitve but unaccepted adressee: ${taskAdresseeMail}`});
+        rejectedData.push({...lead, _error: `invalid email: ${lead.Contact_Information_EMail ?? 'N.A.'}`});
+    }
+    
+    let validContact = false;
+    if (validMail) {
+        validContact = !!keapEmails[lead.Contact_Information_EMail];
+        if (!validContact) {
+            rejectedData.push({...lead, _error: `invalid contact: ${lead.Contact_Information_EMail} did not returned a valid contact on keap`});
+        }
+        
     }
 
-    const validContact = !!keapEmails[taskAdresseeMail]?.c4cId;
-    if (!validContact) {
-        rejectedData.push({...task, _error: `invalid contact: ${taskAdresseeMail} did not returned a c4c mapped contact on keap`});
-    }
-
-    const validAssignee = users.map(u => u.c4c_id).filter(u => u).includes(parseInt(task.Main_Employee_Responsible_ID));
+    const validAssignee = users.map(u => u.c4c_id).filter(u => u).includes(parseInt(lead.Owner_Party_ID));
     if (!validAssignee) {
-        rejectedData.push({...task, _error: `invalid assignee (${task.Main_Employee_Responsible_ID})`});
+        rejectedData.push({...lead, _error: `invalid assignee (${lead.Owner_Party_ID}) - ${lead.Owner_Party_Name}`});
     }
 
     return validMail && validContact && validAssignee;
 }
 
 module.exports = async () => {
-    const c4cTasks = await utils.readCsvFile('db_migration/attività.csv');
+    const c4cTasks = await utils.readCsvFile('db_migration/leads.csv');
     const users = await utils.loadJson('users');
-
-    const keapCompaniesRes = await apiManager.retrieveKeapCompanies();
-    const keapCompanies = keapCompaniesRes.companies;
-    apiErrors = [...apiErrors, ...keapCompaniesRes.apiErrors];
-    const c4cAccountIds = utils.buildAccountsInfo(keapCompanies, konst.companyCustomFiledsMap);
-    console.log('\r\n');
 
     const keapContactsRes = await apiManager.retrieveKeapContacts();
     const keapContacts = keapContactsRes.contacts;
     apiErrors = [...apiErrors, ...keapContactsRes.apiErrors];
-    const keepContactsInfo = utils.buildContactsInfo(keapContacts, konst.contactCustomFieldsMap);
     const keapEmails = utils.buildContactsEmails(keapContacts, konst.contactCustomFieldsMap);
-    console.log('\r\n');
-
-    const keapTasksRes = await apiManager.retrieveKeapTasks(users);
-    const keapTasks = keapTasksRes.tasks;
-    apiErrors = [...apiErrors, ...keapTasksRes.apiErrors];
-    const keapTasksInfo = utils.buildTasksInfo(keapTasks);
     console.log('\r\n');
 
     if(apiErrors.length === 0){            

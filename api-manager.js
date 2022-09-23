@@ -133,6 +133,38 @@ const retrieveKeapOpportunities = async () => {
     }
 }
 
+const retrieveKeapAppointments = async () => {
+    let apiErrors = [];
+    let keapAppointments = [];
+    const appointmentsChunkSize = 1000;
+    try{
+        let iterations = 0;
+        let all = false;
+        while (!all) {
+            const url = `${process.env.KEAP_API_URL}/appointments?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${opportunitiesChunkSize}&offset=${opportunitiesChunkSize*iterations}`;
+            const res = await axios.get(url);
+            keapAppointments = [...keapAppointments, ...res.data.appointments];
+            console.log(`getAppointments iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedContacts: ${res.data.appointments.length}`);
+            iterations++;
+            all = res.data.appointments.length < appointmentsChunkSize;
+        }
+    }
+    catch(err){
+        console.error(err);
+        errore = {
+            message: err.message,
+            stack: err.stack,
+            type: 'get appointments error'
+        };
+        apiErrors.push(errore);
+    }
+
+    return {
+        appointments: keapAppointments,
+        apiErrors: apiErrors
+    }
+}
+
 const buildUpsertContactRequest = (c, keepContactsHash, withTags=false, tagsToApply, scriptResults, apiErrors) => {
     const fn = async () => {
         try{
@@ -426,6 +458,7 @@ module.exports.retrieveKeapCompanies = retrieveKeapCompanies;
 module.exports.retrieveKeapContacts = retrieveKeapContacts;
 module.exports.retrieveKeapTasks = retrieveKeapTasks;
 module.exports.retrieveKeapOpportunities = retrieveKeapOpportunities;
+module.exports.retrieveKeapAppointments = retrieveKeapAppointments;
 module.exports.buildUpsertContactRequest = buildUpsertContactRequest;
 module.exports.buildInsertTaskRequest = buildInsertTaskRequest;
 module.exports.buildUpdateTaskRequest = buildUpdateTaskRequest;
