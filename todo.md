@@ -22,3 +22,4 @@
 - [x] razionalizzazione settore industriale e info canale e dealer/end-user
 - [x] re-import companies con sector, channel e division razionalizzata
 - [ ] analisi rigettati
+- [ ] fix case sensitive Channel, Division by applying "other" and then back teh right string
