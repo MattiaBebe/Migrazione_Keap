@@ -141,10 +141,10 @@ const retrieveKeapAppointments = async () => {
         let iterations = 0;
         let all = false;
         while (!all) {
-            const url = `${process.env.KEAP_API_URL}/appointments?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${opportunitiesChunkSize}&offset=${opportunitiesChunkSize*iterations}`;
+            const url = `${process.env.KEAP_API_URL}/appointments?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${appointmentsChunkSize}&offset=${appointmentsChunkSize*iterations}`;
             const res = await axios.get(url);
             keapAppointments = [...keapAppointments, ...res.data.appointments];
-            console.log(`getAppointments iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedContacts: ${res.data.appointments.length}`);
+            console.log(`getAppointments iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedAppointments: ${res.data.appointments.length}`);
             iterations++;
             all = res.data.appointments.length < appointmentsChunkSize;
         }
@@ -454,6 +454,111 @@ const buildUpdateOpportunityRequest = (o, keapOpportunitiesInfo, scriptResults, 
     return fn;
 }
 
+const buildInsertAppointmentRequest = (a, scriptResults, apiErrors) => {
+    const fn = async () => {
+        try{
+            const data = JSON.stringify(a);
+            const config = {
+                method: 'post',
+                url: `${process.env.KEAP_API_URL}/appointments?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data : data
+            }
+            const res = await axios(config);
+            console.log(res);
+            scriptResults.push({
+                action: 'insert appointment',
+                data: a,
+                response: {
+                    data: res.data,
+                    request_protocol: res.request.protocol,
+                    request_host: res.request.host,
+                    request_path: res.request.path,
+                    request_method: res.request.method,
+                    response_status: res.status,
+                    response_statusText: res.statusText
+                }
+            });
+        }
+        catch(err){
+            console.error(err);
+            errore = {
+                message: err.message,
+                stack: err.stack,
+                type: 'insert appointment error',
+                data: a
+            };
+            apiErrors.push(errore);
+        }
+    }
+    return fn;
+}
+
+const buildUpdateAppointmentRequest = (a, keapAppointmentsInfo, scriptResults, apiErrors) => {
+    const fn = async () => {
+        try{
+            const description = a.description;    
+            const idAndHashRegex = konst.TASK_DESCRIPTION_REGEX;
+        
+            let id;
+            let localHash;
+            if (idAndHashRegex.test(description)) {
+                const match = idAndHashRegex.exec(description);
+                id = match[2];
+                localHash = match[3];
+            }
+            if(id){
+                const remoteAppointmentInfo = keapAppointmentsInfo[id];
+                if(localHash !== keapAppointmentsInfo.hash){
+                    const data = JSON.stringify({...t, description: `${remoteAppointmentInfo.description}${t.description}`});
+                    const config = {
+                        method: 'patch',
+                        url: `${process.env.KEAP_API_URL}/appointments/${id}?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        data : data
+                    }
+                    const res = await axios(config);
+                    console.log(res);
+                    scriptResults.push({
+                        action: 'update appointment',
+                        data: a,
+                        response: {
+                            data: res.data,
+                            request_protocol: res.request.protocol,
+                            request_host: res.request.host,
+                            request_path: res.request.path,
+                            request_method: res.request.method,
+                            response_status: res.status,
+                            response_statusText: res.statusText
+                        }
+                    })
+                } else {                    
+                    console.log(`appointment: ${t.title ?? ''} is already up to date`)
+                }
+            } else {
+                const error = {name: 'no-appointment-id tentative update', message: `it was not possible to find id within the appointment description`}
+                throw error;
+            }
+        }
+        catch(err){
+            console.error(err);
+            errore = {
+                message: err.message,
+                stack: err.stack,
+                type: 'update appointment error',
+                data: a
+            };
+            apiErrors.push(errore);
+        }
+    }
+    return fn;
+    
+}
+
 module.exports.retrieveKeapCompanies = retrieveKeapCompanies;
 module.exports.retrieveKeapContacts = retrieveKeapContacts;
 module.exports.retrieveKeapTasks = retrieveKeapTasks;
@@ -464,3 +569,5 @@ module.exports.buildInsertTaskRequest = buildInsertTaskRequest;
 module.exports.buildUpdateTaskRequest = buildUpdateTaskRequest;
 module.exports.buildInsertOpportunityRequest = buildInsertOpportunityRequest;
 module.exports.buildUpdateOpportunityRequest = buildUpdateOpportunityRequest;
+module.exports.buildInsertAppointmentRequest = buildInsertAppointmentRequest;
+module.exports.buildUpdateAppointmentRequest = buildUpdateAppointmentRequest;

@@ -18,6 +18,8 @@
 - [x] add owner to company and users
 - [ ] import lead owners
 - [ ] import appointments with notes and involved-parties
+- [ ] rimappare appuntamenti e task su 53951
+- [ ] rimappare contatti e aziende su 53951 + custom_field owner: default
 
 
 ## NICE TO HAVE:

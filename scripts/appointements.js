@@ -8,27 +8,60 @@ let apiErrors = [];
 let rejectedData = [];
 let scriptResults = [];
 
-const buildKeapAppointement = (c4cAppointment, keepContactsInfo, users, notes, parties) => {
+const buildKeapAppointement = (c4cAppointment, keepContactsInfo, users, note, parties) => {
 
     let appointment = {};
     appointment["title"] = c4cAppointment.Subject;
-    appointment["start_date"] = c4cAppointment.Start_Date;
-    appointment["end_date"] = c4cAppointment.End_Date;
+
+    const startDate = new Date(c4cAppointment.Start_Date);
+    const endDate = new Date(c4cAppointment.End_Date);
+    appointment["start_date"] = startDate.toISOString();
+    appointment["end_date"] = endDate.valueOf() > startDate.valueOf() ? endDate.toISOString() : (new Date(startDate.valueOf() + 1)).toISOString();
 
     if (appointment.Location) {
         appointment["location"] = c4cAppointment.Location;
     }
     appointment["contact_id"] = keepContactsInfo[c4cAppointment.Main_Contact_ID].keapId
 
-    const user = users.find(u => u.c4c_id === c4cAppointment.Owner_ID).keap_id
+    const user = users.find(u => u.c4c_id === parseInt(c4cAppointment.Owner_ID))?.keap_id ?? 53951;
     appointment["user"] = user
-    if (notes.Text) {
-        appointment["description"] = "string";
+    if (note?.Text) {
+        appointment["description"] = note.Text + '\r\n';
+    }
+    else {
+        appointment["description"] = '\r\n';
     }
     appointment["remind_time"] = 1440;
+
     
-    const hash = crypto.createHash('sha256', konst.CRYPTO_SECRET).update(JSON.stringify(task)).digest('hex');
-    const mapDescription = ` - [id:${c4cTask.ObjectID}, hash:${hash}]`
+    const organizer = parties.find(p => p.Role_Category_Code_Text === 'Organizer Party')
+    if(!!organizer) {
+        const organizerDescription = ` \r\n organizer: [${organizer.Name} - ${organizer.EMail}]`
+        appointment["description"] = appointment['description'] + organizerDescription
+    }
+    const attendee = parties.find(p => p.Role_Category_Code_Text === 'Attendee Party')
+    if(!!attendee) {
+        const attendeeDescription = ` \r\n attendee: [${attendee.Name} - ${attendee.EMail}]`
+        appointment["description"] = appointment['description'] + attendeeDescription
+    }
+    const activityParty = parties.find(p => p.Role_Category_Code_Text === 'Activity Party')
+    if(!!activityParty) {
+        const activityPartyDescription = ` \r\n lead_attendee: [${activityParty.Name} - ${activityParty.EMail}]`
+        appointment["description"] = appointment['description'] + activityPartyDescription
+    }
+    const contact = parties.find(p => p.Role_Category_Code_Text === 'Contact Party')
+    if(!!contact) {
+        const contactDescription = ` \r\n contact: [${contact.Name} - ${contact.EMail}]`
+        appointment["description"] = appointment['description'] + contactDescription
+    }
+    const employee = parties.find(p => p.Role_Category_Code_Text === 'Employee Responsible Party')
+    if(!!employee) {
+        const employeeDescription = ` \r\n employee: [${employee.Name} - ${employee.EMail}]`
+        appointment["description"] = appointment['description'] + employeeDescription
+    }
+
+    const hash = crypto.createHash('sha256', konst.CRYPTO_SECRET).update(JSON.stringify(appointment)).digest('hex');
+    const mapDescription = `\r\n\r\n - [id:${c4cAppointment.ObjectID}, hash:${hash}]`
     appointment['description'] = appointment['description'] + mapDescription;
     return appointment;
 }
@@ -39,12 +72,12 @@ const checkValid = (appointment, keepContactsInfo, users) => {
         rejectedData.push({...appointment, _error: `invalid contact: ${appointment.Main_Contact_ID} - ${appointment.Primary_Contact} did not returned a c4c mapped contact on keap`});
     }
 
-    const validAssignee = users.map(u => u.c4c_id).filter(u => u).includes(parseInt(appointment.Owner_ID));
-    if (!validAssignee) {
-        rejectedData.push({...appointment, _error: `invalid assignee: ${appointment.Owner_ID} - ${appointment.Owner_Party_Name}`});
-    }
+    // const validAssignee = users.map(u => u.c4c_id).filter(u => u).includes(parseInt(appointment.Owner_ID));
+    // if (!validAssignee) {
+    //     rejectedData.push({...appointment, _error: `invalid assignee: ${appointment.Owner_ID} - ${appointment.Owner_Party_Name}`});
+    // }
 
-    return validContact && validAssignee;
+    return validContact /*&& validAssignee*/;
 }
 
 module.exports = async () => {
@@ -66,8 +99,8 @@ module.exports = async () => {
     if(apiErrors.length === 0){            
         const validC4cAppointmentss = c4cAppointments.filter(a => checkValid(a, keepContactsInfo, users));
         
-        let appointmentsToInsert = validC4cTasks.filter(t => !keapAppointmentsInfo[t.ObjectID]);
-        let appointmentsToUpdate = validC4cTasks.filter(t => keapAppointmentsInfo[t.ObjectID]);
+        let appointmentsToInsert = validC4cAppointmentss.filter(a => !keapAppointmentsInfo[a.ObjectID]);
+        let appointmentsToUpdate = validC4cAppointmentss.filter(a => keapAppointmentsInfo[a.ObjectID]);
 
         let appointmentsNotes = {};
         const appointmentsNotesRaw = await utils.readCsvFile('db_migration/appointmentnotes.csv');
@@ -75,28 +108,25 @@ module.exports = async () => {
             appointmentsNotes[n.Appointment_ID] = n;
         })
 
-        let appointmentsParties = {};
         const appointmentsPartiesRaw = await utils.readCsvFile('db_migration/appointmentinvolvedparties.csv');
-        appointmentsPartiesRaw.map(p => {
-            appointmentsParties[p.Appointment_ID] = p;
-        })
+        const appointmentsParties = _.groupBy(appointmentsPartiesRaw, 'Appointment_ID')
 
-        tasksToInsert = tasksToInsert.map(a => buildKeapAppointement(a, keepContactsInfo, users, appointmentsNotes[a.ID], appointmentsParties[a.ID]));
-        tasksToUpdate = tasksToUpdate.map(a => buildKeapAppointement(a, keepContactsInfo, users, appointmentsNotes[a.ID], appointmentsParties[a.ID]));
+        appointmentsToInsert = appointmentsToInsert.map(a => buildKeapAppointement(a, keepContactsInfo, users, appointmentsNotes[a.ID], appointmentsParties[a.ID]));
+        appointmentsToUpdate = appointmentsToUpdate.map(a => buildKeapAppointement(a, keepContactsInfo, users, appointmentsNotes[a.ID], appointmentsParties[a.ID]));
 
         // dev only --START--
-        // tasksToInsert = tasksToInsert.slice(0,1);
-        // tasksToUpdate = tasksToUpdate.slice(0,1);
+        // appointmentsToInsert = appointmentsToInsert.slice(0,1);
+        // appointmentsToUpdate = appointmentsToUpdate.slice(0,1);
         // dev only --END--
 
-        const insertRequests = tasksToInsert.map(c => apiManager.buildInsertTaskRequest(c, scriptResults, apiErrors));
+        const insertRequests = appointmentsToInsert.map(a => apiManager.buildInsertAppointmentRequest(a, scriptResults, apiErrors));
         const insertChunks = _.chunk(insertRequests, konst.API_PARALLEL_CALLS);
         for(const r of insertChunks){
             const promises = r.map(fn => fn());
             await Promise.all(promises);
         }
         
-        const updateRequests = tasksToUpdate.map(c => apiManager.buildUpdateTaskRequest(c, keapTasksInfo, scriptResults, apiErrors));
+        const updateRequests = appointmentsToUpdate.map(a => apiManager.buildUpdateAppointmentRequest(a, keapAppointmentsInfo, scriptResults, apiErrors));
         const updateChunks = _.chunk(updateRequests, konst.API_PARALLEL_CALLS);
         for(const r of updateChunks){
             const promises = r.map(fn => fn());
@@ -108,13 +138,13 @@ module.exports = async () => {
     const status = apiErrors.length === 0;
     
     if(!status){
-        utils.saveJson(apiErrors, `tasksScriptErrors_${(new Date()).valueOf()}`, 'results');
+        utils.saveJson(apiErrors, `appointmentsScriptErrors_${(new Date()).valueOf()}`, 'results');
     }
 
     if(rejectedData.length > 0){
-        utils.saveCsv(rejectedData, `rejected_tasks_${(new Date()).valueOf()}`, 'results');
+        utils.saveCsv(rejectedData, `rejected_appointments_${(new Date()).valueOf()}`, 'results');
     }
 
-    utils.saveJson(scriptResults, `tasksScriptResults_${(new Date()).valueOf()}`, 'results');
+    utils.saveJson(scriptResults, `appointmentsScriptResults_${(new Date()).valueOf()}`, 'results');
     return status;
 }
