@@ -57,7 +57,7 @@ const buildKeapCompany = (c4cCompany, action) => {
     
     const userOwner = usersMap.find(u =>parseInt(c4cCompany.Owner_ID) === u.c4c_owner_id)
     custom_fields.push({
-        content: userOwner.keap_id,
+        content: userOwner?.keap_id ?? 53951,
         id: konst.companyCustomFiledsMap.userOwner
     });
     if(c4cCompany.External_ID){
@@ -131,12 +131,12 @@ const checkValid = (company) => {
         return valid
     };
 
-    const validOwner = usersMap.map(u => u.c4c_owner_id).includes(parseInt(company.Owner_ID));
-    if (!validOwner) {
-        rejectedData.push({...company, _error: `invalid company owner: ${company.Owner_ID ? company.Owner_ID + ' is not mapped' : 'owner info is missing'}`})
-    }
+    // const validOwner = usersMap.map(u => u.c4c_owner_id).includes(parseInt(company.Owner_ID));
+    // if (!validOwner) {
+    //     rejectedData.push({...company, _error: `invalid company owner: ${company.Owner_ID ? company.Owner_ID + ' is not mapped' : 'owner info is missing'}`})
+    // }
 
-    return validRole(company) && validStatus(company) && validOwner;
+    return validRole(company) && validStatus(company) /*&& validOwner*/;
 }
 
 module.exports = async () => {

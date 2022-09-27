@@ -164,6 +164,7 @@ const buildContactsEmails = (keapContacts, customFieldsMap) => {
     keapContacts.map(k => {
         const contactId = k.custom_fields.find(f => f.id === customFieldsMap.contactID)?.content;
         const email = k.email_addresses.find(e => e.field === 'EMAIL1')?.email;
+        const owner = k.owner_id;
         if(email) {
             keepContactsEmail[email] = {keapId: k.id, c4cId: contactId}
         };
@@ -202,6 +203,26 @@ const buildOpportunityInfo = (opportunities, customFieldsMap) => {
     return opportunitiesInfo;
 }
 
+const buildAppointmentsInfo = (keapAppointments) => {
+    const keepAppointmentsInfo = {};
+    keapAppointments.map(k => {
+            const description = k.description;
+            const idAndHashRegex = konst.TASK_DESCRIPTION_REGEX;
+            if (idAndHashRegex.  test(description)) {
+                const match = idAndHashRegex.exec(description);
+                const text = match[1];
+                const id = match[2];
+                const hash = match[3];
+                keepAppointmentsInfo[id] = {
+                    keapid: k.id,
+                    hash: hash,
+                    description: text
+                };
+            }
+    })
+    return keepAppointmentsInfo;
+}
+
 module.exports.readCsvFile = readCsvFile;
 module.exports.saveCsv = saveCsv;
 module.exports.saveJson = saveJson;
@@ -216,3 +237,4 @@ module.exports.buildContactsInfo = buildContactsInfo;
 module.exports.buildContactsEmails = buildContactsEmails;
 module.exports.buildTasksInfo = buildTasksInfo;
 module.exports.buildOpportunityInfo = buildOpportunityInfo;
+module.exports.buildAppointmentsInfo = buildAppointmentsInfo;

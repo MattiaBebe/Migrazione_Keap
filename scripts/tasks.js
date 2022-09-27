@@ -27,7 +27,7 @@ const buildKeapTask = (c4cTask, c4cAccountIds, keepContactsInfo, keapEmails, use
         contact: contact,
         title: c4cTask.Subject,
         priority: parseInt(c4cTask.Priority),
-        user_id: user.keap_id,
+        user_id: user?.keap_id ?? 53951,
         type: 'Other' //valid only: "Call, Email, Appointment, Fax, Letter, Other"
     };
     if(completed && c4cTask.Completion_Date_Time){
@@ -55,12 +55,12 @@ const checkValid = (task, c4cAccountIds, keepContactsInfo, keapEmails, users) =>
         rejectedData.push({...task, _error: `invalid contact: ${taskAdresseeMail} did not returned a c4c mapped contact on keap`});
     }
 
-    const validAssignee = users.map(u => u.c4c_id).filter(u => u).includes(parseInt(task.Main_Employee_Responsible_ID));
-    if (!validAssignee) {
-        rejectedData.push({...task, _error: `invalid assignee (${task.Main_Employee_Responsible_ID})`});
-    }
+    // const validAssignee = users.map(u => u.c4c_id).filter(u => u).includes(parseInt(task.Main_Employee_Responsible_ID));
+    // if (!validAssignee) {
+    //     rejectedData.push({...task, _error: `invalid assignee (${task.Main_Employee_Responsible_ID})`});
+    // }
 
-    return validMail && validContact && validAssignee;
+    return validMail && validContact /*&& validAssignee*/;
 }
 
 module.exports = async () => {

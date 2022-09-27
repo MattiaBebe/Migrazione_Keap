@@ -12,7 +12,7 @@ const buildKeapOpportunity = (c4cOpportunity, c4cAccountIds, keepContactsInfo, k
     const taskAdresseeMail = keepContactsInfo[c4cOpportunity.Primary_Contact]?.email ?? c4cAccountIds[c4cOpportunity.Account]?.primary_mail;
     const contactIds = keapEmails[taskAdresseeMail];
     const contact = {
-        company_name: c4cAccountIds[c4cOpportunity.Account].name,
+        company_name: c4cAccountIds[c4cOpportunity.Account]?.name,
         email: taskAdresseeMail,
         first_name: keepContactsInfo[contactIds.c4cId].firstName,
         last_name: keepContactsInfo[contactIds.c4cId].lastName,
@@ -39,9 +39,9 @@ const buildKeapOpportunity = (c4cOpportunity, c4cAccountIds, keepContactsInfo, k
         estimated_close_date: c4cOpportunity.Close_Date,
         opportunity_title: c4cOpportunity.Name,
         user: {
-            first_name: user.given_name,
-            id: user.keap_id,
-            last_name: user.family_name
+            first_name: user?.given_name ?? 'Cy.Pag.',
+            id: user?.keap_id ?? 53951,
+            last_name: user?.family_name ?? 'S.p.A.'
           },
         stage : stage,
         custom_fields: [
@@ -88,12 +88,12 @@ const checkValid = (opportunity, c4cAccountIds, keepContactsInfo, keapEmails, us
         rejectedData.push({...opportunity, _error: `invalid contact: ${mailAddress} did not returned a c4c mapped contact on keap`});
     }
 
-    const validAssignee = users.map(u => u.c4c_id).filter(u => u).includes(parseInt(opportunity.Owner));
-    if (!validAssignee) {
-        rejectedData.push({...opportunity, _error: `invalid assignee ${opportunity.Owner_Name} (${opportunity.Owner})`});
-    }
+    // const validAssignee = users.map(u => u.c4c_id).filter(u => u).includes(parseInt(opportunity.Owner));
+    // if (!validAssignee) {
+    //     rejectedData.push({...opportunity, _error: `invalid assignee ${opportunity.Owner_Name} (${opportunity.Owner})`});
+    // }
 
-    return validMail && validContact && validAssignee;
+    return validMail && validContact /*&& validAssignee*/;
 }
 
 module.exports = async () => {
