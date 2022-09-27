@@ -5,7 +5,8 @@ const importContacts = require('./scripts/contacts');
 const importCompanyContacts = require('./scripts/company-contacts');
 const importTasks = require('./scripts/tasks');
 const importOpportunities = require('./scripts/opportunities');
-const importAppointments = require('./scripts/appointements')
+const importAppointments = require('./scripts/appointements');
+const importPhoneCalls = require('./scripts/phone_calls')
 
 dotenv.config();
 
@@ -15,7 +16,8 @@ dotenv.config();
     // const contacts_result = await importContacts(); 
     // const tasks = await importTasks();
     // const opportunities = await importOpportunities();
-    const appointments = await importAppointments();
+    // const appointments = await importAppointments();
+    const phonecalls = await importPhoneCalls()
 
     const result = 
         // companies_result && 
@@ -23,7 +25,8 @@ dotenv.config();
         // contacts_result &&
         // tasks &&
         // opportunities &&
-        appointments
+        // appointments &&
+        phonecalls
 
     if (result){
         console.log('completed succesfully');

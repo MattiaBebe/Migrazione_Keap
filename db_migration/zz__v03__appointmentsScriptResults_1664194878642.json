@@ -1,0 +1,1056 @@
+[
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "apunt. kit demo",
+      "start_date": "2019-03-20T08:30:00.000Z",
+      "end_date": "2019-03-20T10:30:00.000Z",
+      "contact_id": 23523,
+      "user": 53951,
+      "description": "\r\n \r\n organizer: [Sergio Odobez - sergio.odobez@cypag.com] \r\n attendee: [Franco Rocca - franco.rocca@outokumpu.com] \r\n lead_attendee: [Outokumpu - null] \r\n contact: [Franco Rocca - franco.rocca@outokumpu.com] \r\n employee: [Sergio Odobez - sergio.odobez@cypag.com]\r\n\r\n - [id:00163E5406A71EE990FBB02D950A9692, hash:abcda3ce1ae8cc2bc3bc912ef5b19bd4ac762770332ef2ed2d5fdd65d8579534]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5492,
+        "title": "apunt. kit demo",
+        "description": "\r\n \r\n organizer: [Sergio Odobez - sergio.odobez@cypag.com] \r\n attendee: [Franco Rocca - franco.rocca@outokumpu.com] \r\n lead_attendee: [Outokumpu - null] \r\n contact: [Franco Rocca - franco.rocca@outokumpu.com] \r\n employee: [Sergio Odobez - sergio.odobez@cypag.com]\r\n\r\n - [id:00163E5406A71EE990FBB02D950A9692, hash:abcda3ce1ae8cc2bc3bc912ef5b19bd4ac762770332ef2ed2d5fdd65d8579534]",
+        "user": 53951,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5492",
+        "contact_id": 23523,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2019-03-20T08:30:00.000Z",
+        "end_date": "2019-03-20T10:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento",
+      "start_date": "2020-02-20T08:00:00.000Z",
+      "end_date": "2020-02-20T09:30:00.000Z",
+      "contact_id": 24117,
+      "user": 57722,
+      "description": "Incontrato il Sig. Caruso responsabile mezzi , un anno fa all'interno del Porto è morto un dipendente investito da un mezzo, il loro parco mezzi sono carrelli molto grossi, sono interessati sistema Tag, dobbiamo aggiornarci con il loro responsabile sicurezza.\r\n \r\n organizer: [Silvio Pozzi - silvio.pozzi@cypag.com] \r\n lead_attendee: [PORTO DI CARRARA SPA - null] \r\n contact: [Fabio Lessi - lessi.fabio@alice.it] \r\n employee: [Silvio Pozzi - silvio.pozzi@cypag.com]\r\n\r\n - [id:00163E89121E1EDA94AE747E304321FE, hash:338dafdd192f86907aba8ca85053fdcb495554e99cb7384abf7a3f4667057fbe]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5494,
+        "title": "Appuntamento",
+        "description": "Incontrato il Sig. Caruso responsabile mezzi , un anno fa all'interno del Porto è morto un dipendente investito da un mezzo, il loro parco mezzi sono carrelli molto grossi, sono interessati sistema Tag, dobbiamo aggiornarci con il loro responsabile sicurezza.\r\n \r\n organizer: [Silvio Pozzi - silvio.pozzi@cypag.com] \r\n lead_attendee: [PORTO DI CARRARA SPA - null] \r\n contact: [Fabio Lessi - lessi.fabio@alice.it] \r\n employee: [Silvio Pozzi - silvio.pozzi@cypag.com]\r\n\r\n - [id:00163E89121E1EDA94AE747E304321FE, hash:338dafdd192f86907aba8ca85053fdcb495554e99cb7384abf7a3f4667057fbe]",
+        "user": 57722,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5494",
+        "contact_id": 24117,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2020-02-20T08:00:00.000Z",
+        "end_date": "2020-02-20T09:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "FIP Forniture Industriali Parmensi spa",
+      "start_date": "2020-03-05T09:30:00.000Z",
+      "end_date": "2020-03-05T10:00:00.000Z",
+      "contact_id": 24465,
+      "user": 57746,
+      "description": "Presentazione nuovo listino e posizione commerciale. Distributore Pneumax. Sig. Monica disponibile e reattivo,ha subito chiesto la fattibilità di cilindri speciali per giostre. Monitorare anche per forniture standard.\r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163E89121E1EDA97A5D5B8006E5AA9, hash:5639ed234e7a191433eb87bf75a11281a41bcb1f0dfb560442380617897b41ed]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5496,
+        "title": "FIP Forniture Industriali Parmensi spa",
+        "description": "Presentazione nuovo listino e posizione commerciale. Distributore Pneumax. Sig. Monica disponibile e reattivo,ha subito chiesto la fattibilità di cilindri speciali per giostre. Monitorare anche per forniture standard.\r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163E89121E1EDA97A5D5B8006E5AA9, hash:5639ed234e7a191433eb87bf75a11281a41bcb1f0dfb560442380617897b41ed]",
+        "user": 57746,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5496",
+        "contact_id": 24465,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2020-03-05T09:30:00.000Z",
+        "end_date": "2020-03-05T10:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Presentazione",
+      "start_date": "2019-05-30T10:00:00.000Z",
+      "end_date": "2019-05-30T10:30:00.000Z",
+      "contact_id": 17675,
+      "user": 57756,
+      "description": "\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Armando Ciardullo - armando@ccre.it] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E89124F1ED9A1BBC17604455693, hash:b845fcf12513031bea2499303fa834c4f637fb310db8b802608ac2871b913778]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5506,
+        "title": "Presentazione",
+        "description": "\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Armando Ciardullo - armando@ccre.it] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E89124F1ED9A1BBC17604455693, hash:b845fcf12513031bea2499303fa834c4f637fb310db8b802608ac2871b913778]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5506",
+        "contact_id": 17675,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2019-05-30T10:00:00.000Z",
+        "end_date": "2019-05-30T10:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Visita",
+      "start_date": "2016-04-22T08:30:00.000Z",
+      "end_date": "2016-04-22T11:00:00.000Z",
+      "contact_id": 18621,
+      "user": 53951,
+      "description": "\"Il distributore non verrà in visita alla CEMAT\r\n \r\n organizer: [Giacomo Mezzera - marketing@cypag.com] \r\n attendee: [Antal Beznoczky - a.beznoczky@invitel.hu] \r\n lead_attendee: [PROMINENS LTD - prominens@prominens.hu] \r\n contact: [Antal Beznoczky - a.beznoczky@invitel.hu] \r\n employee: [Giacomo Mezzera - marketing@cypag.com]\r\n\r\n - [id:00163E1662E11ED5BE809A7C5ADEE5BF, hash:caf6acae42696206e4f4bec914667a93bb7d71e4154e29be7097665c21144026]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5510,
+        "title": "Visita",
+        "description": "\"Il distributore non verrà in visita alla CEMAT\r\n \r\n organizer: [Giacomo Mezzera - marketing@cypag.com] \r\n attendee: [Antal Beznoczky - a.beznoczky@invitel.hu] \r\n lead_attendee: [PROMINENS LTD - prominens@prominens.hu] \r\n contact: [Antal Beznoczky - a.beznoczky@invitel.hu] \r\n employee: [Giacomo Mezzera - marketing@cypag.com]\r\n\r\n - [id:00163E1662E11ED5BE809A7C5ADEE5BF, hash:caf6acae42696206e4f4bec914667a93bb7d71e4154e29be7097665c21144026]",
+        "user": 53951,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5510",
+        "contact_id": 18621,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2016-04-22T08:30:00.000Z",
+        "end_date": "2016-04-22T11:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "visita cortesia",
+      "start_date": "2020-09-04T13:00:00.000Z",
+      "end_date": "2020-09-04T13:30:00.000Z",
+      "contact_id": 18757,
+      "user": 57756,
+      "description": "\"offerto nuovo cilindro C6B\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Damaschi - massimo@ramella.it] \r\n lead_attendee: [UTENSILERIA MECCANICA RAMELLA SRL - info@ramella.it] \r\n contact: [Massimo Damaschi - massimo@ramella.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E8911E91EEABC9D6DD3087028AB, hash:37856776c313afd79d63a34a170b36dd57abff390bfd2ffbfbd99f31d4e12857]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5512,
+        "title": "visita cortesia",
+        "description": "\"offerto nuovo cilindro C6B\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Damaschi - massimo@ramella.it] \r\n lead_attendee: [UTENSILERIA MECCANICA RAMELLA SRL - info@ramella.it] \r\n contact: [Massimo Damaschi - massimo@ramella.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E8911E91EEABC9D6DD3087028AB, hash:37856776c313afd79d63a34a170b36dd57abff390bfd2ffbfbd99f31d4e12857]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5512",
+        "contact_id": 18757,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2020-09-04T13:00:00.000Z",
+        "end_date": "2020-09-04T13:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "appunt.",
+      "start_date": "2018-08-29T12:30:00.000Z",
+      "end_date": "2018-08-29T13:30:00.000Z",
+      "contact_id": 20805,
+      "user": 53951,
+      "description": "\"interessato \r\n \r\n organizer: [Sergio Odobez - sergio.odobez@cypag.com] \r\n attendee: [Luca ing. La rocca - luca.larocca@scatsandra.com] \r\n lead_attendee: [SCATOLIFICIO SANDRA - null] \r\n contact: [Luca ing. La rocca - luca.larocca@scatsandra.com] \r\n employee: [Sergio Odobez - sergio.odobez@cypag.com]\r\n\r\n - [id:00163E3CD6251ED8A584D2E480023EAB, hash:f9dc583fcc670cdd773166fb77d5ae55f20530ab92ee73c2c3ed687cf94fb818]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5514,
+        "title": "appunt.",
+        "description": "\"interessato \r\n \r\n organizer: [Sergio Odobez - sergio.odobez@cypag.com] \r\n attendee: [Luca ing. La rocca - luca.larocca@scatsandra.com] \r\n lead_attendee: [SCATOLIFICIO SANDRA - null] \r\n contact: [Luca ing. La rocca - luca.larocca@scatsandra.com] \r\n employee: [Sergio Odobez - sergio.odobez@cypag.com]\r\n\r\n - [id:00163E3CD6251ED8A584D2E480023EAB, hash:f9dc583fcc670cdd773166fb77d5ae55f20530ab92ee73c2c3ed687cf94fb818]",
+        "user": 53951,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5514",
+        "contact_id": 20805,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2018-08-29T12:30:00.000Z",
+        "end_date": "2018-08-29T13:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento CCRE",
+      "start_date": "2019-03-18T13:00:00.000Z",
+      "end_date": "2019-03-18T14:00:00.000Z",
+      "contact_id": 17675,
+      "user": 53951,
+      "description": "Presentato i cilindri idraulici\r\n \r\n organizer: [Davide Mason - davide.mason@cypag.com] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Davide Mason - davide.mason@cypag.com]\r\n\r\n - [id:00163E5406A71EE991E7640B12983B25, hash:c6da8bef3b7a9f25b7629c4fcd8f4706fbd40858ac7a68bc87771f7ba709cad0]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5516,
+        "title": "Appuntamento CCRE",
+        "description": "Presentato i cilindri idraulici\r\n \r\n organizer: [Davide Mason - davide.mason@cypag.com] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Davide Mason - davide.mason@cypag.com]\r\n\r\n - [id:00163E5406A71EE991E7640B12983B25, hash:c6da8bef3b7a9f25b7629c4fcd8f4706fbd40858ac7a68bc87771f7ba709cad0]",
+        "user": 53951,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5516",
+        "contact_id": 17675,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2019-03-18T13:00:00.000Z",
+        "end_date": "2019-03-18T14:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Ramella",
+      "start_date": "2019-12-19T08:30:00.000Z",
+      "end_date": "2019-12-19T09:30:00.000Z",
+      "contact_id": 18757,
+      "user": 57756,
+      "description": "\"portato cataloghi per agenti\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Damaschi - massimo@ramella.it] \r\n lead_attendee: [UTENSILERIA MECCANICA RAMELLA SRL - info@ramella.it] \r\n contact: [Massimo Damaschi - massimo@ramella.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E89121E1EEA88DF78605BCB556E, hash:a9ed04b48fefcd31f9c1b44b3fff925b430f5a19eb1f46cb00e4c44275575697]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5498,
+        "title": "Ramella",
+        "description": "\"portato cataloghi per agenti\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Damaschi - massimo@ramella.it] \r\n lead_attendee: [UTENSILERIA MECCANICA RAMELLA SRL - info@ramella.it] \r\n contact: [Massimo Damaschi - massimo@ramella.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E89121E1EEA88DF78605BCB556E, hash:a9ed04b48fefcd31f9c1b44b3fff925b430f5a19eb1f46cb00e4c44275575697]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5498",
+        "contact_id": 18757,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2019-12-19T08:30:00.000Z",
+        "end_date": "2019-12-19T09:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "CEMAT HANNOVER",
+      "start_date": "2016-05-31T14:00:00.000Z",
+      "end_date": "2016-06-03T14:30:00.000Z",
+      "contact_id": 17445,
+      "user": 53951,
+      "description": "\"Il potenziale cliente ha espresso interesse per i nostri prodotti a seguito dei buoni uffici dei Esquenet (Belgio).\r\n \r\n organizer: [Giacomo Mezzera - marketing@cypag.com] \r\n attendee: [Richard Fagerlund - richard.fagerlund@forkliftequipment.se] \r\n lead_attendee: [STABAU - null] \r\n contact: [Richard Fagerlund - richard.fagerlund@forkliftequipment.se] \r\n employee: [Giacomo Mezzera - marketing@cypag.com]\r\n\r\n - [id:00163E11B5351ED68CADDF8E1C87E7CE, hash:091aa8b04162beb1c368d54101f39e3b27650d830d43593e88fe092e19c4d489]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5508,
+        "title": "CEMAT HANNOVER",
+        "description": "\"Il potenziale cliente ha espresso interesse per i nostri prodotti a seguito dei buoni uffici dei Esquenet (Belgio).\r\n \r\n organizer: [Giacomo Mezzera - marketing@cypag.com] \r\n attendee: [Richard Fagerlund - richard.fagerlund@forkliftequipment.se] \r\n lead_attendee: [STABAU - null] \r\n contact: [Richard Fagerlund - richard.fagerlund@forkliftequipment.se] \r\n employee: [Giacomo Mezzera - marketing@cypag.com]\r\n\r\n - [id:00163E11B5351ED68CADDF8E1C87E7CE, hash:091aa8b04162beb1c368d54101f39e3b27650d830d43593e88fe092e19c4d489]",
+        "user": 53951,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5508",
+        "contact_id": 17445,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2016-05-31T14:00:00.000Z",
+        "end_date": "2016-06-03T14:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento CCRE",
+      "start_date": "2018-03-06T13:00:00.000Z",
+      "end_date": "2018-03-06T14:00:00.000Z",
+      "contact_id": 17675,
+      "user": 53951,
+      "description": "Confermata la disponibilità di aumentare il fatturato con noi, ha chiesto un'offerta di cilindri della gamma pesante .....valutare in seguito!\r\n \r\n organizer: [Davide Mason - davide.mason@cypag.com] \r\n attendee: [Armando Ciardullo - armando@ccre.it] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Davide Mason - davide.mason@cypag.com]\r\n\r\n - [id:00163E3CD6251ED8888A717BD6782F52, hash:fa58f163509a5d60d20b5d0adc8e780de5eed5cad585223837cf08854b104867]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5502,
+        "title": "Appuntamento CCRE",
+        "description": "Confermata la disponibilità di aumentare il fatturato con noi, ha chiesto un'offerta di cilindri della gamma pesante .....valutare in seguito!\r\n \r\n organizer: [Davide Mason - davide.mason@cypag.com] \r\n attendee: [Armando Ciardullo - armando@ccre.it] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Davide Mason - davide.mason@cypag.com]\r\n\r\n - [id:00163E3CD6251ED8888A717BD6782F52, hash:fa58f163509a5d60d20b5d0adc8e780de5eed5cad585223837cf08854b104867]",
+        "user": 53951,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5502",
+        "contact_id": 17675,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2018-03-06T13:00:00.000Z",
+        "end_date": "2018-03-06T14:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Ramella",
+      "start_date": "2020-01-29T15:00:00.000Z",
+      "end_date": "2020-01-29T15:30:00.000Z",
+      "contact_id": 18757,
+      "user": 57756,
+      "description": "presentazione nuovo listino interesse per compatti guidati\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Damaschi - massimo@ramella.it] \r\n lead_attendee: [UTENSILERIA MECCANICA RAMELLA SRL - info@ramella.it] \r\n contact: [Massimo Damaschi - massimo@ramella.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E89121E1EDA91878904964A65EF, hash:e4a448f374ebbba7386bff879a1a661928eb1dc12fcdc23a68a392b388a4528e]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5504,
+        "title": "Ramella",
+        "description": "presentazione nuovo listino interesse per compatti guidati\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Damaschi - massimo@ramella.it] \r\n lead_attendee: [UTENSILERIA MECCANICA RAMELLA SRL - info@ramella.it] \r\n contact: [Massimo Damaschi - massimo@ramella.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E89121E1EDA91878904964A65EF, hash:e4a448f374ebbba7386bff879a1a661928eb1dc12fcdc23a68a392b388a4528e]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5504",
+        "contact_id": 18757,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2020-01-29T15:00:00.000Z",
+        "end_date": "2020-01-29T15:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento FIP FORNITURE INDUSTRIALI PARMENSI SPA",
+      "start_date": "2021-01-28T10:00:00.000Z",
+      "end_date": "2021-01-28T10:30:00.000Z",
+      "contact_id": 24465,
+      "user": 57746,
+      "description": "Da confermare\r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163EACA1411EDB96F919D26D162EF9, hash:6a798b1e9255d2607f4b3d8d6c52267d358859bdfd66a430c9ddb75f80e04ccc]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5522,
+        "title": "Appuntamento FIP FORNITURE INDUSTRIALI PARMENSI SPA",
+        "description": "Da confermare\r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163EACA1411EDB96F919D26D162EF9, hash:6a798b1e9255d2607f4b3d8d6c52267d358859bdfd66a430c9ddb75f80e04ccc]",
+        "user": 57746,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5522",
+        "contact_id": 24465,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:12.000Z",
+        "start_date": "2021-01-28T10:00:00.000Z",
+        "end_date": "2021-01-28T10:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Presentazione",
+      "start_date": "2020-08-27T12:30:00.000Z",
+      "end_date": "2020-08-27T13:00:00.000Z",
+      "contact_id": 24455,
+      "user": 57756,
+      "description": "interesse per inox e speciali lavorano con api \r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Marco Salvadeo - info@cuscinettovoghera.it] \r\n lead_attendee: [Nuova Casa del Cuscinetto - null] \r\n contact: [Marco Salvadeo - info@cuscinettovoghera.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E89121E1EDABAEC83875D508C48, hash:06e1cca70f63f01f987e8678c95a8344ce90ea44d8aeabb2405b1863a04ec933]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5520,
+        "title": "Presentazione",
+        "description": "interesse per inox e speciali lavorano con api \r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Marco Salvadeo - info@cuscinettovoghera.it] \r\n lead_attendee: [Nuova Casa del Cuscinetto - null] \r\n contact: [Marco Salvadeo - info@cuscinettovoghera.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E89121E1EDABAEC83875D508C48, hash:06e1cca70f63f01f987e8678c95a8344ce90ea44d8aeabb2405b1863a04ec933]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5520",
+        "contact_id": 24455,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2020-08-27T12:30:00.000Z",
+        "end_date": "2020-08-27T13:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "meeting cemat",
+      "start_date": "2016-06-01T13:00:00.000Z",
+      "end_date": "2016-06-01T13:30:00.000Z",
+      "contact_id": 17767,
+      "user": 13,
+      "description": "contatto di Eurocar, erano stati in contatto con noi poi abbiamo scelto Elokon. Sono ancora interessati specie per Easy perchè sono distributore, hanno rapporti diretti con OEM\r\n \r\n organizer: [Luca Pagni - lpagni@cypag.com] \r\n attendee: [Thimo Hopp - thimo.hopp@jfuehr.com] \r\n lead_attendee: [Führ GmbH - null] \r\n contact: [Thimo Hopp - thimo.hopp@jfuehr.com] \r\n employee: [Luca Pagni - lpagni@cypag.com]\r\n\r\n - [id:00163E0987F51ED68BE12910292E826A, hash:0635042a488de5f2e96afdbff3de4fb3624aa0f8ab2bf9e935ba766f23809264]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5500,
+        "title": "meeting cemat",
+        "description": "contatto di Eurocar, erano stati in contatto con noi poi abbiamo scelto Elokon. Sono ancora interessati specie per Easy perchè sono distributore, hanno rapporti diretti con OEM\r\n \r\n organizer: [Luca Pagni - lpagni@cypag.com] \r\n attendee: [Thimo Hopp - thimo.hopp@jfuehr.com] \r\n lead_attendee: [Führ GmbH - null] \r\n contact: [Thimo Hopp - thimo.hopp@jfuehr.com] \r\n employee: [Luca Pagni - lpagni@cypag.com]\r\n\r\n - [id:00163E0987F51ED68BE12910292E826A, hash:0635042a488de5f2e96afdbff3de4fb3624aa0f8ab2bf9e935ba766f23809264]",
+        "user": 13,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5500",
+        "contact_id": 17767,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2016-06-01T13:00:00.000Z",
+        "end_date": "2016-06-01T13:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Ramella",
+      "start_date": "2019-11-07T08:30:00.000Z",
+      "end_date": "2019-11-07T09:30:00.000Z",
+      "contact_id": 18757,
+      "user": 57756,
+      "description": "molto interessato ad un collaborazione hanno SMC\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Damaschi - massimo@ramella.it] \r\n lead_attendee: [UTENSILERIA MECCANICA RAMELLA SRL - info@ramella.it] \r\n contact: [Massimo Damaschi - massimo@ramella.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E8911CC1EDA818BEA7DA57D9755, hash:adf6970ba9238946f15ac4f23d4106b33d8f374ed5ff9a0a1af5cb58ad1e970e]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5526,
+        "title": "Ramella",
+        "description": "molto interessato ad un collaborazione hanno SMC\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Damaschi - massimo@ramella.it] \r\n lead_attendee: [UTENSILERIA MECCANICA RAMELLA SRL - info@ramella.it] \r\n contact: [Massimo Damaschi - massimo@ramella.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163E8911CC1EDA818BEA7DA57D9755, hash:adf6970ba9238946f15ac4f23d4106b33d8f374ed5ff9a0a1af5cb58ad1e970e]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5526",
+        "contact_id": 18757,
+        "creation_date": "2022-09-26T12:21:12.000Z",
+        "modification_date": "2022-09-26T12:21:12.000Z",
+        "start_date": "2019-11-07T08:30:00.000Z",
+        "end_date": "2019-11-07T09:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento CCRE",
+      "start_date": "2018-09-20T12:00:00.000Z",
+      "end_date": "2018-09-20T13:00:00.000Z",
+      "contact_id": 17675,
+      "user": 53951,
+      "description": "\r\n \r\n organizer: [Davide Mason - davide.mason@cypag.com] \r\n attendee: [Armando Ciardullo - armando@ccre.it] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Davide Mason - davide.mason@cypag.com]\r\n\r\n - [id:00163E3CD6251EE8AED1711D1D1A1ECD, hash:5de2a133f8c0ba167ed9ca22882971430f0a67b9b3369e735ca8d618d747768b]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5524,
+        "title": "Appuntamento CCRE",
+        "description": "\r\n \r\n organizer: [Davide Mason - davide.mason@cypag.com] \r\n attendee: [Armando Ciardullo - armando@ccre.it] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Davide Mason - davide.mason@cypag.com]\r\n\r\n - [id:00163E3CD6251EE8AED1711D1D1A1ECD, hash:5de2a133f8c0ba167ed9ca22882971430f0a67b9b3369e735ca8d618d747768b]",
+        "user": 53951,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5524",
+        "contact_id": 17675,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2018-09-20T12:00:00.000Z",
+        "end_date": "2018-09-20T13:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento CCRE",
+      "start_date": "2017-10-17T12:00:00.000Z",
+      "end_date": "2017-10-17T13:00:00.000Z",
+      "contact_id": 17675,
+      "user": 53951,
+      "description": "cliente SMC, non penso ci saranno molti sviluppi, ci contatta quando a necessità e basta....\r\n \r\n organizer: [Davide Mason - davide.mason@cypag.com] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Davide Mason - davide.mason@cypag.com]\r\n\r\n - [id:00163E3CD6611EE7ACCDE71490D1DC05, hash:1be157ec26a2210595e5383b0e9ff7ab98f80ba0c8d9b20cee1aea60b7432c49]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5518,
+        "title": "Appuntamento CCRE",
+        "description": "cliente SMC, non penso ci saranno molti sviluppi, ci contatta quando a necessità e basta....\r\n \r\n organizer: [Davide Mason - davide.mason@cypag.com] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Davide Mason - davide.mason@cypag.com]\r\n\r\n - [id:00163E3CD6611EE7ACCDE71490D1DC05, hash:1be157ec26a2210595e5383b0e9ff7ab98f80ba0c8d9b20cee1aea60b7432c49]",
+        "user": 53951,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5518",
+        "contact_id": 17675,
+        "creation_date": "2022-09-26T12:21:11.000Z",
+        "modification_date": "2022-09-26T12:21:11.000Z",
+        "start_date": "2017-10-17T12:00:00.000Z",
+        "end_date": "2017-10-17T13:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "FIP Forniture Industriali Parmensi spa",
+      "start_date": "2020-02-12T09:00:00.000Z",
+      "end_date": "2020-02-12T09:30:00.000Z",
+      "contact_id": 24465,
+      "user": 57746,
+      "description": "Interessato a valutare Listino per inox ed accessori.\r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163E89121E1EDA918722B7AD8DA2E6, hash:69cba5b4fbafa5789ca720b25f903c9d227062c617e612f1e183b23b56d2a66b]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5530,
+        "title": "FIP Forniture Industriali Parmensi spa",
+        "description": "Interessato a valutare Listino per inox ed accessori.\r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163E89121E1EDA918722B7AD8DA2E6, hash:69cba5b4fbafa5789ca720b25f903c9d227062c617e612f1e183b23b56d2a66b]",
+        "user": 57746,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5530",
+        "contact_id": 24465,
+        "creation_date": "2022-09-26T12:21:12.000Z",
+        "modification_date": "2022-09-26T12:21:12.000Z",
+        "start_date": "2020-02-12T09:00:00.000Z",
+        "end_date": "2020-02-12T09:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "FIP Forniture Industriali Parmensi spa",
+      "start_date": "2019-11-27T13:30:00.000Z",
+      "end_date": "2019-11-27T14:00:00.000Z",
+      "contact_id": 24465,
+      "user": 57746,
+      "description": "Distributore Pneumax. Sig. Monica ci conosce ed apprezza presenza. Pneumax vanta un profilo completo ed ampio,ma non esclude azioni mirate con speciali. \r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163E89121E1EEA84B616CD9483167A, hash:72f78f91e428ee4beed9db6243be3bd46200ff1e48feddf105879a8f71d6feef]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5528,
+        "title": "FIP Forniture Industriali Parmensi spa",
+        "description": "Distributore Pneumax. Sig. Monica ci conosce ed apprezza presenza. Pneumax vanta un profilo completo ed ampio,ma non esclude azioni mirate con speciali. \r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163E89121E1EEA84B616CD9483167A, hash:72f78f91e428ee4beed9db6243be3bd46200ff1e48feddf105879a8f71d6feef]",
+        "user": 57746,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5528",
+        "contact_id": 24465,
+        "creation_date": "2022-09-26T12:21:12.000Z",
+        "modification_date": "2022-09-26T12:21:12.000Z",
+        "start_date": "2019-11-27T13:30:00.000Z",
+        "end_date": "2019-11-27T14:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "visita con Panigatti",
+      "start_date": "2021-09-06T13:30:00.000Z",
+      "end_date": "2021-09-06T14:30:00.000Z",
+      "contact_id": 54225,
+      "user": 57756,
+      "description": "risoluzioni problemi circa il miglior utilizzo dei cilindri\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Levati - massimo@cllegno.it] \r\n lead_attendee: [CL LEGNO AUTOMAZIONI SAS DI MOISA - null] \r\n contact: [Massimo Levati - massimo@cllegno.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA16F1EEC8391D298019FA275, hash:565aab1d0ddfdae1a0e361aa00ef117a11ba8d9b3b5a1e0ddc0c93b1406f31c8]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5532,
+        "title": "visita con Panigatti",
+        "description": "risoluzioni problemi circa il miglior utilizzo dei cilindri\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Levati - massimo@cllegno.it] \r\n lead_attendee: [CL LEGNO AUTOMAZIONI SAS DI MOISA - null] \r\n contact: [Massimo Levati - massimo@cllegno.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA16F1EEC8391D298019FA275, hash:565aab1d0ddfdae1a0e361aa00ef117a11ba8d9b3b5a1e0ddc0c93b1406f31c8]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5532",
+        "contact_id": 54225,
+        "creation_date": "2022-09-26T12:21:12.000Z",
+        "modification_date": "2022-09-26T12:21:12.000Z",
+        "start_date": "2021-09-06T13:30:00.000Z",
+        "end_date": "2021-09-06T14:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento FIP FORNITURE INDUSTRIALI PARMENSI SPA",
+      "start_date": "2020-09-30T09:00:00.000Z",
+      "end_date": "2020-09-30T10:00:00.000Z",
+      "contact_id": 24465,
+      "user": 57746,
+      "description": "Aggiornamento. Cataloghi nuovi . Appuntamento con Luca Monica e Giovanni Mazzocchi , sicuri della collaborazione e del riferimento mirato per speciali , acciaio ed accessori. Richiesta certificazioni sul C6B e partecipazione al webinar del 08/10 per il C1D. \r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163EACA16F1EDABFB286A30BC090FE, hash:b221d914938e7ed3bfd009e9303fac3b1f8a34039d5c2f989da2bb45e072ddb7]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5534,
+        "title": "Appuntamento FIP FORNITURE INDUSTRIALI PARMENSI SPA",
+        "description": "Aggiornamento. Cataloghi nuovi . Appuntamento con Luca Monica e Giovanni Mazzocchi , sicuri della collaborazione e del riferimento mirato per speciali , acciaio ed accessori. Richiesta certificazioni sul C6B e partecipazione al webinar del 08/10 per il C1D. \r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n attendee: [Luca Monica - lucamonica@fipsrl.it] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163EACA16F1EDABFB286A30BC090FE, hash:b221d914938e7ed3bfd009e9303fac3b1f8a34039d5c2f989da2bb45e072ddb7]",
+        "user": 57746,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5534",
+        "contact_id": 24465,
+        "creation_date": "2022-09-26T12:21:12.000Z",
+        "modification_date": "2022-09-26T12:21:12.000Z",
+        "start_date": "2020-09-30T09:00:00.000Z",
+        "end_date": "2020-09-30T10:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento BIANCHI INDUSTRIAL SPA A SOCIO UNICO",
+      "start_date": "2021-03-16T09:00:00.000Z",
+      "end_date": "2021-03-16T09:30:00.000Z",
+      "contact_id": 18453,
+      "user": 57756,
+      "description": "consegna cataloghi per filiali\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [sergio bruschi - s.bruschi@bianchi-industrial.it] \r\n lead_attendee: [BIANCHI INDUSTRIAL SPA A SOCIO UNICO - mmartinovic@bianchi-industrial.it] \r\n contact: [oscar pagani - opagani@bianchi-industrial.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA1591EEBA1CC43C294E53593, hash:129b97634922e86df5df60e1468d4dbc86d2cdf4e7eac2ff8e891383e565339e]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5536,
+        "title": "Appuntamento BIANCHI INDUSTRIAL SPA A SOCIO UNICO",
+        "description": "consegna cataloghi per filiali\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [sergio bruschi - s.bruschi@bianchi-industrial.it] \r\n lead_attendee: [BIANCHI INDUSTRIAL SPA A SOCIO UNICO - mmartinovic@bianchi-industrial.it] \r\n contact: [oscar pagani - opagani@bianchi-industrial.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA1591EEBA1CC43C294E53593, hash:129b97634922e86df5df60e1468d4dbc86d2cdf4e7eac2ff8e891383e565339e]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5536",
+        "contact_id": 18453,
+        "creation_date": "2022-09-26T12:21:12.000Z",
+        "modification_date": "2022-09-26T12:21:12.000Z",
+        "start_date": "2021-03-16T09:00:00.000Z",
+        "end_date": "2021-03-16T09:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Presentazione C1D",
+      "start_date": "2021-05-14T09:00:00.000Z",
+      "end_date": "2021-05-14T09:30:00.000Z",
+      "contact_id": 24455,
+      "user": 57756,
+      "description": "visita di cortesia \r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Marco Salvadeo - info@cuscinettovoghera.it] \r\n lead_attendee: [Nuova Casa del Cuscinetto - null] \r\n contact: [Marco Salvadeo - info@cuscinettovoghera.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA1591EEBADE1BBA2F44A2BEF, hash:9a2303ae3c3581d8ce3e1567fdcb60c2098c043c9c32bd07f60151172f562bf2]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5538,
+        "title": "Presentazione C1D",
+        "description": "visita di cortesia \r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Marco Salvadeo - info@cuscinettovoghera.it] \r\n lead_attendee: [Nuova Casa del Cuscinetto - null] \r\n contact: [Marco Salvadeo - info@cuscinettovoghera.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA1591EEBADE1BBA2F44A2BEF, hash:9a2303ae3c3581d8ce3e1567fdcb60c2098c043c9c32bd07f60151172f562bf2]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5538",
+        "contact_id": 24455,
+        "creation_date": "2022-09-26T12:21:12.000Z",
+        "modification_date": "2022-09-26T12:21:12.000Z",
+        "start_date": "2021-05-14T09:00:00.000Z",
+        "end_date": "2021-05-14T09:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "visita cortesia",
+      "start_date": "2021-09-02T12:30:00.000Z",
+      "end_date": "2021-09-02T13:30:00.000Z",
+      "contact_id": 54225,
+      "user": 57756,
+      "description": "dobbiamo rivederci con Panigatti per sviluppare nuovi prodotti contenti del prodotto \r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Levati - massimo@cllegno.it] \r\n lead_attendee: [CL LEGNO AUTOMAZIONI SAS DI MOISA - null] \r\n contact: [Massimo Levati - massimo@cllegno.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA1471EDC82E13E37B751A53A, hash:d0315a6d0289a431a7265924576d100f4d3c6a8cdd846ff894b8b605bab787a1]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5540,
+        "title": "visita cortesia",
+        "description": "dobbiamo rivederci con Panigatti per sviluppare nuovi prodotti contenti del prodotto \r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Levati - massimo@cllegno.it] \r\n lead_attendee: [CL LEGNO AUTOMAZIONI SAS DI MOISA - null] \r\n contact: [Massimo Levati - massimo@cllegno.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA1471EDC82E13E37B751A53A, hash:d0315a6d0289a431a7265924576d100f4d3c6a8cdd846ff894b8b605bab787a1]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5540",
+        "contact_id": 54225,
+        "creation_date": "2022-09-26T12:21:12.000Z",
+        "modification_date": "2022-09-26T12:21:12.000Z",
+        "start_date": "2021-09-02T12:30:00.000Z",
+        "end_date": "2021-09-02T13:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento FIP FORNITURE INDUSTRIALI PARMENSI SPA",
+      "start_date": "2022-02-09T10:00:00.000Z",
+      "end_date": "2022-02-09T11:00:00.000Z",
+      "contact_id": 24465,
+      "user": 57746,
+      "description": "Richiesta di incontro da aprte di L.Monica tramite linkedin. Probabili spiragli per nuova e potenziale collaborazione ma diretta da Fernando Gironi che mi contatterà nei prossimi giorni per valutare. \r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163EACA1591EDCA1B83398880A2201, hash:3dbcf4356ad99b45b23499e7200aebac1efdf68224244a447a20199745b031b5]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5546,
+        "title": "Appuntamento FIP FORNITURE INDUSTRIALI PARMENSI SPA",
+        "description": "Richiesta di incontro da aprte di L.Monica tramite linkedin. Probabili spiragli per nuova e potenziale collaborazione ma diretta da Fernando Gironi che mi contatterà nei prossimi giorni per valutare. \r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n lead_attendee: [FIP FORNITURE INDUSTRIALI PARMENSI SPA - null] \r\n contact: [Luca Monica - lucamonica@fipsrl.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163EACA1591EDCA1B83398880A2201, hash:3dbcf4356ad99b45b23499e7200aebac1efdf68224244a447a20199745b031b5]",
+        "user": 57746,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5546",
+        "contact_id": 24465,
+        "creation_date": "2022-09-26T12:21:13.000Z",
+        "modification_date": "2022-09-26T12:21:13.000Z",
+        "start_date": "2022-02-09T10:00:00.000Z",
+        "end_date": "2022-02-09T11:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "discussione su nuovi progetti",
+      "start_date": "2022-02-02T10:30:00.000Z",
+      "end_date": "2022-02-02T11:30:00.000Z",
+      "contact_id": 56784,
+      "user": 57756,
+      "description": "mi hanno fornito disegni su nuovi progetti \r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n lead_attendee: [BODE SUD SPA - info@bodesud.com] \r\n contact: [Miscia - v.miscia@bodesud.com] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA1411EECA189E2F2A7097E90, hash:ac7c8b10284efc8294bba49bdb0b26e1c4e5d0738249d0394d9c6b5af27defbd]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5544,
+        "title": "discussione su nuovi progetti",
+        "description": "mi hanno fornito disegni su nuovi progetti \r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n lead_attendee: [BODE SUD SPA - info@bodesud.com] \r\n contact: [Miscia - v.miscia@bodesud.com] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA1411EECA189E2F2A7097E90, hash:ac7c8b10284efc8294bba49bdb0b26e1c4e5d0738249d0394d9c6b5af27defbd]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5544",
+        "contact_id": 56784,
+        "creation_date": "2022-09-26T12:21:12.000Z",
+        "modification_date": "2022-09-26T12:21:13.000Z",
+        "start_date": "2022-02-02T10:30:00.000Z",
+        "end_date": "2022-02-02T11:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "visita di cortesia",
+      "start_date": "2021-03-22T08:30:00.000Z",
+      "end_date": "2021-03-22T09:00:00.000Z",
+      "contact_id": 17675,
+      "user": 57756,
+      "description": "un pò fermi con il lavoro\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Armando Ciardullo - armando@ccre.it] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA17B1EEBA2F666704C2C29E9, hash:9a2530d24e49aeb69b26e3a6adbb96b02216aae02068f1e814403b08adb5ad29]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5542,
+        "title": "visita di cortesia",
+        "description": "un pò fermi con il lavoro\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Armando Ciardullo - armando@ccre.it] \r\n lead_attendee: [CCRE - null] \r\n contact: [Armando Ciardullo - armando@ccre.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA17B1EEBA2F666704C2C29E9, hash:9a2530d24e49aeb69b26e3a6adbb96b02216aae02068f1e814403b08adb5ad29]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5542",
+        "contact_id": 17675,
+        "creation_date": "2022-09-26T12:21:13.000Z",
+        "modification_date": "2022-09-26T12:21:13.000Z",
+        "start_date": "2021-03-22T08:30:00.000Z",
+        "end_date": "2021-03-22T09:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "conference call",
+      "start_date": "2020-10-22T12:00:00.000Z",
+      "end_date": "2020-10-22T14:00:00.000Z",
+      "contact_id": 19471,
+      "user": 57722,
+      "description": "Presentazione VNA\r\n \r\n organizer: [Silvio Pozzi - silvio.pozzi@cypag.com] \r\n lead_attendee: [JUNGHEINRICH ITALIA SRL - null] \r\n contact: [Emanuele Mancusi - emanuele.mancusi@jungheinrich.it] \r\n employee: [Silvio Pozzi - silvio.pozzi@cypag.com]\r\n\r\n - [id:00163EACA1591EDB83DEA898350DEE20, hash:86cc3acf9cce89f85104a9dd89d4225c42b45464af177ecf597bb9e282d60a12]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5548,
+        "title": "conference call",
+        "description": "Presentazione VNA\r\n \r\n organizer: [Silvio Pozzi - silvio.pozzi@cypag.com] \r\n lead_attendee: [JUNGHEINRICH ITALIA SRL - null] \r\n contact: [Emanuele Mancusi - emanuele.mancusi@jungheinrich.it] \r\n employee: [Silvio Pozzi - silvio.pozzi@cypag.com]\r\n\r\n - [id:00163EACA1591EDB83DEA898350DEE20, hash:86cc3acf9cce89f85104a9dd89d4225c42b45464af177ecf597bb9e282d60a12]",
+        "user": 57722,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5548",
+        "contact_id": 19471,
+        "creation_date": "2022-09-26T12:21:13.000Z",
+        "modification_date": "2022-09-26T12:21:13.000Z",
+        "start_date": "2020-10-22T12:00:00.000Z",
+        "end_date": "2020-10-22T14:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "visita con Panigatti",
+      "start_date": "2021-10-26T08:00:00.000Z",
+      "end_date": "2021-10-26T10:00:00.000Z",
+      "contact_id": 54225,
+      "user": 57756,
+      "description": "visita per test valvole ed accordi per future forniture\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Levati - massimo@cllegno.it] \r\n lead_attendee: [CL LEGNO AUTOMAZIONI SAS DI MOISA - null] \r\n contact: [Massimo Levati - massimo@cllegno.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA17B1EDC8C983A7B676C22AA, hash:3679a40da10335ac9654d8162e16b7ae7004efb1e907badbb309eeab5c7d1771]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5552,
+        "title": "visita con Panigatti",
+        "description": "visita per test valvole ed accordi per future forniture\r\n \r\n organizer: [Massimiliano Corbani - massimiliano.corbani@cypag.com] \r\n attendee: [Massimo Levati - massimo@cllegno.it] \r\n lead_attendee: [CL LEGNO AUTOMAZIONI SAS DI MOISA - null] \r\n contact: [Massimo Levati - massimo@cllegno.it] \r\n employee: [Massimiliano Corbani - massimiliano.corbani@cypag.com]\r\n\r\n - [id:00163EACA17B1EDC8C983A7B676C22AA, hash:3679a40da10335ac9654d8162e16b7ae7004efb1e907badbb309eeab5c7d1771]",
+        "user": 57756,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5552",
+        "contact_id": 54225,
+        "creation_date": "2022-09-26T12:21:13.000Z",
+        "modification_date": "2022-09-26T12:21:13.000Z",
+        "start_date": "2021-10-26T08:00:00.000Z",
+        "end_date": "2021-10-26T10:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Appuntamento EKRON S.R.L.",
+      "start_date": "2021-02-18T09:30:00.000Z",
+      "end_date": "2021-02-18T10:00:00.000Z",
+      "contact_id": 23785,
+      "user": 57746,
+      "description": "Piccolo distributore AZ e Norgren che mi riceve sempre senza problemi anche per qualche collaborazione in passato. Lasciato cataloghi relativi a C1D C6B e 6432 Boccola. Difficile sviluppo ulteriore ma sporadico\r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n lead_attendee: [EKRON S.R.L. - venerito.elisabetta@ekron.it] \r\n contact: [Mario Marsiletti - mario.marsiletti@ekron.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163EACA1591EEB9CD0BF3BD1AC7CF6, hash:560c8a173eca8fe6f225a36bb5711a7b6b9e03b2d1e5e16427a92d2cfe9da4b1]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 5550,
+        "title": "Appuntamento EKRON S.R.L.",
+        "description": "Piccolo distributore AZ e Norgren che mi riceve sempre senza problemi anche per qualche collaborazione in passato. Lasciato cataloghi relativi a C1D C6B e 6432 Boccola. Difficile sviluppo ulteriore ma sporadico\r\n \r\n organizer: [Emanuele Montonati - emanuele.montonati@cypag.com] \r\n lead_attendee: [EKRON S.R.L. - venerito.elisabetta@ekron.it] \r\n contact: [Mario Marsiletti - mario.marsiletti@ekron.it] \r\n employee: [Emanuele Montonati - emanuele.montonati@cypag.com]\r\n\r\n - [id:00163EACA1591EEB9CD0BF3BD1AC7CF6, hash:560c8a173eca8fe6f225a36bb5711a7b6b9e03b2d1e5e16427a92d2cfe9da4b1]",
+        "user": 57746,
+        "location": null,
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/5550",
+        "contact_id": 23785,
+        "creation_date": "2022-09-26T12:21:13.000Z",
+        "modification_date": "2022-09-26T12:21:13.000Z",
+        "start_date": "2021-02-18T09:30:00.000Z",
+        "end_date": "2021-02-18T10:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=TvnpBTtabDK9onLAxUfrzMnn5fJG",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  }
+]
