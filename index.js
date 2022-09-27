@@ -11,21 +11,21 @@ const importPhoneCalls = require('./scripts/phone_calls')
 dotenv.config();
 
 (async () => {
-    // const companies_result = await importCompanies(); 
-    // const companyContacts_result = await importCompanyContacts();
-    // const contacts_result = await importContacts(); 
-    // const tasks = await importTasks();
-    // const opportunities = await importOpportunities();
-    // const appointments = await importAppointments();
+    const companies_result = await importCompanies(); 
+    const companyContacts_result = await importCompanyContacts();
+    const contacts_result = await importContacts(); 
+    const tasks = await importTasks();
+    const opportunities = await importOpportunities();
+    const appointments = await importAppointments();
     const phonecalls = await importPhoneCalls()
 
     const result = 
-        // companies_result && 
-        // companyContacts_result &&
-        // contacts_result &&
-        // tasks &&
-        // opportunities &&
-        // appointments &&
+        companies_result && 
+        companyContacts_result &&
+        contacts_result &&
+        tasks &&
+        opportunities &&
+        appointments &&
         phonecalls
 
     if (result){

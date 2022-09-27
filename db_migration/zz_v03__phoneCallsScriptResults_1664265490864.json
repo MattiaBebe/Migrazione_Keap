@@ -1,0 +1,702 @@
+[
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "chiamata telefonica",
+      "start_date": "2018-05-14T14:30:00.000Z",
+      "end_date": "2018-05-14T15:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 19925,
+      "user": 53951,
+      "description": "richiesto S&S +\r\n\r\n\r\n - [id:00163E3CD6251ED895F019B5CECF7ACE, hash:b99f92bdc4e3c3daa568ec3da9c3defd913397eaa6322737a991c8f602af1326]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9068,
+        "title": "chiamata telefonica",
+        "description": "richiesto S&S +\r\n\r\n\r\n - [id:00163E3CD6251ED895F019B5CECF7ACE, hash:b99f92bdc4e3c3daa568ec3da9c3defd913397eaa6322737a991c8f602af1326]",
+        "user": 53951,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9068",
+        "contact_id": 19925,
+        "creation_date": "2022-09-27T07:58:10.000Z",
+        "modification_date": "2022-09-27T07:58:10.000Z",
+        "start_date": "2018-05-14T14:30:00.000Z",
+        "end_date": "2018-05-14T15:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+      "start_date": "2021-01-25T09:00:00.000Z",
+      "end_date": "2021-01-25T09:30:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17451,
+      "user": 57746,
+      "description": "Ordinato n.20 c1k dopo diverse mail e nessuna possibilità di parlarci al telefono. Ordine mandato via mail senza conferme ne allegati. Proposto anche il C1D visti gli acquisti al 2019.\r\n\r\n\r\n - [id:00163EACA1471EEB97DF1FB3C46E5739, hash:da24de5c128629c0488e2a6c0e062881910fbcc0f88042e5b1bfdfb33e2bf9f3]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9070,
+        "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+        "description": "Ordinato n.20 c1k dopo diverse mail e nessuna possibilità di parlarci al telefono. Ordine mandato via mail senza conferme ne allegati. Proposto anche il C1D visti gli acquisti al 2019.\r\n\r\n\r\n - [id:00163EACA1471EEB97DF1FB3C46E5739, hash:da24de5c128629c0488e2a6c0e062881910fbcc0f88042e5b1bfdfb33e2bf9f3]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9070",
+        "contact_id": 17451,
+        "creation_date": "2022-09-27T07:58:10.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2021-01-25T09:00:00.000Z",
+        "end_date": "2021-01-25T09:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Situazione prezzi",
+      "start_date": "2016-03-31T10:00:00.000Z",
+      "end_date": "2016-03-31T10:30:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 19149,
+      "user": 13,
+      "description": "sta ancora guardando, un pò lentuccio ma mi farà avere\r\n\r\n[ Oliver Rich - oliver.rich@parker.com - +49 (7158) 1703186\r\n\r\n\r\n - [id:00163E1662E11EE5BDE47FB58BF7D62F, hash:b84341d4e9ff7dd30969c25304c31a0ff4875cfabd4e063db7aab48b74031677]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9072,
+        "title": "Situazione prezzi",
+        "description": "sta ancora guardando, un pò lentuccio ma mi farà avere\r\n\r\n[ Oliver Rich - oliver.rich@parker.com - +49 (7158) 1703186\r\n\r\n\r\n - [id:00163E1662E11EE5BDE47FB58BF7D62F, hash:b84341d4e9ff7dd30969c25304c31a0ff4875cfabd4e063db7aab48b74031677]",
+        "user": 13,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9072",
+        "contact_id": 19149,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2016-03-31T10:00:00.000Z",
+        "end_date": "2016-03-31T10:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Verifica opportunità",
+      "start_date": "2016-01-11T14:00:00.000Z",
+      "end_date": "2016-01-11T14:30:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17445,
+      "user": 13,
+      "description": "\"parlato con JUngheinrich ma ci vuole tempo\r\n\r\n\r\n - [id:00163E0987F31ED5B2B6661A0668CF2C, hash:69f464088a6e352ded2d9be808fbfd6b35cbf6f211e20b591ef57b3598f25be8]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9074,
+        "title": "Verifica opportunità",
+        "description": "\"parlato con JUngheinrich ma ci vuole tempo\r\n\r\n\r\n - [id:00163E0987F31ED5B2B6661A0668CF2C, hash:69f464088a6e352ded2d9be808fbfd6b35cbf6f211e20b591ef57b3598f25be8]",
+        "user": 13,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9074",
+        "contact_id": 17445,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2016-01-11T14:00:00.000Z",
+        "end_date": "2016-01-11T14:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "chiam. per appuntamento",
+      "start_date": "2020-04-03T07:00:00.000Z",
+      "end_date": "2020-04-03T07:30:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 21869,
+      "user": 53951,
+      "description": "\r\n\r\n\r\n - [id:00163E89121E1EEA94F8DF4736860606, hash:653ffb889431cddb06bf545789a2d89e18a6117f30c067d526e76104b1337514]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9076,
+        "title": "chiam. per appuntamento",
+        "description": "\r\n\r\n\r\n - [id:00163E89121E1EEA94F8DF4736860606, hash:653ffb889431cddb06bf545789a2d89e18a6117f30c067d526e76104b1337514]",
+        "user": 53951,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9076",
+        "contact_id": 21869,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2020-04-03T07:00:00.000Z",
+        "end_date": "2020-04-03T07:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+      "start_date": "2021-04-23T14:30:00.000Z",
+      "end_date": "2021-04-23T15:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17451,
+      "user": 57746,
+      "description": "Mandata nuova mail a M.Mazzi , al momento filtra da segretaria che è tutto ok. Difficile sviluppo \r\n\r\n\r\n - [id:00163EACA1471EDBA98761D4878D4398, hash:b1ac28602ec790ddb7c68ecad0d75c7ee290f991a90c408692f9159261e5887e]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9080,
+        "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+        "description": "Mandata nuova mail a M.Mazzi , al momento filtra da segretaria che è tutto ok. Difficile sviluppo \r\n\r\n\r\n - [id:00163EACA1471EDBA98761D4878D4398, hash:b1ac28602ec790ddb7c68ecad0d75c7ee290f991a90c408692f9159261e5887e]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9080",
+        "contact_id": 17451,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2021-04-23T14:30:00.000Z",
+        "end_date": "2021-04-23T15:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "EKRON",
+      "start_date": "2020-09-23T14:30:00.000Z",
+      "end_date": "2020-09-23T15:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 23785,
+      "user": 57746,
+      "description": "Aggiornamento e news C1D C6B\r\n\r\n\r\n - [id:00163EACA16F1EDABFB34B766BDF14E4, hash:ead7d8caa9a31e659592e1d92a74fbbe846aba87f408570591cafc6a497f17ff]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9078,
+        "title": "EKRON",
+        "description": "Aggiornamento e news C1D C6B\r\n\r\n\r\n - [id:00163EACA16F1EDABFB34B766BDF14E4, hash:ead7d8caa9a31e659592e1d92a74fbbe846aba87f408570591cafc6a497f17ff]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9078",
+        "contact_id": 23785,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2020-09-23T14:30:00.000Z",
+        "end_date": "2020-09-23T15:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "EKRON AUTOMAZIONE PNEUMATICA",
+      "start_date": "2020-05-22T12:30:00.000Z",
+      "end_date": "2020-05-22T13:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 23785,
+      "user": 57746,
+      "description": "Aggiornamento situazione e mail con novità. Al momento non riesce a quantificare il danno del lockdown. \r\n\r\n[ Mario Marsiletti - mario.marsiletti@ekron.it - +39 0536805366\r\n\r\n\r\n - [id:00163E8911CC1EDAA78530A582EE9607, hash:49012f8099f0804c99e9810a03d6d77412f72ecd8c928557a95b5c60b5646dbb]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9082,
+        "title": "EKRON AUTOMAZIONE PNEUMATICA",
+        "description": "Aggiornamento situazione e mail con novità. Al momento non riesce a quantificare il danno del lockdown. \r\n\r\n[ Mario Marsiletti - mario.marsiletti@ekron.it - +39 0536805366\r\n\r\n\r\n - [id:00163E8911CC1EDAA78530A582EE9607, hash:49012f8099f0804c99e9810a03d6d77412f72ecd8c928557a95b5c60b5646dbb]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9082",
+        "contact_id": 23785,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2020-05-22T12:30:00.000Z",
+        "end_date": "2020-05-22T13:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "EKRON AUTOMAZIONE PNEUMATICA",
+      "start_date": "2020-01-28T08:00:00.000Z",
+      "end_date": "2020-01-28T08:30:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 23785,
+      "user": 57746,
+      "description": "richiesta appuntamento per discorso listino nuovo. Distributore Az/Norgren\r\n\r\n[ Mario Marsiletti - mario.marsiletti@ekron.it - +39 0536805366\r\n\r\n\r\n - [id:00163E89121E1EEA90B4401583EE862A, hash:f82f03d20b479dd5cd0c302d37199a41c7e6d63b321b54c69fcaeac36db87bb8]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9084,
+        "title": "EKRON AUTOMAZIONE PNEUMATICA",
+        "description": "richiesta appuntamento per discorso listino nuovo. Distributore Az/Norgren\r\n\r\n[ Mario Marsiletti - mario.marsiletti@ekron.it - +39 0536805366\r\n\r\n\r\n - [id:00163E89121E1EEA90B4401583EE862A, hash:f82f03d20b479dd5cd0c302d37199a41c7e6d63b321b54c69fcaeac36db87bb8]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9084",
+        "contact_id": 23785,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2020-01-28T08:00:00.000Z",
+        "end_date": "2020-01-28T08:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "ricontattare per capire opportunità con Husky",
+      "start_date": "2020-08-18T10:00:00.000Z",
+      "end_date": "2020-08-18T10:30:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 19637,
+      "user": 13,
+      "description": "\r\n\r\n[ Sandrine Nenning - snennig@husky.ca - +1 003-525-2115 ext 4701\r\n\r\n\r\n - [id:00163E8911971EEAB6F6D11B49023A4A, hash:64bfe75132cc871e7c27a07dc7d8f30e1f9a6cbc712bbfbff508f9e8fccf064d]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9086,
+        "title": "ricontattare per capire opportunità con Husky",
+        "description": "\r\n\r\n[ Sandrine Nenning - snennig@husky.ca - +1 003-525-2115 ext 4701\r\n\r\n\r\n - [id:00163E8911971EEAB6F6D11B49023A4A, hash:64bfe75132cc871e7c27a07dc7d8f30e1f9a6cbc712bbfbff508f9e8fccf064d]",
+        "user": 13,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9086",
+        "contact_id": 19637,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2020-08-18T10:00:00.000Z",
+        "end_date": "2020-08-18T10:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+      "start_date": "2020-11-26T13:30:00.000Z",
+      "end_date": "2020-11-26T14:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17451,
+      "user": 57746,
+      "description": "Anticipata mail su info. Ultimo acquisto 11/2019 EL e KNF. Fare leva su C1D E C1K...\r\n\r\n\r\n - [id:00163EACA1411EEB8BE5A9A76B437720, hash:ad84d6172d2f7829d2abe59bd44354a7c2f784abb3a374abdb98fc4f081cc26f]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9088,
+        "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+        "description": "Anticipata mail su info. Ultimo acquisto 11/2019 EL e KNF. Fare leva su C1D E C1K...\r\n\r\n\r\n - [id:00163EACA1411EEB8BE5A9A76B437720, hash:ad84d6172d2f7829d2abe59bd44354a7c2f784abb3a374abdb98fc4f081cc26f]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9088",
+        "contact_id": 17451,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2020-11-26T13:30:00.000Z",
+        "end_date": "2020-11-26T14:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+      "start_date": "2021-06-08T07:00:00.000Z",
+      "end_date": "2021-06-08T07:30:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17451,
+      "user": 57746,
+      "description": "Aggiornamento C1D entro fine anno ed aumenti da Luglio. Non riesco a farmi ricevere al momento. Ripreso acquisti ad inizio anno con C1K (avevano avuto problemi in passato con compatti ed easy line). Mazzi conferma di tenerci in considerazione ma non parla di concorrenza. \r\n\r\n\r\n - [id:00163EACA16F1EDBB1F1F280AB153991, hash:08df75647429aa03f78e53a27d90033910021676a852bca49a4427e7e40ff239]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9092,
+        "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+        "description": "Aggiornamento C1D entro fine anno ed aumenti da Luglio. Non riesco a farmi ricevere al momento. Ripreso acquisti ad inizio anno con C1K (avevano avuto problemi in passato con compatti ed easy line). Mazzi conferma di tenerci in considerazione ma non parla di concorrenza. \r\n\r\n\r\n - [id:00163EACA16F1EDBB1F1F280AB153991, hash:08df75647429aa03f78e53a27d90033910021676a852bca49a4427e7e40ff239]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9092",
+        "contact_id": 17451,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2021-06-08T07:00:00.000Z",
+        "end_date": "2021-06-08T07:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+      "start_date": "2020-11-30T14:30:00.000Z",
+      "end_date": "2020-11-30T15:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17451,
+      "user": 57746,
+      "description": "Sig. Mazzi si nega al telefono. Mandata mail con C1K e C1D visto lo storico al 11/2019. Riprovo in settimana per indagare su possibile concorrenza subentrata nel 2020.\r\n\r\n\r\n - [id:00163EACA17B1EEB8CE2B369AB62DFE7, hash:a701a9c36200cc3566bdb928655d1770cd791aaaf2ca98300c88f7bb22f743a6]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9094,
+        "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+        "description": "Sig. Mazzi si nega al telefono. Mandata mail con C1K e C1D visto lo storico al 11/2019. Riprovo in settimana per indagare su possibile concorrenza subentrata nel 2020.\r\n\r\n\r\n - [id:00163EACA17B1EEB8CE2B369AB62DFE7, hash:a701a9c36200cc3566bdb928655d1770cd791aaaf2ca98300c88f7bb22f743a6]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9094",
+        "contact_id": 17451,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2020-11-30T14:30:00.000Z",
+        "end_date": "2020-11-30T15:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Partecipazione cena CEMAT",
+      "start_date": "2018-04-06T15:30:00.000Z",
+      "end_date": "2018-04-06T16:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 23333,
+      "user": 53951,
+      "description": "Parteciperanno in 2 alle cena\r\n\r\n\r\n - [id:00163E3CD6251EE88EB59735099DC000, hash:2b2378617980a1e2b8068ce04360502e6e84fb1d0bedb0c1e8a448c1ace50e98]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9090,
+        "title": "Partecipazione cena CEMAT",
+        "description": "Parteciperanno in 2 alle cena\r\n\r\n\r\n - [id:00163E3CD6251EE88EB59735099DC000, hash:2b2378617980a1e2b8068ce04360502e6e84fb1d0bedb0c1e8a448c1ace50e98]",
+        "user": 53951,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9090",
+        "contact_id": 23333,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2018-04-06T15:30:00.000Z",
+        "end_date": "2018-04-06T16:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+      "start_date": "2021-09-21T13:30:00.000Z",
+      "end_date": "2021-09-21T14:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17451,
+      "user": 57746,
+      "description": "Non mi passano il Sig. Mazzi e mi chiedono di scrivere ad acquisti@ , probabile passaggio ormai da un paio d'anni ad Artec tranne il piccolo ordine di inizio anno sempre per compatti , con i quali sono rimasti scottati diversi anni fa. \r\n\r\n\r\n - [id:00163EACA1471EEC86DBA58D9F558E12, hash:db1b4f6012230a8b15d87010be2f30ac17029ca70d47cee29cdcf8dcc8b9ad6e]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9098,
+        "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+        "description": "Non mi passano il Sig. Mazzi e mi chiedono di scrivere ad acquisti@ , probabile passaggio ormai da un paio d'anni ad Artec tranne il piccolo ordine di inizio anno sempre per compatti , con i quali sono rimasti scottati diversi anni fa. \r\n\r\n\r\n - [id:00163EACA1471EEC86DBA58D9F558E12, hash:db1b4f6012230a8b15d87010be2f30ac17029ca70d47cee29cdcf8dcc8b9ad6e]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9098",
+        "contact_id": 17451,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2021-09-21T13:30:00.000Z",
+        "end_date": "2021-09-21T14:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "CL Legno Automazioni",
+      "start_date": "2021-05-05T08:30:00.000Z",
+      "end_date": "2021-05-05T09:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 54225,
+      "user": 57756,
+      "description": "fissato appuntamento usano tanti cilindri comprano da Airtac\r\n\r\n[ Massimo Levati - massimo@cllegno.it - +39 (0365) 388013\r\n\r\n\r\n - [id:00163EACA16F1EDBA8D457234380BD0A, hash:174272ecb38b205279d0027acbb5942ee0cdf25fc904cef8199fd3ff8e1e119f]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9102,
+        "title": "CL Legno Automazioni",
+        "description": "fissato appuntamento usano tanti cilindri comprano da Airtac\r\n\r\n[ Massimo Levati - massimo@cllegno.it - +39 (0365) 388013\r\n\r\n\r\n - [id:00163EACA16F1EDBA8D457234380BD0A, hash:174272ecb38b205279d0027acbb5942ee0cdf25fc904cef8199fd3ff8e1e119f]",
+        "user": 57756,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9102",
+        "contact_id": 54225,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2021-05-05T08:30:00.000Z",
+        "end_date": "2021-05-05T09:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+      "start_date": "2021-01-21T09:30:00.000Z",
+      "end_date": "2021-01-21T10:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17451,
+      "user": 57746,
+      "description": "\"Segretaria non filtra la telefonata (ennesima volta) \r\n\r\n\r\n - [id:00163EACA17B1EDB96AFF2CA9329592E, hash:21b674cadc3cb481b2aa89f731774305f22c4a86353ce409bb106812f2660743]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9100,
+        "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+        "description": "\"Segretaria non filtra la telefonata (ennesima volta) \r\n\r\n\r\n - [id:00163EACA17B1EDB96AFF2CA9329592E, hash:21b674cadc3cb481b2aa89f731774305f22c4a86353ce409bb106812f2660743]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9100",
+        "contact_id": 17451,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2021-01-21T09:30:00.000Z",
+        "end_date": "2021-01-21T10:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+      "start_date": "2020-12-14T15:00:00.000Z",
+      "end_date": "2020-12-14T15:30:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17451,
+      "user": 57746,
+      "description": "Capire intenzioni e ricezione mie mail. Sig. Mazzi difficile da raggiungere per la 4 volta. Ha lasciato detto a segretaria a Gennaio.\r\n\r\n\r\n - [id:00163EACA1871EEB8FBCECD0954FDD67, hash:25361f21208c687b2f38125b8cf1cd9f54717ab4add77801951f8e03ab8b17a7]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9104,
+        "title": "Chiamata telefonica MAEMA SRL UNIPERSONALE",
+        "description": "Capire intenzioni e ricezione mie mail. Sig. Mazzi difficile da raggiungere per la 4 volta. Ha lasciato detto a segretaria a Gennaio.\r\n\r\n\r\n - [id:00163EACA1871EEB8FBCECD0954FDD67, hash:25361f21208c687b2f38125b8cf1cd9f54717ab4add77801951f8e03ab8b17a7]",
+        "user": 57746,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9104",
+        "contact_id": 17451,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2020-12-14T15:00:00.000Z",
+        "end_date": "2020-12-14T15:30:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "Ricerca del nostro referente",
+      "start_date": "2016-04-18T07:30:00.000Z",
+      "end_date": "2016-04-18T08:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 19125,
+      "user": 53951,
+      "description": "Chiamare e prendere contatto con il referente per esplorare opportunità di collaborazione.\r\n\r\n\r\n - [id:00163E1662E11EE5BEDF92ED3E23FE3F, hash:57e1df50676953657520aa286444487f10316b090cbab8768278c563fa546864]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9096,
+        "title": "Ricerca del nostro referente",
+        "description": "Chiamare e prendere contatto con il referente per esplorare opportunità di collaborazione.\r\n\r\n\r\n - [id:00163E1662E11EE5BEDF92ED3E23FE3F, hash:57e1df50676953657520aa286444487f10316b090cbab8768278c563fa546864]",
+        "user": 53951,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9096",
+        "contact_id": 19125,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2016-04-18T07:30:00.000Z",
+        "end_date": "2016-04-18T08:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  },
+  {
+    "action": "insert appointment",
+    "data": {
+      "title": "folow up cemat",
+      "start_date": "2016-06-15T13:30:00.000Z",
+      "end_date": "2016-06-15T14:00:00.000Z",
+      "location": "Telephone Call",
+      "contact_id": 17445,
+      "user": 53951,
+      "description": "\r\n\r\n[ Richard Fagerlund - richard.fagerlund@forkliftequipment.se - +46 (733) 32 76 60\r\n\r\n\r\n - [id:00163E0987F51ED68BE16F16D59983D9, hash:7d0f5316bfe220e64b1e1932eabab61f79f787927acad2aa222357f74ce81ca0]",
+      "remind_time": 1440
+    },
+    "response": {
+      "data": {
+        "id": 9106,
+        "title": "folow up cemat",
+        "description": "\r\n\r\n[ Richard Fagerlund - richard.fagerlund@forkliftequipment.se - +46 (733) 32 76 60\r\n\r\n\r\n - [id:00163E0987F51ED68BE16F16D59983D9, hash:7d0f5316bfe220e64b1e1932eabab61f79f787927acad2aa222357f74ce81ca0]",
+        "user": 53951,
+        "location": "Telephone Call",
+        "url": "https://api.infusionsoft.com/crm/rest/v1/appointments/9106",
+        "contact_id": 17445,
+        "creation_date": "2022-09-27T07:58:11.000Z",
+        "modification_date": "2022-09-27T07:58:11.000Z",
+        "start_date": "2016-06-15T13:30:00.000Z",
+        "end_date": "2016-06-15T14:00:00.000Z",
+        "remind_time": 1440
+      },
+      "request_protocol": "https:",
+      "request_host": "api.infusionsoft.com",
+      "request_path": "/crm/rest/v1/appointments?access_token=08FP1GK5EsJdMQ6Ya3RBiwQwPB7G",
+      "request_method": "POST",
+      "response_status": 201,
+      "response_statusText": "Created"
+    }
+  }
+]

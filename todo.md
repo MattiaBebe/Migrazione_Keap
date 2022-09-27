@@ -17,9 +17,9 @@
 - [x] import opportunitie (massive import)
 - [x] add owner to company and users
 - [ ] import lead owners
-- [ ] import appointments with notes and involved-parties
-- [ ] rimappare appuntamenti e task su 53951
-- [ ] rimappare contatti e aziende su 53951 + custom_field owner: default
+- [x] import appointments with notes and involved-parties
+- [x] rimappare appuntamenti e task su 53951
+- [x] rimappare contatti e aziende su 53951 + custom_field owner: default
 
 
 ## NICE TO HAVE:
