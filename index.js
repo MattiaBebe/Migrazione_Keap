@@ -12,23 +12,23 @@ const updateLeadOwners = require('./scripts/lead_owners')
 dotenv.config();
 
 (async () => {
-    // const companies_result = await upsertCompanies(); 
-    // const companyContacts_result = await upsertCompanyContacts();
-    // const contacts_result = await upsertContacts(); 
-    // const tasks = await upsertTasks();
-    // const opportunities = await upsertOpportunities();
-    // const appointments = await importAppointments();
-    // const phonecalls = await importPhoneCalls();
+    const companies_result = await upsertCompanies(); 
+    const companyContacts_result = await upsertCompanyContacts();
+    const contacts_result = await upsertContacts(); 
+    const tasks = await upsertTasks();
+    const opportunities = await upsertOpportunities();
+    const appointments = await importAppointments();
+    const phonecalls = await importPhoneCalls();
     const leadOwners = await updateLeadOwners();
 
     const result = 
-        // companies_result && 
-        // companyContacts_result &&
-        // contacts_result &&
-        // tasks &&
-        // opportunities &&
-        // appointments &&
-        // phonecalls &&
+        companies_result && 
+        companyContacts_result &&
+        contacts_result &&
+        tasks &&
+        opportunities &&
+        appointments &&
+        phonecalls &&
         leadOwners
 
     if (result){
