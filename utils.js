@@ -166,7 +166,7 @@ const buildContactsEmails = (keapContacts, customFieldsMap) => {
         const email = k.email_addresses.find(e => e.field === 'EMAIL1')?.email;
         const owner = k.owner_id;
         if(email) {
-            keepContactsEmail[email] = {keapId: k.id, c4cId: contactId}
+            keepContactsEmail[email] = { keapId: k.id, c4cId: contactId, owner: owner }
         };
     })
     return keepContactsEmail;

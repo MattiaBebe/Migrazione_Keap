@@ -555,8 +555,49 @@ const buildUpdateAppointmentRequest = (a, keapAppointmentsInfo, scriptResults, a
             apiErrors.push(errore);
         }
     }
-    return fn;
-    
+    return fn;    
+}
+
+const buildUpdateLeadOwnerRequest = (l, scriptResults, apiErrors) => {
+    const fn = async () => {
+        try{
+            const data = JSON.stringify({owner_id: l.owner_id});
+            const config = {
+                method: 'patch',
+                url: `${process.env.KEAP_API_URL}/contacts/${l.contactId}?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data : data
+            }
+            const res = await axios(config);
+            console.log(res);
+            scriptResults.push({
+                action: 'update lead owner',
+                data: l,
+                response: {
+                    data: res.data,
+                    request_protocol: res.request.protocol,
+                    request_host: res.request.host,
+                    request_path: res.request.path,
+                    request_method: res.request.method,
+                    response_status: res.status,
+                    response_statusText: res.statusText
+                }
+            });
+        }
+        catch(err){
+            console.error(err);
+            errore = {
+                message: err.message,
+                stack: err.stack,
+                type: 'update lead owner error',
+                data: l
+            };
+            apiErrors.push(errore);
+        }
+    }
+    return fn;   
 }
 
 module.exports.retrieveKeapCompanies = retrieveKeapCompanies;
@@ -571,3 +612,4 @@ module.exports.buildInsertOpportunityRequest = buildInsertOpportunityRequest;
 module.exports.buildUpdateOpportunityRequest = buildUpdateOpportunityRequest;
 module.exports.buildInsertAppointmentRequest = buildInsertAppointmentRequest;
 module.exports.buildUpdateAppointmentRequest = buildUpdateAppointmentRequest;
+module.exports.buildUpdateLeadOwnerRequest = buildUpdateLeadOwnerRequest

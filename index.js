@@ -1,23 +1,25 @@
 //load enviroment variables
 const dotenv = require('dotenv');
-const importCompanies = require('./scripts/companies');
-const importContacts = require('./scripts/contacts');
-const importCompanyContacts = require('./scripts/company-contacts');
-const importTasks = require('./scripts/tasks');
-const importOpportunities = require('./scripts/opportunities');
+const upsertCompanies = require('./scripts/companies');
+const upsertCompanyContacts = require('./scripts/company-contacts');
+const upsertContacts = require('./scripts/contacts');
+const upsertTasks = require('./scripts/tasks');
+const upsertOpportunities = require('./scripts/opportunities');
 const importAppointments = require('./scripts/appointements');
-const importPhoneCalls = require('./scripts/phone_calls')
+const importPhoneCalls = require('./scripts/phone_calls');
+const updateLeadOwners = require('./scripts/lead_owners')
 
 dotenv.config();
 
 (async () => {
-    const companies_result = await importCompanies(); 
-    const companyContacts_result = await importCompanyContacts();
-    const contacts_result = await importContacts(); 
-    const tasks = await importTasks();
-    const opportunities = await importOpportunities();
+    const companies_result = await upsertCompanies(); 
+    const companyContacts_result = await upsertCompanyContacts();
+    const contacts_result = await upsertContacts(); 
+    const tasks = await upsertTasks();
+    const opportunities = await upsertOpportunities();
     const appointments = await importAppointments();
-    const phonecalls = await importPhoneCalls()
+    const phonecalls = await importPhoneCalls();
+    const leadOwners = await updateLeadOwners();
 
     const result = 
         companies_result && 
@@ -26,7 +28,8 @@ dotenv.config();
         tasks &&
         opportunities &&
         appointments &&
-        phonecalls
+        phonecalls &&
+        leadOwners
 
     if (result){
         console.log('completed succesfully');
