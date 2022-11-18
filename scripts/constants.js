@@ -14,7 +14,7 @@ const VALID_COMPANIES_STATUSES = [
     3
 ]
 
-const TASK_DESCRIPTION_REGEX = /(.*)\s+-\s+\[id:(.*),\s+hash:(.*)\]/;
+const TASK_DESCRIPTION_REGEX = /(.*)\s*-\s+\[id:(.*),\s+hash:(.*)\]/;
 
 const contactCustomFieldsMap = {
     contactID: 17,

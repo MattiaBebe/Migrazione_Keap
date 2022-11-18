@@ -5,8 +5,7 @@ const upsertCompanyContacts = require('./scripts/company-contacts');
 const upsertContacts = require('./scripts/contacts');
 const upsertTasks = require('./scripts/tasks');
 const upsertOpportunities = require('./scripts/opportunities');
-const importAppointments = require('./scripts/appointements');
-const importPhoneCalls = require('./scripts/phone_calls');
+const upsertAppointments = require('./scripts/appointements');
 const updateLeadOwners = require('./scripts/lead_owners')
 
 dotenv.config();
@@ -17,8 +16,7 @@ dotenv.config();
     const contacts_result = await upsertContacts(); 
     const tasks = await upsertTasks();
     const opportunities = await upsertOpportunities();
-    const appointments = await importAppointments();
-    const phonecalls = await importPhoneCalls();
+    const appointments = await upsertAppointments();
     const leadOwners = await updateLeadOwners();
 
     const result = 
@@ -28,7 +26,6 @@ dotenv.config();
         tasks &&
         opportunities &&
         appointments &&
-        phonecalls &&
         leadOwners
 
     if (result){

@@ -66,6 +66,42 @@ const buildKeapAppointement = (c4cAppointment, keepContactInfo, users, note, par
     return appointment;
 }
 
+const buildKeapAppointementFromPhoneCall = (c4cPhoneCall, keepContactInfo, users, note, parties) => {
+
+    let appointment = {};
+    appointment["title"] = c4cPhoneCall.Subject;
+
+    const startDate = new Date(c4cPhoneCall.Start_DateTime);
+    const endDate = new Date(c4cPhoneCall.End_Date_Time);
+    appointment["start_date"] = startDate.toISOString();
+    appointment["end_date"] = endDate.valueOf() > startDate.valueOf() ? endDate.toISOString() : (new Date(startDate.valueOf() + 1)).toISOString();
+
+    appointment["location"] = 'Telephone Call';
+    appointment["contact_id"] = keepContactInfo.keapId
+
+    const user = users.find(u => u.c4c_id === parseInt(c4cPhoneCall.Owner_ID))?.keap_id ?? 53951;
+    appointment["user"] = user
+    if (note?.Text) {
+        appointment["description"] = note.Text + '\r\n';
+    }
+    else {
+        appointment["description"] = '\r\n';
+    }
+    appointment["remind_time"] = 1440;
+
+    if( parties && parties.length > 0) {        
+        appointment["description"] = appointment["description"] + '\r\n';
+    }
+    parties?.map(p => {        
+        appointment["description"] = appointment['description'] + `[ ${p.Party_Name} - ${p.EMail} - ${p.Phone}` + '\r\n';
+    })
+
+    const hash = crypto.createHash('sha256', konst.CRYPTO_SECRET).update(JSON.stringify(appointment)).digest('hex');
+    const mapDescription = `\r\n\r\n - [id:${c4cPhoneCall.ObjectID}, hash:${hash}]`
+    appointment['description'] = appointment['description'] + mapDescription;
+    return appointment;
+}
+
 const checkValid = (appointment, keepContactsInfo, users) => {
     const validContact = !!keepContactsInfo[appointment.Main_Contact_ID];
     if (!validContact) {
@@ -95,13 +131,13 @@ module.exports = async () => {
     apiErrors = [...apiErrors, ...keapAppointmentsRes.apiErrors];
     keapAppointments.sort((a, b) => a.lastUpdate.valueOf() - b.lastUpdate.valueOf());
     const keapAppointmentsInfo = utils.buildAppointmentsInfo(keapAppointments);
-    console.log(Object.keys(keapAppointmentsInfo).length);
     console.log('\r\n');
+
+    const notesSplitRegex = /[\n|\r|\r\n](?=(?:[\d|\D]{32},){3})/
 
     if(apiErrors.length === 0){
         let appointmentsNotes = {};
-        const splitRegex = /[\n|\r|\r\n](?=(?:[\d|\D]{32},){3})/
-        const appointmentsNotesRaw = await utils.readCsvFile('db_migration/appointmentnotes.csv', splitRegex);
+        const appointmentsNotesRaw = await utils.readCsvFile('db_migration/appointmentnotes.csv', notesSplitRegex);
         appointmentsNotesRaw.map(n => {
             appointmentsNotes[n.Appointment_ID] = n;
         })
@@ -138,7 +174,7 @@ module.exports = async () => {
     }
     console.log('\r\n');
 
-    const status = apiErrors.length === 0;
+    let status = apiErrors.length === 0;
     
     if(!status){
         utils.saveJson(apiErrors, `appointmentsScriptErrors_${(new Date()).valueOf()}`, 'results');
@@ -149,5 +185,63 @@ module.exports = async () => {
     }
 
     utils.saveJson(scriptResults, `appointmentsScriptResults_${(new Date()).valueOf()}`, 'results');
+
+    apiErrors = [];
+    rejectedData = [];
+    scriptResults = [];
+
+    const c4cPhoneCalls = await utils.readCsvFile('db_migration/phonecalls.csv');
+    if(apiErrors.length === 0){            
+        const validC4CPhonecalls = c4cPhoneCalls.filter(c => checkValid(c, keepContactsInfo, users));
+        
+        let phoneCallsToInsert = validC4CPhonecalls.filter(c => !keapAppointmentsInfo[c.ObjectID]);
+        let phoneCallsToUpdate = validC4CPhonecalls.filter(c => keapAppointmentsInfo[c.ObjectID]);
+
+        let phoneCallNotes = {};
+        const phoneCallNotesRaw = await utils.readCsvFile('db_migration/phonecallnotes.csv', notesSplitRegex);
+        phoneCallNotesRaw.map(n => {
+            phoneCallNotes[n.Phone_Call_ID] = n;
+        })
+
+        const phoneCallPartiesRaw = await utils.readCsvFile('db_migration/phonecallparticipants.csv');
+        const phoneCallParties = _.groupBy(phoneCallPartiesRaw, 'Phone_Call_ID')
+
+        phoneCallsToInsert = phoneCallsToInsert.map(c => buildKeapAppointementFromPhoneCall(c, keepContactsInfo[c.Main_Contact_ID], users, phoneCallNotes[c.ID], phoneCallParties[c.ID]));
+        phoneCallsToUpdate = phoneCallsToUpdate.map(c => buildKeapAppointementFromPhoneCall(c, keepContactsInfo[c.Main_Contact_ID], users, phoneCallNotes[c.ID], phoneCallParties[c.ID]));
+
+        // dev only --START--
+        // phoneCallsToInsert = phoneCallsToInsert.slice(0,10);
+        // phoneCallsToUpdate = phoneCallsToUpdate.slice(0,10);
+        // dev only --END--
+
+        const insertRequests = phoneCallsToInsert.map(a => apiManager.buildInsertAppointmentRequest(a, scriptResults, apiErrors));
+        const insertChunks = _.chunk(insertRequests, konst.API_PARALLEL_CALLS);
+        for(const r of insertChunks){
+            const promises = r.map(fn => fn());
+            await Promise.all(promises);
+        }
+        
+        const updateRequests = phoneCallsToUpdate.map(a => apiManager.buildUpdateAppointmentRequest(a, keapAppointmentsInfo, scriptResults, apiErrors));
+        const updateChunks = _.chunk(updateRequests, konst.API_PARALLEL_CALLS);
+        for(const r of updateChunks){
+            const promises = r.map(fn => fn());
+            await Promise.all(promises);
+        }
+    }
+    console.log('\r\n');
+
+    status = status && apiErrors.length === 0;
+    
+    if(!status){
+        utils.saveJson(apiErrors, `phoneCallsScriptErrors_${(new Date()).valueOf()}`, 'results');
+    }
+
+    if(rejectedData.length > 0){
+        utils.saveCsv(rejectedData, `rejected_phoneCalls_${(new Date()).valueOf()}`, 'results');
+    }
+
+    utils.saveJson(scriptResults, `phoneCallsScriptResults_${(new Date()).valueOf()}`, 'results');
+   
+
     return status;
 }
