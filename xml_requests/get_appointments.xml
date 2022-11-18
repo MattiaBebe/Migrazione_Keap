@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<methodCall>
+  <methodName>DataService.query</methodName>
+  <params>
+    <param>
+      <value><string>$$$___API_KEY___$$$</string></value>
+    </param>
+    <param>
+      <value><string>ContactAction</string></value>
+    </param>
+    <param>
+      <value><int>$$$___PAGE_SIZE___$$$</int></value>
+    </param>
+    <param>
+      <value><int>$$$___PAGE___$$$</int></value>
+    </param>
+    <param>
+      <value><struct>
+        <member><name>ObjectType</name>
+          <value><string>Appointment</string></value>
+        </member>
+      </struct></value>
+    </param>
+    <param>
+      <value><array>
+        <data>
+          <value><string>Id</string></value>
+          <value><string>ActionDescription</string></value>
+          <value><string>UserID</string></value>
+          <value><string>ContactId</string></value>
+          <value><string>CreationNotes</string></value>
+          <value><string>LastUpdated</string></value>
+        </data>
+      </array></value>
+    </param>
+    <param>
+      <value><string>Id</string></value>
+    </param>
+    <param>
+      <value><boolean>0</boolean></value>
+    </param>
+  </params>
+</methodCall>

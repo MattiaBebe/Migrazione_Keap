@@ -14,6 +14,9 @@
 - [x] import appointments with notes and involved-parties
 - [x] rimappare appuntamenti e task su 53951
 - [x] rimappare contatti e aziende su 53951 + custom_field owner: default
+- [ ] cancellare appointments duplicati
+- [x] fixare appointments in upsert
+- [ ] integare phonecalls negli appointments
 
 
 ## NICE TO HAVE:

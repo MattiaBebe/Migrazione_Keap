@@ -5,11 +5,25 @@ const konst = require('./scripts/constants');
 
 const ROOT = process.cwd();
 
-const readCsvFile = async (directory) => {
+/**
+ * @param {string} directory
+ * @param {string} filename
+ */
+const readFile = (directory, filename) => {
+    const directoryPath = path.join(ROOT, directory, filename);
+    const textFile = fs.readFileSync(directoryPath, 'utf-8');
+    return textFile
+}
+
+/**
+ * @param {string} directory
+ * @param {bool} withFailedReturns
+ */
+const readCsvFile = async (directory, splitRegex=/\r\n|\r|\n/) => {
     const directoryPath = path.join(ROOT, directory);
     let data = {};
     data = fs.readFileSync(directoryPath, 'utf-8');
-    const results = parseCSV(data);
+    const results = parseCSV(data, ',', '"', splitRegex);
     return results;   
 }
 
@@ -41,8 +55,14 @@ const saveCsv = async (objects=[], filename=`${(new Date()).valueOf()}`, directo
     }
 }
 
-const parseCSV = (data, separator=',', textIndicator='"') => {
-    data = data.split(/\r\n|\r|\n/);
+/**
+ * @param {string} csvData
+ * @param {string} separator
+ * @param {string} textIndicator
+ * @param {RegExp} splitRegex
+ */
+const parseCSV = (csvData, separator=',', textIndicator='"', splitRegex=/\r\n|\r|\n/) => {
+    let data = csvData.split(splitRegex);
     const headers = data.shift().split(separator);
     data = data.map(r => {
         if (r) {
@@ -206,23 +226,13 @@ const buildOpportunityInfo = (opportunities, customFieldsMap) => {
 const buildAppointmentsInfo = (keapAppointments) => {
     const keepAppointmentsInfo = {};
     keapAppointments.map(k => {
-            const description = k.description;
-            const idAndHashRegex = konst.TASK_DESCRIPTION_REGEX;
-            if (idAndHashRegex.  test(description)) {
-                const match = idAndHashRegex.exec(description);
-                const text = match[1];
-                const id = match[2];
-                const hash = match[3];
-                keepAppointmentsInfo[id] = {
-                    keapid: k.id,
-                    hash: hash,
-                    description: text
-                };
-            }
+        if(k.sapId)
+        keepAppointmentsInfo[k.sapId] = {...k}
     })
     return keepAppointmentsInfo;
 }
 
+module.exports.readFile = readFile;
 module.exports.readCsvFile = readCsvFile;
 module.exports.saveCsv = saveCsv;
 module.exports.saveJson = saveJson;

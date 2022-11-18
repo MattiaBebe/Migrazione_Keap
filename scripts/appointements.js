@@ -8,7 +8,7 @@ let apiErrors = [];
 let rejectedData = [];
 let scriptResults = [];
 
-const buildKeapAppointement = (c4cAppointment, keepContactsInfo, users, note, parties) => {
+const buildKeapAppointement = (c4cAppointment, keepContactInfo, users, note, parties) => {
 
     let appointment = {};
     appointment["title"] = c4cAppointment.Subject;
@@ -21,7 +21,7 @@ const buildKeapAppointement = (c4cAppointment, keepContactsInfo, users, note, pa
     if (appointment.Location) {
         appointment["location"] = c4cAppointment.Location;
     }
-    appointment["contact_id"] = keepContactsInfo[c4cAppointment.Main_Contact_ID].keapId
+    appointment["contact_id"] = keepContactInfo.keapId
 
     const user = users.find(u => u.c4c_id === parseInt(c4cAppointment.Owner_ID))?.keap_id ?? 53951;
     appointment["user"] = user
@@ -90,20 +90,18 @@ module.exports = async () => {
     const keepContactsInfo = utils.buildContactsInfo(keapContacts, konst.contactCustomFieldsMap);
     console.log('\r\n');
 
-    const keapAppointmentsRes = await apiManager.retrieveKeapAppointments();
-    const keapAppointment = keapAppointmentsRes.appointments;
+    const keapAppointmentsRes = await apiManager.retrieveKeapAppointments(konst.TASK_DESCRIPTION_REGEX);
+    const keapAppointments = keapAppointmentsRes.appointments;
     apiErrors = [...apiErrors, ...keapAppointmentsRes.apiErrors];
-    const keapAppointmentsInfo = utils.buildAppointmentsInfo(keapAppointment);
+    keapAppointments.sort((a, b) => a.lastUpdate.valueOf() - b.lastUpdate.valueOf());
+    const keapAppointmentsInfo = utils.buildAppointmentsInfo(keapAppointments);
+    console.log(Object.keys(keapAppointmentsInfo).length);
     console.log('\r\n');
 
-    if(apiErrors.length === 0){            
-        const validC4cAppointmentss = c4cAppointments.filter(a => checkValid(a, keepContactsInfo, users));
-        
-        let appointmentsToInsert = validC4cAppointmentss.filter(a => !keapAppointmentsInfo[a.ObjectID]);
-        let appointmentsToUpdate = validC4cAppointmentss.filter(a => keapAppointmentsInfo[a.ObjectID]);
-
+    if(apiErrors.length === 0){
         let appointmentsNotes = {};
-        const appointmentsNotesRaw = await utils.readCsvFile('db_migration/appointmentnotes.csv');
+        const splitRegex = /[\n|\r|\r\n](?=(?:[\d|\D]{32},){3})/
+        const appointmentsNotesRaw = await utils.readCsvFile('db_migration/appointmentnotes.csv', splitRegex);
         appointmentsNotesRaw.map(n => {
             appointmentsNotes[n.Appointment_ID] = n;
         })
@@ -111,12 +109,17 @@ module.exports = async () => {
         const appointmentsPartiesRaw = await utils.readCsvFile('db_migration/appointmentinvolvedparties.csv');
         const appointmentsParties = _.groupBy(appointmentsPartiesRaw, 'Appointment_ID')
 
-        appointmentsToInsert = appointmentsToInsert.map(a => buildKeapAppointement(a, keepContactsInfo, users, appointmentsNotes[a.ID], appointmentsParties[a.ID]));
-        appointmentsToUpdate = appointmentsToUpdate.map(a => buildKeapAppointement(a, keepContactsInfo, users, appointmentsNotes[a.ID], appointmentsParties[a.ID]));
+        const validC4cAppointments = c4cAppointments.filter(a => checkValid(a, keepContactsInfo, users));
+
+        let appointmentsToInsert = validC4cAppointments.filter(a => !keapAppointmentsInfo[a.ObjectID]);
+        appointmentsToInsert = appointmentsToInsert.map(a => buildKeapAppointement(a, keepContactsInfo[a.Main_Contact_ID], users,  appointmentsNotes[a.ID], appointmentsParties[a.ID]));
+
+        let appointmentsToUpdate = validC4cAppointments.filter(a => keapAppointmentsInfo[a.ObjectID]);
+        appointmentsToUpdate = appointmentsToUpdate.map(a => buildKeapAppointement(a, keepContactsInfo[a.Main_Contact_ID], users,  appointmentsNotes[a.ID], appointmentsParties[a.ID]));
 
         // dev only --START--
-        // appointmentsToInsert = appointmentsToInsert.slice(0,1);
-        // appointmentsToUpdate = appointmentsToUpdate.slice(0,1);
+        // appointmentsToInsert = appointmentsToInsert.slice(0,10);
+        // appointmentsToUpdate = appointmentsToUpdate.slice(0,10);
         // dev only --END--
 
         const insertRequests = appointmentsToInsert.map(a => apiManager.buildInsertAppointmentRequest(a, scriptResults, apiErrors));

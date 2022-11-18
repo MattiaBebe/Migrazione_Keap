@@ -1,5 +1,8 @@
 const axios = require('axios');
+const utils = require('./utils');
 const konst = require('./scripts/constants');
+const { XMLParser } = require('fast-xml-parser/src/fxp');
+const { matches } = require('lodash');
 
 
 const retrieveKeapCompanies = async () => {
@@ -133,20 +136,59 @@ const retrieveKeapOpportunities = async () => {
     }
 }
 
-const retrieveKeapAppointments = async () => {
+/**
+ * @param {RegExp} descriptionRegex
+ */
+const retrieveKeapAppointments = async (descriptionRegex) => {
     let apiErrors = [];
     let keapAppointments = [];
     const appointmentsChunkSize = 1000;
+    const xmlParser = new XMLParser();
     try{
         let iterations = 0;
         let all = false;
         while (!all) {
-            const url = `${process.env.KEAP_API_URL}/appointments?access_token=${process.env.KEAP_ACCESS_TOKEN}&optional_properties=custom_fields&limit=${appointmentsChunkSize}&offset=${appointmentsChunkSize*iterations}`;
-            const res = await axios.get(url);
-            keapAppointments = [...keapAppointments, ...res.data.appointments];
-            console.log(`getAppointments iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedAppointments: ${res.data.appointments.length}`);
+            const getAppointmentsRequestFormat = utils.readFile('xml_requests', 'get_appointments.xml');
+            const getAppointmentsRequest = getAppointmentsRequestFormat.replace('$$$___API_KEY___$$$', `${process.env.KEAP_API_KEY}`).replace('$$$___PAGE_SIZE___$$$', `${appointmentsChunkSize}`).replace('$$$___PAGE___$$$', `${iterations}`);
+            const getAppointmentsConfig = {
+                method: 'post',
+                url: `${process.env.KEAP_API_URL_XMLRPC}?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
+                headers: {
+                  'Content-Type': 'application/xml'
+                },
+                data : getAppointmentsRequest
+            }
+            const res = await axios(getAppointmentsConfig);
+            const xmlAppointments = xmlParser.parse(res.data).methodResponse.params.param.value.array.data.value;
+            const appointmentsFromXml = xmlAppointments.map(a => {
+                const propreties = a.struct.member;
+                const temp = {};
+                propreties.map(p => {
+                    temp[p.name] = p.value
+                })
+                if(descriptionRegex.test(temp.CreationNotes)) {
+                    const mathces = descriptionRegex.exec(temp.CreationNotes);
+                    temp.sapId = mathces[2];
+                    temp.hash = mathces[3];
+                }
+                const lastUpdateString = `${temp.LastUpdated?.['dateTime.iso8601'].substring(0,4)}-${temp.LastUpdated?.['dateTime.iso8601'].substring(4,6)}-${temp.LastUpdated?.['dateTime.iso8601'].substring(6,8)}${temp.LastUpdated?.['dateTime.iso8601'].substring(8,17)}${'.000Z'}`;
+                const appointment = {
+                    id: temp.Id.i4,
+                    ownerId: temp.UserID.i4,
+                    contactId: temp.ContactId.i4,
+                    title: temp.ActionDescription,
+                    description: temp.CreationNotes,
+                    sapId: temp.sapId,
+                    hash: temp.hash,
+                    lastUpdate: new Date(lastUpdateString || 0)
+                }
+                return appointment;
+            })
+            keapAppointments = [...keapAppointments, ...appointmentsFromXml];
+
+            console.log(`getAppointments iterations: ${iterations}, status: ${res.status} - ${res.statusText}, returnedAppointments: ${xmlAppointments.length}`);
             iterations++;
-            all = res.data.appointments.length < appointmentsChunkSize;
+            all = xmlAppointments.length < appointmentsChunkSize;
         }
     }
     catch(err){
@@ -502,20 +544,20 @@ const buildUpdateAppointmentRequest = (a, keapAppointmentsInfo, scriptResults, a
             const description = a.description;    
             const idAndHashRegex = konst.TASK_DESCRIPTION_REGEX;
         
-            let id;
+            let sapId;
             let localHash;
             if (idAndHashRegex.test(description)) {
                 const match = idAndHashRegex.exec(description);
-                id = match[2];
+                sapId = match[2];
                 localHash = match[3];
             }
-            if(id){
-                const remoteAppointmentInfo = keapAppointmentsInfo[id];
-                if(localHash !== keapAppointmentsInfo.hash){
-                    const data = JSON.stringify({...t, description: `${remoteAppointmentInfo.description}${t.description}`});
+            if(sapId){
+                const remoteAppointmentInfo = keapAppointmentsInfo[sapId];
+                if(localHash !== remoteAppointmentInfo.hash){
+                    const data = JSON.stringify(a);
                     const config = {
                         method: 'patch',
-                        url: `${process.env.KEAP_API_URL}/appointments/${id}?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
+                        url: `${process.env.KEAP_API_URL}/appointments/${remoteAppointmentInfo.id}?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
                         headers: {
                             'Content-Type': 'application/json'
                         },
@@ -537,10 +579,10 @@ const buildUpdateAppointmentRequest = (a, keapAppointmentsInfo, scriptResults, a
                         }
                     })
                 } else {                    
-                    console.log(`appointment: ${t.title ?? ''} is already up to date`)
+                    console.log(`appointment: ${a.title ?? ''} is already up to date`)
                 }
             } else {
-                const error = {name: 'no-appointment-id tentative update', message: `it was not possible to find id within the appointment description`}
+                const error = {name: 'no-appointment-sapId tentative update', message: `it was not possible to find id within the appointment description`}
                 throw error;
             }
         }
