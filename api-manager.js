@@ -642,6 +642,46 @@ const buildUpdateLeadOwnerRequest = (l, scriptResults, apiErrors) => {
     return fn;   
 }
 
+const buildDeleteAppointmentRequest = (a, scriptResults, apiErrors) => {
+    const fn = async () => {
+        try{
+            const config = {
+                method: 'delete',
+                url: `${process.env.KEAP_API_URL}/appointments/${a.id}?access_token=${process.env.KEAP_ACCESS_TOKEN}`,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            const res = await axios(config);
+            console.log(res);
+            scriptResults.push({
+                action: 'delete appointments',
+                data: a,
+                response: {
+                    data: res.data,
+                    request_protocol: res.request.protocol,
+                    request_host: res.request.host,
+                    request_path: res.request.path,
+                    request_method: res.request.method,
+                    response_status: res.status,
+                    response_statusText: res.statusText
+                }
+            });
+        }
+        catch(err){
+            console.error(err);
+            errore = {
+                message: err.message,
+                stack: err.stack,
+                type: 'delete appointments error',
+                data: a
+            };
+            apiErrors.push(errore);
+        }
+    }
+    return fn;
+}
+
 module.exports.retrieveKeapCompanies = retrieveKeapCompanies;
 module.exports.retrieveKeapContacts = retrieveKeapContacts;
 module.exports.retrieveKeapTasks = retrieveKeapTasks;
@@ -654,4 +694,5 @@ module.exports.buildInsertOpportunityRequest = buildInsertOpportunityRequest;
 module.exports.buildUpdateOpportunityRequest = buildUpdateOpportunityRequest;
 module.exports.buildInsertAppointmentRequest = buildInsertAppointmentRequest;
 module.exports.buildUpdateAppointmentRequest = buildUpdateAppointmentRequest;
-module.exports.buildUpdateLeadOwnerRequest = buildUpdateLeadOwnerRequest
+module.exports.buildUpdateLeadOwnerRequest = buildUpdateLeadOwnerRequest;
+module.exports.buildDeleteAppointmentRequest = buildDeleteAppointmentRequest;

@@ -7,6 +7,7 @@ const upsertTasks = require('./scripts/tasks');
 const upsertOpportunities = require('./scripts/opportunities');
 const upsertAppointments = require('./scripts/appointements');
 const updateLeadOwners = require('./scripts/lead_owners')
+const deleteDuplicatedAppointments = require('./scripts/delete-duplicate-appointments')
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ dotenv.config();
     const appointments = await upsertAppointments();
     const leadOwners = await updateLeadOwners();
 
+    const deletions = await deleteDuplicatedAppointments();
+
     const result = 
         companies_result && 
         companyContacts_result &&
@@ -26,7 +29,8 @@ dotenv.config();
         tasks &&
         opportunities &&
         appointments &&
-        leadOwners
+        leadOwners &&
+        deletions
 
     if (result){
         console.log('completed succesfully');
